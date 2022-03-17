@@ -1,0 +1,11 @@
+@use "../../scss/variables";
+
+.button {
+    background-color: variables.$secondary-color;
+    border: none;
+    padding: 0.9rem 0.9rem;
+    border-radius: 2rem;
+    color: white;
+    width: 100%;
+    letter-spacing: 1px;
+}

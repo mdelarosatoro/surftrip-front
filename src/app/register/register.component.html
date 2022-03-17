@@ -102,6 +102,7 @@
     <div class="register__input-container">
         <label class="register__label" for="name">Description:</label>
         <textarea
+            class="register__input"
             formControlName="description"
             name="description"
             id="description"
@@ -109,7 +110,7 @@
             rows="10"
         ></textarea>
     </div>
-    <button type="submit">Register</button>
+    <app-button [type]="'submit'" [text]="'Register'"></app-button>
 </form>
 
 {{ registerSurfcampForm.value | json }}
