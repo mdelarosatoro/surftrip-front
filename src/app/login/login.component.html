@@ -1,0 +1,49 @@
+<form class="login" [formGroup]="loginSurfcampForm" (ngSubmit)="handleSubmit()">
+    <h2 class="login__title">Welcome Back!</h2>
+    <div class="login__radio-outer-container">
+        <div class="login__radio-container">
+            <input
+                type="radio"
+                id="surfer"
+                name="userType"
+                value="surfer"
+                class="login__radio-btn"
+                formControlName="userType"
+            />
+            <label for="surfer">Surfer</label>
+        </div>
+        <div class="login__radio-container">
+            <input
+                type="radio"
+                id="surfcamp"
+                name="userType"
+                value="surfcamp"
+                class="login__radio-btn"
+                formControlName="userType"
+            />
+            <label for="surfcamp">Surfcamp</label>
+        </div>
+    </div>
+    <div class="login__input-container">
+        <label class="login__label" for="name">Username:</label>
+        <input
+            class="login__input"
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            formControlName="username"
+        />
+    </div>
+    <div class="login__input-container">
+        <label class="login__label" for="name">Password:</label>
+        <input
+            class="login__input"
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            formControlName="password"
+        />
+    </div>
+    <app-button [type]="'submit'" [text]="'Login'"></app-button>
+</form>
+{{ loginSurfcampForm.value | json }}

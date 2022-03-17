@@ -36,3 +36,16 @@ export interface CustomersI {
     user: string;
     package: string;
 }
+
+export interface SurfcampLoginI {
+    username: string;
+    password: string;
+}
+
+export interface SurfcampLoginResponseI {
+    token: string;
+    id: string;
+    name: string;
+    username: string;
+    role: string;
+}
