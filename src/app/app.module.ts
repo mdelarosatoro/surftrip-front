@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RegisterModule } from './register/register.module';
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -16,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         CoreModule,
         HttpClientModule,
         FontAwesomeModule,
+        RegisterModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
