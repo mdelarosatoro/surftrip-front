@@ -9,7 +9,7 @@ import { CreateSurfcampI, SurfcampI } from '../interfaces/surfcamps.interfaces';
 export class AuthService {
     authUrl: string;
     constructor(private http: HttpClient) {
-        this.authUrl = 'http://localhost:4500/';
+        this.authUrl = 'http://localhost:4500/auth/';
     }
 
     registerSurfcamp(newSurfcamp: CreateSurfcampI): Observable<SurfcampI> {

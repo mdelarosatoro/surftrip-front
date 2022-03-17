@@ -4,6 +4,7 @@
     (ngSubmit)="handleSubmit()"
 >
     <h2 class="register__title">Register your Surfcamp</h2>
+    <p>Already have an account? Click here to sign in.</p>
     <div class="register__input-container">
         <label class="register__label" for="name">Surfcamp Name:</label>
         <input
@@ -12,6 +13,16 @@
             type="text"
             placeholder="Enter the surfcamp's name"
             formControlName="name"
+        />
+    </div>
+    <div class="register__input-container">
+        <label class="register__label" for="name">Surfcamp Location:</label>
+        <input
+            class="register__input"
+            id="location"
+            type="text"
+            placeholder="Enter the surfcamp's location"
+            formControlName="location"
         />
     </div>
     <div class="register__input-container">
