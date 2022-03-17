@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-register',
@@ -8,9 +9,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
     registerSurfcampForm: FormGroup;
-    constructor(public fb: FormBuilder) {
+    constructor(public fb: FormBuilder, public authService: AuthService) {
         this.registerSurfcampForm = fb.group({
             name: ['', []],
+            location: ['', []],
             email: ['', []],
             username: ['', []],
             password: ['', []],
@@ -27,5 +29,13 @@ export class RegisterComponent implements OnInit {
 
     handleSubmit(): void {
         console.log(this.registerSurfcampForm.value);
+        this.authService
+            .registerSurfcamp(this.registerSurfcampForm.value)
+            .subscribe((resp) => {
+                console.log(resp);
+                if (resp._id) {
+                    console.log('Registration success');
+                }
+            });
     }
 }
