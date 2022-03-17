@@ -8,6 +8,7 @@ lerna-debug.log*
 
 package-lock.json
 .angular
+.DS_Store
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
