@@ -5,10 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { CoreModule } from './core/core.module';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {}), CoreModule],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        StoreModule.forRoot({}, {}),
+        CoreModule,
+        HttpClientModule,
+        FontAwesomeModule,
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })
