@@ -1,0 +1,9 @@
+@use "../../scss/variables";
+
+.footer {
+    height: 100px;
+    background-color: variables.$primary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

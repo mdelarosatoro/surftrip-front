@@ -1,0 +1,116 @@
+<form
+    class="register"
+    [formGroup]="registerSurfcampForm"
+    (ngSubmit)="handleSubmit()"
+>
+    <h2 class="register__title">Register your Surfcamp</h2>
+    <div class="register__input-container">
+        <label class="register__label" for="name">Surfcamp Name:</label>
+        <input
+            class="register__input"
+            id="name"
+            type="text"
+            placeholder="Enter the surfcamp's name"
+            formControlName="name"
+        />
+    </div>
+    <div class="register__input-container">
+        <label class="register__label" for="email">Email:</label>
+        <input
+            class="register__input"
+            id="email"
+            type="text"
+            placeholder="Enter your email"
+            formControlName="email"
+        />
+    </div>
+    <div class="register__input-container">
+        <label class="register__label" for="email">Username:</label>
+        <input
+            class="register__input"
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            formControlName="username"
+        />
+    </div>
+    <div class="register__input-container">
+        <label class="register__label" for="email">Password:</label>
+        <input
+            class="register__input"
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            formControlName="password"
+        />
+    </div>
+    <div class="register__input-container">
+        <label class="register__label" for="email">Confirm password:</label>
+        <input
+            class="register__input"
+            id="confirm-password"
+            type="password"
+            placeholder="Confirm your password"
+            formControlName="confirmPassword"
+        />
+    </div>
+    <div class="register__input-container">
+        <p class="register__label">
+            Choose the skill levels your clients should have:
+        </p>
+        <div class="register__checkbox-outer-container">
+            <div class="register__checkbox-container">
+                <input
+                    type="checkbox"
+                    id="beginner"
+                    name="beginner"
+                    formControlName="beginner"
+                />
+                <label class="register__label" for="beginner">Beginner</label>
+            </div>
+            <div class="register__checkbox-container">
+                <input
+                    type="checkbox"
+                    id="intermediate"
+                    name="intermediate"
+                    formControlName="intermediate"
+                />
+                <label class="register__label" for="intermediate"
+                    >Intermediate</label
+                >
+            </div>
+            <div class="register__checkbox-container">
+                <input
+                    type="checkbox"
+                    id="advanced"
+                    name="advanced"
+                    formControlName="advanced"
+                />
+                <label class="register__label" for="advanced">Advanced</label>
+            </div>
+            <div class="register__checkbox-container">
+                <input
+                    type="checkbox"
+                    id="expert"
+                    name="expert"
+                    formControlName="expert"
+                />
+                <label class="register__label" for="expert">Expert</label>
+            </div>
+        </div>
+    </div>
+    <div class="register__input-container">
+        <label class="register__label" for="name">Description:</label>
+        <textarea
+            class="register__input"
+            formControlName="description"
+            name="description"
+            id="description"
+            cols="30"
+            rows="10"
+        ></textarea>
+    </div>
+    <app-button [type]="'submit'" [text]="'Register'"></app-button>
+</form>
+
+{{ registerSurfcampForm.value | json }}

@@ -1,0 +1,22 @@
+@use "../../scss/variables";
+
+.header {
+    height: 90px;
+    background-color: variables.$primary-color;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__logo-container {
+        height: 90%;
+    }
+
+    &__logo {
+        height: 100%;
+    }
+
+    &__burger {
+        font-size: 1.5rem;
+    }
+}
