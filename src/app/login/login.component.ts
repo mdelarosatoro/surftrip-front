@@ -19,5 +19,17 @@ export class LoginComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    handleSubmit() {}
+    handleSubmit(): void {
+        console.log(this.loginSurfcampForm);
+        const credentials = {
+            username: this.loginSurfcampForm.value.username,
+            password: this.loginSurfcampForm.value.password,
+        };
+        console.log(credentials);
+        if (this.loginSurfcampForm.value.userType === 'surfcamp') {
+            this.authService.loginSurfcamp(credentials).subscribe((resp) => {
+                console.log(resp);
+            });
+        }
+    }
 }
