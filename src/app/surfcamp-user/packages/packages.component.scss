@@ -1,0 +1,55 @@
+@use "../../scss/variables";
+
+.packages {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.package {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+    align-items: center;
+    transition: 0.3s ease all;
+
+    &:hover {
+        transform: scale(1.01);
+        transition: 0.3s ease all;
+    }
+
+    &__icon-container {
+        width: 30px;
+    }
+    &__icon {
+        width: 100%;
+        font-size: 0.5rem;
+        border-radius: 50%;
+    }
+    &__name {
+        font-size: 0.9rem;
+    }
+    &__price {
+    }
+
+    &__link {
+        &:hover {
+            color: variables.$secondary-color;
+            transition: 0.3s ease all;
+        }
+    }
+
+    &__edit-btn {
+        color: #979797;
+        cursor: pointer;
+        transition: 0.3s ease all;
+
+        &:hover {
+            color: variables.$secondary-color;
+            transition: 0.3s ease all;
+        }
+    }
+}
