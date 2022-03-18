@@ -6,6 +6,7 @@ import { LoginComponent } from './login.component';
 import { CoreModule } from '../core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [LoginComponent],
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         CoreModule,
         FormsModule,
         ReactiveFormsModule,
+        RouterModule,
     ],
 })
 export class LoginModule {}

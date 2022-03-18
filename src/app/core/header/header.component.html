@@ -6,5 +6,9 @@
             alt="Surftrip Logo"
         />
     </div>
-    <fa-icon class="header__burger" [icon]="faBars"></fa-icon>
+    <fa-icon
+        (click)="toggleMenu()"
+        class="header__burger"
+        [icon]="!menuState ? faBars : faTimes"
+    ></fa-icon>
 </header>

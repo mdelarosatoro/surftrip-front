@@ -1,0 +1,9 @@
+<app-header
+    (toggleMenuEvent)="toggleMenu($event)"
+    [menuState]="menuState"
+></app-header>
+<main class="main">
+    <app-menu [menuState]="menuState"></app-menu>
+    <ng-content></ng-content>
+</main>
+<app-footer></app-footer>

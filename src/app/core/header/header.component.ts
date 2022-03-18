@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Observable, of } from 'rxjs';
 
 @Component({
     selector: 'app-header',
@@ -8,7 +9,17 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent implements OnInit {
     faBars = faBars;
-    constructor() {}
+    faTimes = faTimes;
+    @Input() menuState!: boolean;
+    @Output() toggleMenuEvent: EventEmitter<boolean>;
+
+    constructor() {
+        this.toggleMenuEvent = new EventEmitter();
+    }
 
     ngOnInit(): void {}
+
+    toggleMenu() {
+        this.toggleMenuEvent.next(!this.menuState);
+    }
 }
