@@ -14,6 +14,11 @@ const routes: Routes = [
         loadChildren: () =>
             import('./auth/login/login.module').then((m) => m.LoginModule),
     },
+    {
+        path: 'surfcamp-home',
+        loadChildren: () =>
+            import('./surfcamp/surfcamp.module').then((m) => m.SurfcampModule),
+    },
 ];
 
 @NgModule({
