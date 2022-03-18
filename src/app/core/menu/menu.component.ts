@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faLockOpen, faIdCard } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-menu',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
+    faLockOpen = faLockOpen;
+    faIdCard = faIdCard;
     constructor() {}
 
     ngOnInit(): void {}
