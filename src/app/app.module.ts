@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { RegisterModule } from './register/register.module';
+import { RegisterModule } from './auth/register/register.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 @NgModule({
