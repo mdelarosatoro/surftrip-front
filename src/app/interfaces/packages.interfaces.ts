@@ -9,3 +9,10 @@ export interface PackageI {
     price: number;
     name: string;
 }
+
+export interface UpdatedPackageI {
+    name: string;
+    price: number;
+    days: number;
+    description: string;
+}
