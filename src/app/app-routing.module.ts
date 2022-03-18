@@ -28,6 +28,13 @@ const routes: Routes = [
                 (m) => m.PackagesModule
             ),
     },
+    {
+        path: 'surfcamp-packages/detail/:id',
+        loadChildren: () =>
+            import(
+                './surfcamp-user/package-details/package-details.module'
+            ).then((m) => m.PackageDetailsModule),
+    },
 ];
 
 @NgModule({
