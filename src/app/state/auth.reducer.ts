@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { SurfcampLoginResponseI } from '../interfaces/surfcamps.interfaces';
-import { login } from './tasks.actions';
+import { login } from './auth.actions';
 
 export const initialState: Readonly<SurfcampLoginResponseI> = {
     token: '',
