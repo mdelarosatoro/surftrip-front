@@ -15,7 +15,7 @@ const routes: Routes = [
             import('./auth/login/login.module').then((m) => m.LoginModule),
     },
     {
-        path: 'surfcamp-home',
+        path: 'surfcamp-user',
         loadChildren: () =>
             import('./surfcamp/surfcamp.module').then((m) => m.SurfcampModule),
     },

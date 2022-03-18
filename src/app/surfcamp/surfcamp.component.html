@@ -1,6 +1,10 @@
 <div class="container">
     <h2>Welcome, {{ auth.name }}</h2>
-    <app-button [text]="'Packages'"></app-button>
-    <app-button [text]="'Customers'"></app-button>
-    <app-button [text]="'Surfcamp Info'"></app-button>
+    <a routerLink="/surfcamp-user/packages" class="container__link">Packages</a>
+    <a routerLink="/surfcamp-user/customers" class="container__link"
+        >Customers</a
+    >
+    <a routerLink="/surfcamp-user/info" class="container__link"
+        >Surfcamp Info</a
+    >
 </div>
