@@ -49,3 +49,10 @@ export interface SurfcampLoginResponseI {
     username: string;
     role: string;
 }
+
+export interface SurfcampLoginTokenResponseI {
+    id: string;
+    name: string;
+    username: string;
+    role: string;
+}
