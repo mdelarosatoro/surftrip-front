@@ -5,6 +5,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './footer/footer.component';
 import { ButtonComponent } from './button/button.component';
 import { MenuComponent } from './menu/menu.component';
+import { LayoutComponent } from './layout/layout.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -12,8 +14,15 @@ import { MenuComponent } from './menu/menu.component';
         FooterComponent,
         ButtonComponent,
         MenuComponent,
+        LayoutComponent,
     ],
-    imports: [CommonModule, FontAwesomeModule],
-    exports: [HeaderComponent, FooterComponent, ButtonComponent, MenuComponent],
+    imports: [CommonModule, FontAwesomeModule, RouterModule],
+    exports: [
+        HeaderComponent,
+        FooterComponent,
+        ButtonComponent,
+        MenuComponent,
+        LayoutComponent,
+    ],
 })
 export class CoreModule {}

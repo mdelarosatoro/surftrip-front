@@ -1,7 +1,0 @@
-@use "./scss/variables";
-
-.main {
-    min-height: calc(100vh - 190px);
-    padding: 1rem;
-    background-color: variables.$light-gray-color;
-}
