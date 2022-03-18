@@ -1,11 +1,11 @@
-<nav class="menu">
+<nav class="menu" *ngIf="menuState">
     <div class="menu__auth-outer-container">
         <div class="menu__auth-container">
             <a
                 class="menu__link"
                 routerLink="/login"
                 routerLinkActive="menu__link--active"
-                ><fa-icon class="header__burger" [icon]="faLockOpen"></fa-icon>
+                ><fa-icon class="menu__icon" [icon]="faLockOpen"></fa-icon>
                 <p>Login</p></a
             >
         </div>
@@ -14,7 +14,7 @@
                 class="menu__link"
                 routerLink="/register"
                 routerLinkActive="menu__link--active"
-                ><fa-icon class="header__burger" [icon]="faIdCard"></fa-icon>
+                ><fa-icon class="menu__icon" [icon]="faIdCard"></fa-icon>
                 <p>Register</p>
             </a>
         </div>
