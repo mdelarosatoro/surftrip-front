@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { SurfcampLoginResponseI } from '../interfaces/surfcamps.interfaces';
+import { SurfcampLoginResponseI } from '../../interfaces/surfcamps.interfaces';
 
 export const login = createAction(
     '[Auth] Login',

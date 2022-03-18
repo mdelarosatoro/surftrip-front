@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { SurfcampLoginResponseI } from 'src/app/interfaces/surfcamps.interfaces';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { loadPackages } from 'src/app/state/packages/packages.actions';
 
 @Component({
     selector: 'app-package-list',
@@ -23,12 +24,13 @@ export class PackageListComponent implements OnInit {
             .select((store) => store.auth)
             .subscribe((data) => {
                 this.auth = { ...data };
-                this.surfcampsService
-                    .getSurfcampPackages(this.auth.token, this.auth.id)
-                    .subscribe((resp) => {
-                        console.log(resp);
-                        this.packages = resp;
-                    });
+            });
+        this.surfcampsService
+            .getSurfcampPackages(this.auth.token, this.auth.id)
+            .subscribe((resp) => {
+                console.log(resp);
+                this.packages = resp;
+                this.store.dispatch(loadPackages({ packages: this.packages }));
             });
     }
 }

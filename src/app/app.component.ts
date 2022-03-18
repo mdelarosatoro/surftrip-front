@@ -5,7 +5,7 @@ import {
     SurfcampLoginTokenResponseI,
 } from './interfaces/surfcamps.interfaces';
 import { AuthService } from './services/auth.service';
-import { login } from './state/auth.actions';
+import { login } from './state/auth/auth.actions';
 
 @Component({
     selector: 'app-root',
