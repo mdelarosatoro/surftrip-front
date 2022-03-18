@@ -10,7 +10,7 @@ export const initialState: Readonly<SurfcampLoginResponseI> = {
     role: '',
 };
 
-export const tasksReducer = createReducer(
+export const authReducer = createReducer(
     initialState,
     on(login, (state, { loginResponse }) => loginResponse)
     // on(retrievedTaskList, (state, { tasks }) => tasks),

@@ -2,6 +2,7 @@
     <div class="menu__auth-outer-container">
         <div class="menu__auth-container">
             <a
+                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/login"
                 routerLinkActive="menu__link--active"
@@ -11,6 +12,7 @@
         </div>
         <div class="menu__auth-container">
             <a
+                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/register"
                 routerLinkActive="menu__link--active"

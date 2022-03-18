@@ -5,12 +5,28 @@ const routes: Routes = [
     {
         path: 'register',
         loadChildren: () =>
-            import('./register/register.module').then((m) => m.RegisterModule),
+            import('./auth/register/register.module').then(
+                (m) => m.RegisterModule
+            ),
     },
     {
         path: 'login',
         loadChildren: () =>
-            import('./login/login.module').then((m) => m.LoginModule),
+            import('./auth/login/login.module').then((m) => m.LoginModule),
+    },
+    {
+        path: 'surfcamp-dashboard',
+        loadChildren: () =>
+            import('./surfcamp-user/dashboard/dashboard.module').then(
+                (m) => m.DashboardModule
+            ),
+    },
+    {
+        path: 'surfcamp-packages',
+        loadChildren: () =>
+            import('./surfcamp-user/packages/packages.module').then(
+                (m) => m.PackagesModule
+            ),
     },
 ];
 

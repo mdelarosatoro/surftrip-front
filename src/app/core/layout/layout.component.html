@@ -3,7 +3,10 @@
     [menuState]="menuState"
 ></app-header>
 <main class="main">
-    <app-menu [menuState]="menuState"></app-menu>
+    <app-menu
+        (menuClickEvent)="toggleMenu($event)"
+        [menuState]="menuState"
+    ></app-menu>
     <ng-content></ng-content>
 </main>
 <app-footer></app-footer>

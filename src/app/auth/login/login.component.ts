@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { SurfcampLoginResponseI } from '../interfaces/surfcamps.interfaces';
-import { AuthService } from '../services/auth.service';
-import { login } from '../state/auth.actions';
+import { SurfcampLoginResponseI } from '../../interfaces/surfcamps.interfaces';
+import { AuthService } from '../../services/auth.service';
+import { login } from '../../state/auth.actions';
 
 @Component({
     selector: 'app-login',

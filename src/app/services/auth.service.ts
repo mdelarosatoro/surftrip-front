@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
@@ -6,6 +6,7 @@ import {
     SurfcampI,
     SurfcampLoginI,
     SurfcampLoginResponseI,
+    SurfcampLoginTokenResponseI,
 } from '../interfaces/surfcamps.interfaces';
 
 @Injectable({
@@ -30,6 +31,19 @@ export class AuthService {
         return this.http.post<SurfcampLoginResponseI>(
             this.authUrl + 'surfcamps/login',
             credentials
+        );
+    }
+
+    loginToken(token: string): Observable<SurfcampLoginTokenResponseI> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        return this.http.get<SurfcampLoginTokenResponseI>(
+            this.authUrl + 'login-token',
+            {
+                headers: headers,
+            }
         );
     }
 }
