@@ -1,0 +1,22 @@
+.back-button {
+    padding: 0.7rem 0.5rem;
+    border-radius: 1.5rem;
+    width: 100px;
+    border: 1px solid #2972fe;
+    color: #2972fe;
+    display: flex;
+    justify-content: center;
+    column-gap: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease all;
+    margin-top: 1rem;
+
+    &:hover {
+        background-color: #2972fe;
+        color: white;
+        transition: 0.3s ease all;
+    }
+
+    &__icon {
+    }
+}

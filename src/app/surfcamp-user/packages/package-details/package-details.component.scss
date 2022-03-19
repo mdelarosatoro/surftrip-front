@@ -43,4 +43,9 @@
         border-radius: 1.5rem;
         border: none;
     }
+
+    &__info {
+        width: 90%;
+        word-wrap: break-word;
+    }
 }

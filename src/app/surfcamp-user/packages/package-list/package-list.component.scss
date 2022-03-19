@@ -35,6 +35,8 @@
     }
     &__name {
         font-size: 0.9rem;
+        word-wrap: break-word;
+        width: 30%;
     }
     &__price {
     }

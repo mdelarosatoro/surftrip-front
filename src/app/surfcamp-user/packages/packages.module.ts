@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PackageDetailsComponent } from './package-details/package-details.component';
 import { PackageListComponent } from './package-list/package-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         FontAwesomeModule,
         FormsModule,
         ReactiveFormsModule,
+        CoreModule,
     ],
 })
 export class PackagesModule {}
