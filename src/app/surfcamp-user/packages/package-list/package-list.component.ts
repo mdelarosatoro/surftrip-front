@@ -28,7 +28,6 @@ export class PackageListComponent implements OnInit {
         this.surfcampsService
             .getSurfcampPackages(this.auth.token, this.auth.id)
             .subscribe((resp) => {
-                console.log(resp);
                 this.packages = resp;
                 this.store.dispatch(loadPackages({ packages: this.packages }));
             });

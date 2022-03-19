@@ -12,12 +12,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { authReducer } from './state/auth/auth.reducer';
 import { packagesReducer } from './state/packages/packages.reducer';
+import { surfcampReducer } from './state/surfcamp/surfcamp.reducer';
 @NgModule({
     declarations: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        StoreModule.forRoot({ auth: authReducer, packages: packagesReducer }),
+        StoreModule.forRoot({
+            auth: authReducer,
+            packages: packagesReducer,
+            surfcamp: surfcampReducer,
+        }),
         StoreDevtoolsModule.instrument({
             maxAge: 25, // Retains last 25 states
             logOnly: environment.production, // Restrict extension to log-only mode
