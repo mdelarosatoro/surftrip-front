@@ -28,6 +28,13 @@ const routes: Routes = [
                 (m) => m.PackagesModule
             ),
     },
+    {
+        path: 'surfcamp-customers',
+        loadChildren: () =>
+            import('./surfcamp-user/customers/customers.module').then(
+                (m) => m.CustomersModule
+            ),
+    },
 ];
 
 @NgModule({

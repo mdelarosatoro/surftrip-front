@@ -1,0 +1,31 @@
+<div class="customers">
+    <h2>Customers</h2>
+    <div *ngFor="let customer of customers" class="customer">
+        <div class="customer__icon-container">
+            <img
+                class="customer__icon"
+                [src]="customer.icon"
+                [alt]="'{{customer.user.name}} icon'"
+            />
+        </div>
+        <div class="customer__field-container">
+            <p class="customer__field-name">Name:</p>
+            <p class="customer__field-value">{{ customer.user.name }}</p>
+        </div>
+        <div class="customer__field-container">
+            <p class="customer__field-name">Package:</p>
+            <p class="customer__field-value">{{ customer.package.name }}</p>
+        </div>
+        <div class="customer__field-container">
+            <p class="customer__field-name">Price:</p>
+            <p class="customer__field-value">€ {{ customer.package.price }}</p>
+        </div>
+        <!-- <a
+            [routerLink]="'/surfcamp-customers/details/' + customer._id"
+            class="customer__link"
+        >
+            <fa-icon class="customer__info-btn" [icon]="faInfoCircle"></fa-icon>
+        </a> -->
+    </div>
+</div>
+<app-button-back></app-button-back>
