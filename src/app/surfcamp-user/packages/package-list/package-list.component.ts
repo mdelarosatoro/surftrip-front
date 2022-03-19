@@ -4,7 +4,6 @@ import {
     SurfcampI,
     SurfcampLoginResponseI,
 } from 'src/app/interfaces/surfcamps.interfaces';
-import { SurfcampsService } from 'src/app/services/surfcamps.service';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -20,8 +19,7 @@ export class PackageListComponent implements OnInit {
         private store: Store<{
             auth: SurfcampLoginResponseI;
             surfcamp: SurfcampI;
-        }>,
-        public surfcampsService: SurfcampsService
+        }>
     ) {}
 
     ngOnInit(): void {
