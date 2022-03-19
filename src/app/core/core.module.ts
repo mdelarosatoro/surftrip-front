@@ -7,6 +7,7 @@ import { ButtonComponent } from './button/button.component';
 import { MenuComponent } from './menu/menu.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RouterModule } from '@angular/router';
+import { ButtonBackComponent } from './button-back/button-back.component';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
         ButtonComponent,
         MenuComponent,
         LayoutComponent,
+        ButtonBackComponent,
     ],
     imports: [CommonModule, FontAwesomeModule, RouterModule],
     exports: [
@@ -23,6 +25,7 @@ import { RouterModule } from '@angular/router';
         ButtonComponent,
         MenuComponent,
         LayoutComponent,
+        ButtonBackComponent,
     ],
 })
 export class CoreModule {}

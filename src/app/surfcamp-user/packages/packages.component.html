@@ -1,17 +1,1 @@
-<div class="packages">
-    <h2>Packages</h2>
-    <div *ngFor="let package of packages" class="package">
-        <div class="package__icon-container">
-            <img
-                class="package__icon"
-                [src]="package.icon"
-                [alt]="'{{package.name}} icon'"
-            />
-        </div>
-        <p class="package__name">{{ package.name }}</p>
-        <p class="package__price">€{{ package.price }}</p>
-        <a class="package__link">
-            <fa-icon class="package__edit-btn" [icon]="faInfoCircle"></fa-icon>
-        </a>
-    </div>
-</div>
+<router-outlet></router-outlet>

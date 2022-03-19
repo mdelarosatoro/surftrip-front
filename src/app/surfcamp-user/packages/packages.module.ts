@@ -5,9 +5,24 @@ import { PackagesRoutingModule } from './packages-routing.module';
 import { PackagesComponent } from './packages.component';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PackageDetailsComponent } from './package-details/package-details.component';
+import { PackageListComponent } from './package-list/package-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
-    declarations: [PackagesComponent],
-    imports: [CommonModule, PackagesRoutingModule, FontAwesomeModule],
+    declarations: [
+        PackagesComponent,
+        PackageDetailsComponent,
+        PackageListComponent,
+    ],
+    imports: [
+        CommonModule,
+        PackagesRoutingModule,
+        FontAwesomeModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CoreModule,
+    ],
 })
 export class PackagesModule {}

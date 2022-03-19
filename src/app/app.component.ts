@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
+    SurfcampI,
     SurfcampLoginResponseI,
     SurfcampLoginTokenResponseI,
 } from './interfaces/surfcamps.interfaces';
 import { AuthService } from './services/auth.service';
-import { login } from './state/auth.actions';
+import { SurfcampsService } from './services/surfcamps.service';
+import { login } from './state/auth/auth.actions';
+import { loadSurfcamp } from './state/surfcamp/surfcamp.actions';
 
 @Component({
     selector: 'app-root',
@@ -17,8 +20,12 @@ export class AppComponent {
     token: string | null;
 
     constructor(
-        private store: Store<{ auth: SurfcampLoginResponseI }>,
-        public authService: AuthService
+        private store: Store<{
+            auth: SurfcampLoginResponseI;
+            surfcamp: SurfcampI;
+        }>,
+        public authService: AuthService,
+        public surfcampsService: SurfcampsService
     ) {
         this.token = null;
     }
@@ -30,14 +37,12 @@ export class AppComponent {
                 return store.auth;
             })
             .subscribe((auth) => {
-                console.log(auth);
+                // console.log(auth);
             });
-        console.log(this.token);
         if (this.token) {
             this.authService
                 .loginToken(this.token)
                 .subscribe((resp: SurfcampLoginTokenResponseI) => {
-                    console.log(resp);
                     this.store.dispatch(
                         login({
                             loginResponse: {
@@ -46,6 +51,15 @@ export class AppComponent {
                             },
                         })
                     );
+                    this.surfcampsService
+                        .getSurfcampById(this.token as string, resp.id)
+                        .subscribe((resp) => {
+                            this.store.dispatch(
+                                loadSurfcamp({
+                                    surfcamp: resp,
+                                })
+                            );
+                        });
                 });
         }
     }
