@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SurfcampLoginResponseI } from 'src/app/interfaces/surfcamps.interfaces';
+import {
+    SurfcampI,
+    SurfcampLoginResponseI,
+} from 'src/app/interfaces/surfcamps.interfaces';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { loadPackages } from 'src/app/state/packages/packages.actions';
 
 @Component({
     selector: 'app-package-list',
@@ -15,21 +17,19 @@ export class PackageListComponent implements OnInit {
     auth!: SurfcampLoginResponseI;
     packages!: any;
     constructor(
-        private store: Store<{ auth: SurfcampLoginResponseI }>,
+        private store: Store<{
+            auth: SurfcampLoginResponseI;
+            surfcamp: SurfcampI;
+        }>,
         public surfcampsService: SurfcampsService
     ) {}
 
     ngOnInit(): void {
         this.store
-            .select((store) => store.auth)
+            .select((store) => ({ auth: store.auth, surfcamp: store.surfcamp }))
             .subscribe((data) => {
-                this.auth = { ...data };
-            });
-        this.surfcampsService
-            .getSurfcampPackages(this.auth.token, this.auth.id)
-            .subscribe((resp) => {
-                this.packages = resp;
-                this.store.dispatch(loadPackages({ packages: this.packages }));
+                this.auth = data.auth;
+                this.packages = data.surfcamp.packages;
             });
     }
 }

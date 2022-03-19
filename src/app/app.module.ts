@@ -11,7 +11,6 @@ import { RegisterModule } from './auth/register/register.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { authReducer } from './state/auth/auth.reducer';
-import { packagesReducer } from './state/packages/packages.reducer';
 import { surfcampReducer } from './state/surfcamp/surfcamp.reducer';
 @NgModule({
     declarations: [AppComponent],
@@ -20,7 +19,6 @@ import { surfcampReducer } from './state/surfcamp/surfcamp.reducer';
         AppRoutingModule,
         StoreModule.forRoot({
             auth: authReducer,
-            packages: packagesReducer,
             surfcamp: surfcampReducer,
         }),
         StoreDevtoolsModule.instrument({

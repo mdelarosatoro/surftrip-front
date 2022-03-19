@@ -29,7 +29,10 @@ export class PackageDetailsComponent implements OnInit {
     editMode: boolean;
 
     constructor(
-        private store: Store<{ auth: SurfcampLoginResponseI }>,
+        private store: Store<{
+            auth: SurfcampLoginResponseI;
+            surfcamp: SurfcampI;
+        }>,
         private route: ActivatedRoute,
         public packagesService: PackagesService,
         public fb: FormBuilder
@@ -55,24 +58,19 @@ export class PackageDetailsComponent implements OnInit {
     ngOnInit(): void {
         console.log(this.route.snapshot.paramMap.get('id'));
         this.store
-            .select((store) => store.auth)
+            .select((store) => ({ auth: store.auth, surfcamp: store.surfcamp }))
             .subscribe((data) => {
-                this.auth = { ...data };
-                this.packagesService
-                    .getPackageById(
-                        this.route.snapshot.paramMap.get('id') as string,
-                        this.auth.token
-                    )
-                    .subscribe((resp: any) => {
-                        console.log(resp);
-                        this.package = resp;
-                        this.editPackageForm.setValue({
-                            name: resp.name,
-                            price: resp.price,
-                            days: resp.days,
-                            description: resp.description,
-                        });
-                    });
+                this.auth = data.auth;
+                this.package = data.surfcamp.packages.find(
+                    (item) =>
+                        item._id === this.route.snapshot.paramMap.get('id')
+                ) as PackageI;
+                this.editPackageForm.setValue({
+                    name: this.package.name,
+                    price: this.package.price,
+                    days: this.package.days,
+                    description: this.package.description,
+                });
             });
     }
 
