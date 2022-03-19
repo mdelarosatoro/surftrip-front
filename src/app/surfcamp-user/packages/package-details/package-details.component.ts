@@ -13,6 +13,7 @@ import {
     faSave,
     faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
+import { udpatePackage } from 'src/app/state/surfcamp/surfcamp.actions';
 
 @Component({
     selector: 'app-package-details',
@@ -38,13 +39,13 @@ export class PackageDetailsComponent implements OnInit {
         public fb: FormBuilder
     ) {
         this.package = {
-            _id: 'string',
-            surfcamp: {} as SurfcampI,
-            icon: 'string',
-            description: 'string',
+            _id: '',
+            name: '',
+            description: '',
+            icon: '',
             days: 0,
             price: 0,
-            name: 'string',
+            surfcamp: {} as SurfcampI,
         };
         this.editMode = false;
         this.editPackageForm = this.fb.group({
@@ -65,6 +66,7 @@ export class PackageDetailsComponent implements OnInit {
                     (item) =>
                         item._id === this.route.snapshot.paramMap.get('id')
                 ) as PackageI;
+                console.log(this.package);
                 this.editPackageForm.setValue({
                     name: this.package.name,
                     price: this.package.price,
@@ -88,6 +90,8 @@ export class PackageDetailsComponent implements OnInit {
             )
             .subscribe((resp) => {
                 console.log(resp);
+                this.store.dispatch(udpatePackage({ updatedPackage: resp }));
+                this.editMode = false;
             });
     }
 }
