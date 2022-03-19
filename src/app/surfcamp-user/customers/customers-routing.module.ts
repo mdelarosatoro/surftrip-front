@@ -12,10 +12,6 @@ const routes: Routes = [
                 path: '',
                 component: CustomerListComponent,
             },
-            // {
-            //     path: 'details/:id',
-            //     component: PackageDetailsComponent,
-            // },
         ],
     },
 ];
