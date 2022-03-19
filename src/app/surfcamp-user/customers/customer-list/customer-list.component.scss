@@ -22,10 +22,6 @@
         transform: scale(1.01);
         transition: 0.3s ease all;
     }
-    &:hover .package__edit-btn {
-        color: variables.$secondary-color;
-        transition: 0.3s ease all;
-    }
 
     &__icon-container {
         width: 30px;
@@ -43,6 +39,11 @@
 
     &__field-name {
         width: 50%;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: variables.$secondary-color;
     }
 
     &__field-value {
