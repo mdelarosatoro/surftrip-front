@@ -1,0 +1,38 @@
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+
+    &__title {
+        align-self: flex-start;
+    }
+
+    &__info {
+        align-self: flex-start;
+    }
+}
+
+.photo {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
+    &__img-container {
+        width: 100%;
+    }
+
+    &__img {
+        width: 100%;
+        display: block;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+    }
+
+    &__description-container {
+        padding: 0.5rem;
+        border: 1px solid rgb(117, 117, 117);
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+    }
+}

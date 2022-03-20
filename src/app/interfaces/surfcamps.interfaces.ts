@@ -1,4 +1,5 @@
 import { PackageI } from './packages.interfaces';
+import { PhotoI } from './photos.interfaces';
 
 export interface CreateSurfcampI {
     email: string;
@@ -18,7 +19,7 @@ export interface SurfcampI {
     rating: string;
     packages: PackageI[];
     role: string;
-    photos: string[];
+    photos: PhotoI[];
     skillLevels: string[];
     location: string;
     description: string;
