@@ -1,6 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 import { SurfcampI } from '../../interfaces/surfcamps.interfaces';
-import { loadSurfcamp, udpatePackage } from './surfcamp.actions';
+import {
+    loadSurfcamp,
+    udpatePackage,
+    updateSurfcamp,
+} from './surfcamp.actions';
 
 export const initialState: Readonly<SurfcampI> = {
     _id: '',
@@ -28,5 +32,9 @@ export const surfcampReducer = createReducer(
                 item._id === updatedPackage._id ? updatedPackage : item
             ),
         };
-    })
+    }),
+    on(updateSurfcamp, (state, { updatedSurfcamp }) => ({
+        ...state,
+        ...updatedSurfcamp,
+    }))
 );

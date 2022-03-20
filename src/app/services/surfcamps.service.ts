@@ -1,7 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SurfcampI } from '../interfaces/surfcamps.interfaces';
+import {
+    SurfcampI,
+    UpdatedSurfcampI,
+} from '../interfaces/surfcamps.interfaces';
 
 @Injectable({
     providedIn: 'root',
@@ -30,5 +33,21 @@ export class SurfcampsService {
         return this.http.get<SurfcampI>(`${this.authUrl}${surfcampId}`, {
             headers,
         });
+    }
+
+    updateSurfcamp(
+        token: string,
+        surfcampId: string,
+        updatedSurfcamp: UpdatedSurfcampI
+    ): Observable<SurfcampI> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        return this.http.patch<SurfcampI>(
+            `${this.authUrl}${surfcampId}`,
+            updatedSurfcamp,
+            { headers }
+        );
     }
 }

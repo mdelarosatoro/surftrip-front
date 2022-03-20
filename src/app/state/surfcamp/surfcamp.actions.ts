@@ -8,6 +8,11 @@ export const loadSurfcamp = createAction(
 );
 
 export const udpatePackage = createAction(
-    '[Surfcamp] Update',
+    '[Surfcamp] Update Package',
     props<{ updatedPackage: Readonly<PackageI> }>()
+);
+
+export const updateSurfcamp = createAction(
+    '[Surfcamp] Update Surfcamp',
+    props<{ updatedSurfcamp: Readonly<SurfcampI> }>()
 );

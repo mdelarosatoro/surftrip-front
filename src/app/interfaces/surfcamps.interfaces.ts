@@ -58,3 +58,10 @@ export interface SurfcampLoginTokenResponseI {
     username: string;
     role: string;
 }
+
+export interface UpdatedSurfcampI {
+    name: string;
+    location: string;
+    skillLevels: string[];
+    description: string;
+}
