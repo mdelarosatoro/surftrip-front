@@ -9,9 +9,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { AddPhotoComponent } from './add-photo/add-photo.component';
 
 @NgModule({
-    declarations: [InfoComponent, InfoListComponent, GalleryComponent, ReviewsComponent],
+    declarations: [InfoComponent, InfoListComponent, GalleryComponent, ReviewsComponent, AddPhotoComponent],
     imports: [
         CommonModule,
         InfoRoutingModule,

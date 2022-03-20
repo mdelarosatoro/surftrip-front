@@ -7,9 +7,12 @@
     row-gap: 1rem;
     position: relative;
 
-    &__add-icon {
+    &__link {
         position: absolute;
         right: 0;
+    }
+
+    &__add-icon {
         font-size: 1.5rem;
         color: #979797;
         cursor: pointer;

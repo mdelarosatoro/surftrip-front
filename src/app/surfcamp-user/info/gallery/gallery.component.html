@@ -1,5 +1,7 @@
 <div class="gallery">
-    <fa-icon class="gallery__add-icon" [icon]="faPlusCircle"></fa-icon>
+    <a class="gallery__link" [routerLink]="'/surfcamp-info/add-photo'">
+        <fa-icon class="gallery__add-icon" [icon]="faPlusCircle"></fa-icon>
+    </a>
     <div class="gallery__top-container">
         <h2 class="gallery__title">Gallery</h2>
         <span class="gallery__info">{{ photos.length }} photos</span>
