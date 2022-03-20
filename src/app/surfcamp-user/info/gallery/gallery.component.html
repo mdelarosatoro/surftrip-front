@@ -1,6 +1,9 @@
 <div class="gallery">
-    <h2 class="gallery__title">Gallery</h2>
-    <span class="gallery__info">{{ photos.length }} photos</span>
+    <fa-icon class="gallery__add-icon" [icon]="faPlusCircle"></fa-icon>
+    <div class="gallery__top-container">
+        <h2 class="gallery__title">Gallery</h2>
+        <span class="gallery__info">{{ photos.length }} photos</span>
+    </div>
     <div *ngFor="let photo of photos" class="photo">
         <div class="photo__img-container">
             <img
@@ -14,3 +17,4 @@
         </div>
     </div>
 </div>
+<app-button-back></app-button-back>

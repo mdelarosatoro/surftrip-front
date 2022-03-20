@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { PhotoI } from 'src/app/interfaces/photos.interfaces';
 import {
@@ -12,6 +13,7 @@ import {
     styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent implements OnInit {
+    faPlusCircle = faPlusCircle;
     auth!: SurfcampLoginResponseI;
     photos: PhotoI[];
     constructor(
