@@ -8,3 +8,7 @@ export interface UploadPhotoI {
     photoUrl: string;
     description: string;
 }
+
+export interface DeletePhotoI {
+    deletePhotoUrl: string;
+}

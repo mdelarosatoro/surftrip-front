@@ -8,6 +8,13 @@
     </div>
     <div *ngFor="let photo of photos" class="photo">
         <div class="photo__img-container">
+            <div class="photo__overlay">
+                <fa-icon
+                    (click)="deletePhoto(photo.photoUrl)"
+                    class="photo__delete-icon"
+                    [icon]="faTrash"
+                ></fa-icon>
+            </div>
             <img
                 class="photo__img"
                 [src]="photo.photoUrl"

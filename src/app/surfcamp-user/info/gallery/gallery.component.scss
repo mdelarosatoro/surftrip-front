@@ -46,7 +46,40 @@
     width: 90%;
 
     &__img-container {
+        position: relative;
         width: 100%;
+
+        &:hover .photo__overlay {
+            opacity: 1;
+            transition: 0.3s ease all;
+        }
+    }
+
+    &__overlay {
+        position: absolute;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        height: 100%;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        opacity: 0;
+        transition: 0.3s ease all;
+    }
+
+    &__delete-icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.5rem;
+        color: variables.$light-gray-color;
+        cursor: pointer;
+        transition: 0.3s ease all;
+
+        &:hover {
+            color: variables.$secondary-color;
+            transition: 0.3s ease all;
+        }
     }
 
     &__img {

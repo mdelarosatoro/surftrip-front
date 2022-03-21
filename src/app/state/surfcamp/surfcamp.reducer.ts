@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { SurfcampI } from '../../interfaces/surfcamps.interfaces';
 import {
     addPhoto,
+    deletePhoto,
     loadSurfcamp,
     udpatePackage,
     updateSurfcamp,
@@ -39,6 +40,10 @@ export const surfcampReducer = createReducer(
         ...updatedSurfcamp,
     })),
     on(addPhoto, (state, { newPhotosArr }) => ({
+        ...state,
+        photos: [...newPhotosArr],
+    })),
+    on(deletePhoto, (state, { newPhotosArr }) => ({
         ...state,
         photos: [...newPhotosArr],
     }))

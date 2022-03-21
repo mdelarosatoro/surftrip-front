@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -27,7 +28,8 @@ export class AddPhotoComponent implements OnInit {
         private store: Store<{
             auth: SurfcampLoginResponseI;
             surfcamp: SurfcampI;
-        }>
+        }>,
+        private location: Location
     ) {
         this.storage = getStorage(app);
         this.newPhotoForm = this.fb.group({
@@ -65,6 +67,6 @@ export class AddPhotoComponent implements OnInit {
                 console.log(resp);
                 this.store.dispatch(addPhoto({ newPhotosArr: resp.photos }));
             });
-        console.log(url);
+        if (url) this.location.back();
     }
 }

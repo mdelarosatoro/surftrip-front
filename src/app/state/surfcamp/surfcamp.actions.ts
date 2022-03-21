@@ -19,6 +19,11 @@ export const updateSurfcamp = createAction(
 );
 
 export const addPhoto = createAction(
-    '[Surfcamp] AddPhoto',
+    '[Surfcamp] Add Photo',
+    props<{ newPhotosArr: ReadonlyArray<PhotoI> }>()
+);
+
+export const deletePhoto = createAction(
+    '[Surfcamp] Delete Photo',
     props<{ newPhotosArr: ReadonlyArray<PhotoI> }>()
 );
