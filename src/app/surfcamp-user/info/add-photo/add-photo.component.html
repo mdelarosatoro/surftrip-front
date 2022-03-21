@@ -1,0 +1,23 @@
+<form (ngSubmit)="handleSubmit()" [formGroup]="newPhotoForm" class="new-photo">
+    <h2>Add Photo</h2>
+    <div class="new-photo__input-container">
+        <label class="new-photo__label" for="description">Description:</label>
+        <input
+            class="new-photo__input"
+            id="description"
+            type="text"
+            formControlName="description"
+        />
+    </div>
+    <div class="new-photo__input-container">
+        <label class="new-photo__label" for="photo">Photo:</label>
+        <input
+            class="new-photo__input"
+            id="photo"
+            type="file"
+            (change)="handleFileInput($event)"
+        />
+    </div>
+    <app-button [type]="'submit'" [text]="'Add Photo'"></app-button>
+</form>
+<app-button-back></app-button-back>

@@ -1,6 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import { SurfcampI } from '../../interfaces/surfcamps.interfaces';
-import { loadSurfcamp, udpatePackage } from './surfcamp.actions';
+import {
+    addPhoto,
+    deletePhoto,
+    loadSurfcamp,
+    udpatePackage,
+    updateSurfcamp,
+} from './surfcamp.actions';
 
 export const initialState: Readonly<SurfcampI> = {
     _id: '',
@@ -28,5 +34,17 @@ export const surfcampReducer = createReducer(
                 item._id === updatedPackage._id ? updatedPackage : item
             ),
         };
-    })
+    }),
+    on(updateSurfcamp, (state, { updatedSurfcamp }) => ({
+        ...state,
+        ...updatedSurfcamp,
+    })),
+    on(addPhoto, (state, { newPhotosArr }) => ({
+        ...state,
+        photos: [...newPhotosArr],
+    })),
+    on(deletePhoto, (state, { newPhotosArr }) => ({
+        ...state,
+        photos: [...newPhotosArr],
+    }))
 );

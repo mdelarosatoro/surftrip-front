@@ -35,6 +35,13 @@ const routes: Routes = [
                 (m) => m.CustomersModule
             ),
     },
+    {
+        path: 'surfcamp-info',
+        loadChildren: () =>
+            import('./surfcamp-user/info/info.module').then(
+                (m) => m.InfoModule
+            ),
+    },
 ];
 
 @NgModule({

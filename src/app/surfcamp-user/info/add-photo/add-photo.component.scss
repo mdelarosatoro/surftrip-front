@@ -1,0 +1,21 @@
+.new-photo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    &__input-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+
+    &__label {
+        font-weight: bold;
+    }
+
+    &__input {
+        padding: 0.8rem 0.8rem;
+        border-radius: 1.5rem;
+        border: none;
+    }
+}

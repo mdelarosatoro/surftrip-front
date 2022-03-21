@@ -1,5 +1,5 @@
 <nav class="menu" *ngIf="menuState">
-    <div class="menu__auth-outer-container">
+    <div *ngIf="!auth || auth.role === ''" class="menu__auth-outer-container">
         <div class="menu__auth-container">
             <a
                 (click)="toggleMenu()"
@@ -18,6 +18,61 @@
                 routerLinkActive="menu__link--active"
                 ><fa-icon class="menu__icon" [icon]="faIdCard"></fa-icon>
                 <p>Register</p>
+            </a>
+        </div>
+    </div>
+    <div *ngIf="auth.role === 'surfcamp'" class="menu__auth-outer-container">
+        <div class="menu__auth-container">
+            <a
+                (click)="toggleMenu()"
+                class="menu__link"
+                routerLink="/surfcamp-dashboard"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faFolderOpen"></fa-icon>
+                <p>Dashboard</p></a
+            >
+        </div>
+        <div class="menu__auth-container">
+            <a
+                (click)="toggleMenu()"
+                class="menu__link"
+                routerLink="/surfcamp-packages"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faBox"></fa-icon>
+                <p>Packages</p></a
+            >
+        </div>
+        <div class="menu__auth-container">
+            <a
+                (click)="toggleMenu()"
+                class="menu__link"
+                routerLink="/surfcamp-customers"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faPeopleCarry"></fa-icon>
+                <p>Customers</p>
+            </a>
+        </div>
+        <div class="menu__auth-container">
+            <a
+                (click)="toggleMenu()"
+                class="menu__link"
+                routerLink="/surfcamp-info"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faInfoCircle"></fa-icon>
+                <p>Surfcamp Info</p>
+            </a>
+        </div>
+        <div class="menu__auth-container">
+            <a
+                (click)="logout()"
+                class="menu__link"
+                routerLink="/login"
+                routerLinkActive="menu__link--active"
+                ><fa-icon
+                    class="menu__icon"
+                    [icon]="faArrowCircleDown"
+                ></fa-icon>
+                <p>Logout</p>
             </a>
         </div>
     </div>

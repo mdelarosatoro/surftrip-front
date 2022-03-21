@@ -1,0 +1,29 @@
+<div class="gallery">
+    <a class="gallery__link" [routerLink]="'/surfcamp-info/add-photo'">
+        <fa-icon class="gallery__add-icon" [icon]="faPlusCircle"></fa-icon>
+    </a>
+    <div class="gallery__top-container">
+        <h2 class="gallery__title">Gallery</h2>
+        <span class="gallery__info">{{ photos.length }} photos</span>
+    </div>
+    <div *ngFor="let photo of photos" class="photo">
+        <div class="photo__img-container">
+            <div class="photo__overlay">
+                <fa-icon
+                    (click)="deletePhoto(photo.photoUrl)"
+                    class="photo__delete-icon"
+                    [icon]="faTrash"
+                ></fa-icon>
+            </div>
+            <img
+                class="photo__img"
+                [src]="photo.photoUrl"
+                [alt]="photo.description"
+            />
+        </div>
+        <div class="photo__description-container">
+            <p class="photo__description">{{ photo.description }}</p>
+        </div>
+    </div>
+</div>
+<app-button-back></app-button-back>

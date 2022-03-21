@@ -1,0 +1,163 @@
+<form class="surfcamp" [formGroup]="editSurfcampForm">
+    <div class="surfcamp__title-container">
+        <h2 class="surfcamp__title">Surfcamp Info</h2>
+        <div class="surfcamp__icon-container">
+            <fa-icon
+                *ngIf="!editMode"
+                class="surfcamp__icon"
+                [icon]="faPencilAlt"
+                (click)="toggleEditMode()"
+            ></fa-icon>
+            <fa-icon
+                *ngIf="editMode"
+                class="surfcamp__icon"
+                [icon]="faSave"
+                (click)="saveSurfcamp()"
+            ></fa-icon>
+            <fa-icon
+                *ngIf="editMode"
+                class="surfcamp__icon"
+                [icon]="faTimesCircle"
+                (click)="toggleEditMode()"
+            ></fa-icon>
+        </div>
+    </div>
+    <div class="surfcamp__link-container">
+        <a routerLink="/surfcamp-info/gallery" class="surfcamp__link"
+            >Gallery</a
+        >
+        <a routerLink="/surfcamp-info/reviews" class="surfcamp__link"
+            >Reviews</a
+        >
+    </div>
+
+    <div class="surfcamp__input-container">
+        <label class="surfcamp__label" for="name">Name:</label>
+        <input
+            *ngIf="editMode"
+            class="surfcamp__input"
+            id="name"
+            type="text"
+            formControlName="name"
+        />
+        <p *ngIf="!editMode" class="surfcamp__info">{{ surfcamp.name }}</p>
+    </div>
+
+    <div class="surfcamp__input-container">
+        <label class="surfcamp__label" for="name">Location:</label>
+        <input
+            *ngIf="editMode"
+            class="surfcamp__input"
+            id="location"
+            type="text"
+            formControlName="location"
+        />
+        <p *ngIf="!editMode" class="surfcamp__info">{{ surfcamp.location }}</p>
+    </div>
+
+    <div class="surfcamp__input-container">
+        <label class="surfcamp__label">Skill Levels:</label>
+        <div *ngIf="editMode" class="surfcamp__outer-checkbox-container">
+            <div class="surfcamp__checkbox-container">
+                <input
+                    class="surfcamp__input"
+                    id="beginner"
+                    type="checkbox"
+                    formControlName="skillBeginner"
+                    name="beginner"
+                    [checked]="editSurfcampForm.controls['skillBeginner'].value"
+                />
+                <label for="beginner" class="surfcamp__label">Beginner</label>
+            </div>
+            <div class="surfcamp__checkbox-container">
+                <input
+                    class="surfcamp__input"
+                    id="intermediate"
+                    type="checkbox"
+                    formControlName="skillIntermediate"
+                    name="intermediate"
+                    [checked]="
+                        editSurfcampForm.controls['skillIntermediate'].value
+                    "
+                />
+                <label for="intermediate" class="surfcamp__label"
+                    >Intermediate</label
+                >
+            </div>
+            <div class="surfcamp__checkbox-container">
+                <input
+                    class="surfcamp__input"
+                    id="advanced"
+                    type="checkbox"
+                    formControlName="skillAdvanced"
+                    name="advanced"
+                    [checked]="editSurfcampForm.controls['skillAdvanced'].value"
+                />
+                <label for="advanced" class="surfcamp__label">Advanced</label>
+            </div>
+            <div class="surfcamp__checkbox-container">
+                <input
+                    class="surfcamp__input"
+                    id="expert"
+                    type="checkbox"
+                    formControlName="skillExpert"
+                    name="expert"
+                    [checked]="editSurfcampForm.controls['skillExpert'].value"
+                />
+                <label for="expert" class="surfcamp__label">Expert</label>
+            </div>
+        </div>
+        <p
+            *ngIf="
+                !editMode && editSurfcampForm.controls['skillBeginner'].value
+            "
+            class="surfcamp__info"
+        >
+            {{ editSurfcampForm.controls["skillBeginner"].value && "Beginner" }}
+        </p>
+        <p
+            *ngIf="
+                !editMode &&
+                editSurfcampForm.controls['skillIntermediate'].value
+            "
+            class="surfcamp__info"
+        >
+            {{
+                editSurfcampForm.controls["skillIntermediate"].value &&
+                    "Intermediate"
+            }}
+        </p>
+        <p
+            *ngIf="
+                !editMode && editSurfcampForm.controls['skillAdvanced'].value
+            "
+            class="surfcamp__info"
+        >
+            {{ editSurfcampForm.controls["skillAdvanced"].value && "Advanced" }}
+        </p>
+        <p
+            *ngIf="!editMode && editSurfcampForm.controls['skillExpert'].value"
+            class="surfcamp__info"
+        >
+            {{ editSurfcampForm.controls["skillExpert"].value && "Expert" }}
+        </p>
+    </div>
+
+    <div class="surfcamp__input-container">
+        <label class="surfcamp__label" for="description">Description:</label>
+        <textarea
+            *ngIf="editMode"
+            name="description"
+            class="surfcamp__input"
+            id="description"
+            cols="30"
+            rows="10"
+            formControlName="description"
+        ></textarea>
+        <p *ngIf="!editMode" class="surfcamp__info">
+            {{ surfcamp.description }}
+        </p>
+    </div>
+</form>
+
+<app-button-back></app-button-back>

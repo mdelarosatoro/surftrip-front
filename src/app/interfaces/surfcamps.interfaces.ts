@@ -1,4 +1,6 @@
 import { PackageI } from './packages.interfaces';
+import { PhotoI } from './photos.interfaces';
+import { UserI } from './users.interfaces';
 
 export interface CreateSurfcampI {
     email: string;
@@ -18,7 +20,7 @@ export interface SurfcampI {
     rating: string;
     packages: PackageI[];
     role: string;
-    photos: string[];
+    photos: PhotoI[];
     skillLevels: string[];
     location: string;
     description: string;
@@ -33,6 +35,15 @@ export interface CommentsI {
     _id: string;
 }
 
+export interface CommentsPopulatedI {
+    user: UserI;
+    comment: string;
+    rating: number;
+    _id: string;
+    starArr: number[];
+    emptyStarArr: number[];
+}
+
 export interface CustomersI {
     _id: string;
     user: string;
@@ -40,6 +51,10 @@ export interface CustomersI {
 }
 
 export interface SurfcampLoginI {
+    username: string;
+    password: string;
+}
+export interface SurfcampLogoutI {
     username: string;
     password: string;
 }
@@ -57,4 +72,11 @@ export interface SurfcampLoginTokenResponseI {
     name: string;
     username: string;
     role: string;
+}
+
+export interface UpdatedSurfcampI {
+    name: string;
+    location: string;
+    skillLevels: string[];
+    description: string;
 }

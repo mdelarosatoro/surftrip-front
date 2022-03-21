@@ -1,0 +1,98 @@
+@use "../../../scss/variables";
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+    position: relative;
+
+    &__link {
+        position: absolute;
+        right: 0;
+    }
+
+    &__add-icon {
+        font-size: 1.5rem;
+        color: #979797;
+        cursor: pointer;
+        transition: 0.3s ease all;
+
+        &:hover {
+            color: variables.$secondary-color-dark !important;
+            transition: 0.3s ease all;
+        }
+    }
+
+    &__top-container {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        row-gap: 1rem;
+    }
+
+    &__title {
+        align-self: flex-start;
+    }
+
+    &__info {
+        align-self: flex-start;
+    }
+}
+
+.photo {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
+    &__img-container {
+        position: relative;
+        width: 100%;
+
+        &:hover .photo__overlay {
+            opacity: 1;
+            transition: 0.3s ease all;
+        }
+    }
+
+    &__overlay {
+        position: absolute;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        height: 100%;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        opacity: 0;
+        transition: 0.3s ease all;
+    }
+
+    &__delete-icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.5rem;
+        color: variables.$light-gray-color;
+        cursor: pointer;
+        transition: 0.3s ease all;
+
+        &:hover {
+            color: variables.$secondary-color;
+            transition: 0.3s ease all;
+        }
+    }
+
+    &__img {
+        width: 100%;
+        display: block;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+    }
+
+    &__description-container {
+        padding: 0.5rem;
+        border: 1px solid rgb(117, 117, 117);
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+    }
+}
