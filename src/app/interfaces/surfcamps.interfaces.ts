@@ -1,5 +1,6 @@
 import { PackageI } from './packages.interfaces';
 import { PhotoI } from './photos.interfaces';
+import { UserI } from './users.interfaces';
 
 export interface CreateSurfcampI {
     email: string;
@@ -32,6 +33,15 @@ export interface CommentsI {
     comment: string;
     rating: number;
     _id: string;
+}
+
+export interface CommentsPopulatedI {
+    user: UserI;
+    comment: string;
+    rating: number;
+    _id: string;
+    starArr: number[];
+    emptyStarArr: number[];
 }
 
 export interface CustomersI {
