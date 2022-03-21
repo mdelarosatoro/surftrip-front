@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { PackageI } from 'src/app/interfaces/packages.interfaces';
+import { PhotoI } from 'src/app/interfaces/photos.interfaces';
 import { SurfcampI } from 'src/app/interfaces/surfcamps.interfaces';
 
 export const loadSurfcamp = createAction(
@@ -15,4 +16,9 @@ export const udpatePackage = createAction(
 export const updateSurfcamp = createAction(
     '[Surfcamp] Update Surfcamp',
     props<{ updatedSurfcamp: Readonly<SurfcampI> }>()
+);
+
+export const addPhoto = createAction(
+    '[Surfcamp] AddPhoto',
+    props<{ newPhotosArr: ReadonlyArray<PhotoI> }>()
 );

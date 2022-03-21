@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UploadPhotoI } from '../interfaces/photos.interfaces';
 import {
     SurfcampI,
     UpdatedSurfcampI,
@@ -47,6 +48,22 @@ export class SurfcampsService {
         return this.http.patch<SurfcampI>(
             `${this.authUrl}${surfcampId}`,
             updatedSurfcamp,
+            { headers }
+        );
+    }
+
+    addPhoto(
+        token: string,
+        surfcampId: string,
+        newPhoto: UploadPhotoI
+    ): Observable<SurfcampI> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        return this.http.post<SurfcampI>(
+            `${this.authUrl}${surfcampId}/photos`,
+            newPhoto,
             { headers }
         );
     }

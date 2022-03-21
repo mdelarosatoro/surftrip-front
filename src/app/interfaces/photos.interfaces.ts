@@ -3,3 +3,8 @@ export interface PhotoI {
     photoUrl: string;
     description: string;
 }
+
+export interface UploadPhotoI {
+    photoUrl: string;
+    description: string;
+}
