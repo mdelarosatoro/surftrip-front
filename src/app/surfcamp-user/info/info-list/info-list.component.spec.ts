@@ -9,6 +9,7 @@ const initialState = {
     auth: {
         id: '12345',
     },
+    surfcamp: {},
 };
 
 describe('InfoListComponent', () => {

@@ -37,5 +37,9 @@ module.exports = function (config) {
         browsers: ["Chrome"],
         singleRun: false,
         restartOnFileChange: true,
+        browserConsoleLogOptions: {
+            terminal: true,
+            level: "",
+        },
     });
 };
