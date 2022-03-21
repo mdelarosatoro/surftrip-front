@@ -54,6 +54,10 @@ export interface SurfcampLoginI {
     username: string;
     password: string;
 }
+export interface SurfcampLogoutI {
+    username: string;
+    password: string;
+}
 
 export interface SurfcampLoginResponseI {
     token: string;

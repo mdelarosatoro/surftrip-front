@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { SurfcampLoginResponseI } from '../../interfaces/surfcamps.interfaces';
-import { login } from './auth.actions';
+import { login, logout } from './auth.actions';
 
 export const initialState: Readonly<SurfcampLoginResponseI> = {
     token: '',
@@ -12,15 +12,6 @@ export const initialState: Readonly<SurfcampLoginResponseI> = {
 
 export const authReducer = createReducer(
     initialState,
-    on(login, (state, { loginResponse }) => loginResponse)
-    // on(retrievedTaskList, (state, { tasks }) => tasks),
-    // on(removeTask, (state, { taskId }) =>
-    //     state.filter((task) => task.id !== taskId)
-    // ),
-    // on(addTask, (state, { task }) => {
-    //     return [...state, task];
-    // }),
-    // on(updateTask, (state, { task }) =>
-    //     state.map((item) => (item.id === task.id ? task : item))
-    // )
+    on(login, (state, { loginResponse }) => loginResponse),
+    on(logout, (state, { logout }) => initialState)
 );
