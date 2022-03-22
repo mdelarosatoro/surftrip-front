@@ -1,1 +1,22 @@
-<p>surfcamp-details works!</p>
+<div class="surfcamp">
+    <div class="surfcamp__hero">
+        <div class="surfcamp__img-container">
+            <img
+                [src]="
+                    surfcamp.photos[0]
+                        ? surfcamp.photos[0].photoUrl
+                        : 'https://m.psecn.photoshelter.com/img-get2/I0000eXqe0K.cKrg/sec=/fit=1200x1200/I0000eXqe0K.cKrg.jpg'
+                "
+                alt=""
+                class="surfcamp__img"
+            />
+        </div>
+    </div>
+    <h2 class="surfcamp__title">{{ surfcamp.name }}</h2>
+    <div class="surfcamp__button-container">
+        <app-button [text]="'Packages'"></app-button>
+        <app-button [text]="'Reviews'"></app-button>
+        <app-button [text]="'Gallery'"></app-button>
+        <app-button [text]="'Information'"></app-button>
+    </div>
+</div>

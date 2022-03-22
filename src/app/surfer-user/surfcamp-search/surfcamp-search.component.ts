@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faStar, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { addSurfcampReviewData } from 'src/app/helpers/surfcampData.helpers';
@@ -26,7 +27,8 @@ export class SurfcampSearchComponent implements OnInit {
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        private surfampsService: SurfcampsService
+        private surfampsService: SurfcampsService,
+        private router: Router
     ) {
         this.filterState = false;
         this.reviewScore = 0;
@@ -52,5 +54,9 @@ export class SurfcampSearchComponent implements OnInit {
 
     handleFilter(filteredSurfcamps: SurfcampI[]) {
         this.surfcamps = addSurfcampReviewData(filteredSurfcamps);
+    }
+
+    goToDetails(id: string) {
+        this.router.navigateByUrl(`/surfcamp-details/${id}`);
     }
 }
