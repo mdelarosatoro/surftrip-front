@@ -32,7 +32,6 @@ export class InfoListComponent implements OnInit {
             auth: SurfcampLoginResponseI;
             surfcamp: SurfcampI;
         }>,
-        // private route: ActivatedRoute,
         public surfcampsService: SurfcampsService,
         public fb: FormBuilder
     ) {
@@ -106,6 +105,7 @@ export class InfoListComponent implements OnInit {
             skillLevels: [] as string[],
             description: this.editSurfcampForm.controls['description'].value,
         };
+
         this.editSurfcampForm.controls['skillBeginner'].value &&
             payload.skillLevels.push('Beginner');
         this.editSurfcampForm.controls['skillIntermediate'].value &&
@@ -114,10 +114,10 @@ export class InfoListComponent implements OnInit {
             payload.skillLevels.push('Advanced');
         this.editSurfcampForm.controls['skillExpert'].value &&
             payload.skillLevels.push('Expert');
+
         this.surfcampsService
             .updateSurfcamp(this.auth.token, this.surfcamp._id, payload)
             .subscribe((resp) => {
-                console.log(resp);
                 this.store.dispatch(updateSurfcamp({ updatedSurfcamp: resp }));
                 this.editMode = false;
             });

@@ -29,4 +29,18 @@ describe('MenuComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+    it('should call menuClickEvent when toggleMenu is called', () => {
+        spyOn(component.menuClickEvent, 'next');
+
+        component.toggleMenu();
+        expect(component.menuClickEvent.next).toHaveBeenCalled();
+    });
+    it('should call localStorage.removeItem, store.dispatch and toggleMenu when logout is called', () => {
+        spyOn(localStorage, 'removeItem');
+        spyOn(component, 'toggleMenu');
+
+        component.logout();
+        expect(localStorage.removeItem).toHaveBeenCalled();
+        expect(component.toggleMenu).toHaveBeenCalled();
+    });
 });

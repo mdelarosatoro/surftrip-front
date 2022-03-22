@@ -46,10 +46,9 @@ export class ReviewsComponent implements OnInit {
                         };
                     });
                     this.comments.forEach((comment) => {
-                        console.log(comment.rating);
                         this.reviewScore = this.reviewScore + comment.rating;
-                        console.log(this.reviewScore);
                     });
+                    console.log(this.comments);
                 });
             });
     }

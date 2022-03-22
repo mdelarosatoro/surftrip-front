@@ -1,8 +1,17 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { of } from 'rxjs';
+import { CoreModule } from 'src/app/core/core.module';
+import {
+    getSurfcampResponse,
+    mockLoginSurfcampResponse,
+} from 'src/app/mocks/surfcamps.mocks';
+import { AuthService } from 'src/app/services/auth.service';
+import { SurfcampsService } from 'src/app/services/surfcamps.service';
 
 import { LoginComponent } from './login.component';
 
@@ -20,6 +29,25 @@ describe('LoginComponent', () => {
     let component: LoginComponent;
     let fixture: ComponentFixture<LoginComponent>;
 
+    let authService: AuthService;
+    const mockService = {
+        loginSurfcamp: jasmine.createSpy('loginSurfcamp'),
+    };
+    mockService.loginSurfcamp.and.returnValue(of(mockLoginSurfcampResponse));
+
+    let surfcampsService: SurfcampsService;
+    const mockSurfcampService = {
+        getSurfcampById: jasmine.createSpy('getSurfcampById'),
+    };
+    mockSurfcampService.getSurfcampById.and.returnValue(
+        of(getSurfcampResponse)
+    );
+
+    let router: Router;
+    const mockRouterService = {
+        nagivateByUrl: jasmine.createSpy('nagivateByUrl'),
+    };
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [LoginComponent],
@@ -28,32 +56,38 @@ describe('LoginComponent', () => {
                 ReactiveFormsModule,
                 HttpClientTestingModule,
                 RouterTestingModule,
+                CoreModule,
             ],
-            providers: [provideMockStore({ initialState })],
+            providers: [
+                provideMockStore({ initialState }),
+                { provide: AuthService, useValue: mockService },
+                { provide: SurfcampsService, useValue: mockSurfcampService },
+                { provide: Router, useValue: mockRouterService },
+            ],
         }).compileComponents();
     });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(LoginComponent);
+        authService = TestBed.inject(AuthService);
+        surfcampsService = TestBed.inject(SurfcampsService);
+        router = TestBed.inject(Router);
+
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
-    });
 
-    // describe('When handleSubmit is called with a valid form', () => {
-    //     it('Should call the api and change the state', () => {
-    //         spyOn(component.authService, 'login').and.returnValue(
-    //             of({
-    //                 token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzBkZWQwYjRiYjRiNzE2YTNkMTE2MyIsIm5hbWUiOiJ0ZXN0MSIsInVzZXJuYW1lIjoidGVzdDEiLCJyb2xlIjoic3VyZmNhbXAiLCJpYXQiOjE2NDc2MDY4NTF9.unyOCEWPGuv4gG672Y7qTS8grXm_6rlIOjC-H2kmQXk',
-    //                 id: '6230ded0b4bb4b716a3d1163',
-    //                 name: 'test1',
-    //                 username: 'test1',
-    //                 role: 'surfcamp',
-    //             } as any)
-    //         );
-    //     })
-    // })
+        component.loginSurfcampForm.setValue({
+            userType: 'surfcamp',
+            username: 'test',
+            password: 'test',
+        });
+
+        component.handleSubmit();
+
+        expect(component.authService.loginSurfcamp).toHaveBeenCalled();
+    });
 });

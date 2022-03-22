@@ -3,7 +3,7 @@ export const getSurfcampResponse = {
     rating: 0,
     packages: [
         {
-            _id: '62347ce3893a436ae3f508fe',
+            _id: '6230dedcb4bb4b716a3d1167',
             icon: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/surfing-vintage-retro-surfer-circle-icon-kevin-garbes.jpg',
             description: 'blalbablablalbablablalbabla',
             days: 5,
@@ -49,4 +49,12 @@ export const updatedSurfcampMock = {
     location: '',
     skillLevels: [],
     description: '',
+};
+
+export const mockLoginSurfcampResponse = {
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzBkZWQwYjRiYjRiNzE2YTNkMTE2MyIsIm5hbWUiOiJDbGFyYSBDYW1wIiwidXNlcm5hbWUiOiJ0ZXN0MSIsInJvbGUiOiJzdXJmY2FtcCIsImlhdCI6MTY0NzkzODg5Mn0.KFpCOei2YPmswZ7S3IdF9_BW28Xuo8EdzoLsN2SuLjs',
+    id: '6230ded0b4bb4b716a3d1163',
+    name: 'Clara Camp',
+    username: 'test1',
+    role: 'surfcamp',
 };
