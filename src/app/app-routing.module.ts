@@ -56,6 +56,13 @@ const routes: Routes = [
                 (m) => m.SurfcampSearchModule
             ),
     },
+    {
+        path: 'surfcamp-details',
+        loadChildren: () =>
+            import(
+                './surfer-user/surfcamp-details/surfcamp-details.module'
+            ).then((m) => m.SurfcampDetailsModule),
+    },
 ];
 
 @NgModule({
