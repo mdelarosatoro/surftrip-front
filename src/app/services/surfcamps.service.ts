@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { DeletePhotoI, UploadPhotoI } from '../interfaces/photos.interfaces';
 import {
     SurfcampI,
+    SurfcampQueryI,
     UpdatedSurfcampI,
 } from '../interfaces/surfcamps.interfaces';
 
@@ -14,6 +15,30 @@ export class SurfcampsService {
     authUrl: string;
     constructor(private http: HttpClient) {
         this.authUrl = 'http://localhost:4500/surfcamps/';
+    }
+
+    getAllSurfcamps(token: string): Observable<SurfcampI[]> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        return this.http.get<SurfcampI[]>(this.authUrl, {
+            headers,
+        });
+    }
+
+    search(token: string, query: SurfcampQueryI): Observable<SurfcampI[]> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        const queryString = `location=${query.location}&rating=${query.rating}&skillBeginner=${query.skillBeginner}&skillIntermediate=${query.skillIntermediate}&skillAdvanced=${query.skillAdvanced}&skillExpert=${query.skillExpert}`;
+        return this.http.get<SurfcampI[]>(
+            `${this.authUrl}search?${queryString}`,
+            {
+                headers,
+            }
+        );
     }
 
     getSurfcampPackages(token: string, surfcampId: string) {

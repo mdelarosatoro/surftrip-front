@@ -9,7 +9,11 @@ import { RegisterSurfcampComponent } from './register-surfcamp/register-surfcamp
 import { RegisterUserComponent } from './register-user/register-user.component';
 
 @NgModule({
-    declarations: [RegisterComponent, RegisterSurfcampComponent, RegisterUserComponent],
+    declarations: [
+        RegisterComponent,
+        RegisterSurfcampComponent,
+        RegisterUserComponent,
+    ],
     imports: [
         CommonModule,
         RegisterRoutingModule,
