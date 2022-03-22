@@ -42,6 +42,13 @@ const routes: Routes = [
                 (m) => m.InfoModule
             ),
     },
+    {
+        path: 'surfer-dashboard',
+        loadChildren: () =>
+            import('./surfer-user/dashboard/dashboard.module').then(
+                (m) => m.DashboardModule
+            ),
+    },
 ];
 
 @NgModule({
