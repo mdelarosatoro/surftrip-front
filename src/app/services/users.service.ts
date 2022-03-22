@@ -18,4 +18,11 @@ export class UsersService {
         );
         return this.http.get<UserI[]>(this.apiUrl, { headers });
     }
+    getUserById(token: string, id: string): Observable<UserI> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        return this.http.get<UserI>(this.apiUrl + id, { headers });
+    }
 }
