@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
+import { UsersService } from 'src/app/services/users.service';
 import { loadSurfcamp } from 'src/app/state/surfcamp/surfcamp.actions';
+import { loadUser } from 'src/app/state/user/user.actions';
 import { SurfcampLoginResponseI } from '../../interfaces/surfcamps.interfaces';
 import { AuthService } from '../../services/auth.service';
 import { login } from '../../state/auth/auth.actions';
@@ -21,7 +23,8 @@ export class LoginComponent implements OnInit {
         public authService: AuthService,
         private store: Store<{ auth: SurfcampLoginResponseI }>,
         private router: Router,
-        private surfcampsService: SurfcampsService
+        private surfcampsService: SurfcampsService,
+        private usersService: UsersService
     ) {
         this.loginSurfcampForm = fb.group({
             userType: ['', []],
@@ -64,6 +67,25 @@ export class LoginComponent implements OnInit {
                             );
                         });
                     this.router.navigateByUrl('/surfcamp-dashboard');
+                }
+            });
+        } else if (this.loginSurfcampForm.value.userType === 'surfer') {
+            this.authService.loginUser(credentials).subscribe((resp) => {
+                console.log(resp);
+                if (resp.token) {
+                    localStorage.setItem('token', resp.token);
+                    this.store.dispatch(login({ loginResponse: resp }));
+                    //redirect to surfcamp dashboard
+                    this.usersService
+                        .getUserById(resp.token as string, resp.id)
+                        .subscribe((resp) => {
+                            this.store.dispatch(
+                                loadUser({
+                                    user: resp,
+                                })
+                            );
+                        });
+                    this.router.navigateByUrl('/user-dashboard');
                 }
             });
         }

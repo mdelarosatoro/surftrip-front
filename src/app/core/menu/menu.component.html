@@ -14,10 +14,20 @@
             <a
                 (click)="toggleMenu()"
                 class="menu__link"
-                routerLink="/register"
+                routerLink="/register/surfcamp"
                 routerLinkActive="menu__link--active"
                 ><fa-icon class="menu__icon" [icon]="faIdCard"></fa-icon>
-                <p>Register</p>
+                <p>Register Surfcamp</p>
+            </a>
+        </div>
+        <div class="menu__auth-container">
+            <a
+                (click)="toggleMenu()"
+                class="menu__link"
+                routerLink="/register/user"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faIdCard"></fa-icon>
+                <p>Register User</p>
             </a>
         </div>
     </div>

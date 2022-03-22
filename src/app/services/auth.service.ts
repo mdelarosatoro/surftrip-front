@@ -8,6 +8,12 @@ import {
     SurfcampLoginResponseI,
     SurfcampLoginTokenResponseI,
 } from '../interfaces/surfcamps.interfaces';
+import {
+    CreateUserI,
+    UserI,
+    UserLoginI,
+    UserLoginResponseI,
+} from '../interfaces/users.interfaces';
 
 @Injectable({
     providedIn: 'root',
@@ -30,6 +36,17 @@ export class AuthService {
     ): Observable<SurfcampLoginResponseI> {
         return this.http.post<SurfcampLoginResponseI>(
             this.authUrl + 'surfcamps/login',
+            credentials
+        );
+    }
+
+    registerUser(newUser: CreateUserI): Observable<UserI> {
+        return this.http.post<UserI>(this.authUrl + 'users/register', newUser);
+    }
+
+    loginUser(credentials: UserLoginI): Observable<UserLoginResponseI> {
+        return this.http.post<UserLoginResponseI>(
+            this.authUrl + 'users/login',
             credentials
         );
     }

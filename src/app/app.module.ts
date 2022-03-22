@@ -12,6 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { authReducer } from './state/auth/auth.reducer';
 import { surfcampReducer } from './state/surfcamp/surfcamp.reducer';
+import { userReducer } from './state/user/user.reducer';
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -20,6 +21,7 @@ import { surfcampReducer } from './state/surfcamp/surfcamp.reducer';
         StoreModule.forRoot({
             auth: authReducer,
             surfcamp: surfcampReducer,
+            user: userReducer,
         }),
         StoreDevtoolsModule.instrument({
             maxAge: 25, // Retains last 25 states

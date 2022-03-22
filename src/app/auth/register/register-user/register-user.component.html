@@ -1,0 +1,87 @@
+<form
+    class="register"
+    [formGroup]="registerUserForm"
+    (ngSubmit)="handleSubmit()"
+>
+    <h2 class="register__title">Hello Surfer! Let's get your started.</h2>
+    <p>Let Surftrip be your guide to surfing perfect waves around the globe</p>
+    <div class="register__input-container">
+        <label class="register__label" for="name">Name:</label>
+        <input
+            class="register__input"
+            id="name"
+            type="text"
+            placeholder="Enter your name"
+            formControlName="name"
+        />
+    </div>
+    <div class="register__input-container">
+        <label class="register__label" for="lastName">Last Name:</label>
+        <input
+            class="register__input"
+            id="lastName"
+            type="text"
+            placeholder="Enter your last name"
+            formControlName="lastName"
+        />
+    </div>
+    <div class="register__input-container">
+        <label class="register__label" for="email">Email:</label>
+        <input
+            class="register__input"
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            formControlName="email"
+        />
+    </div>
+    <div class="register__input-container">
+        <label class="register__label" for="email">Username:</label>
+        <input
+            class="register__input"
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            formControlName="username"
+        />
+    </div>
+    <p
+        *ngIf="
+            registerUserForm.value.password !==
+            registerUserForm.value.confirmPassword
+        "
+        class="register__validation-message"
+    >
+        Passwords do not match.
+    </p>
+    <p
+        *ngIf="
+            registerUserForm.value.password.length < 6 &&
+            registerUserForm.value.password.length > 0
+        "
+        class="register__validation-message"
+    >
+        Password must be at least 6 characters long.
+    </p>
+    <div class="register__input-container">
+        <label class="register__label" for="email">Password:</label>
+        <input
+            class="register__input"
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            formControlName="password"
+        />
+    </div>
+    <div class="register__input-container">
+        <label class="register__label" for="email">Confirm password:</label>
+        <input
+            class="register__input"
+            id="confirm-password"
+            type="password"
+            placeholder="Confirm your password"
+            formControlName="confirmPassword"
+        />
+    </div>
+    <app-button [type]="'submit'" [text]="'Register'"></app-button>
+</form>
