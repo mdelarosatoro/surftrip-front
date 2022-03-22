@@ -32,6 +32,7 @@ export class CustomerListComponent implements OnInit {
             .subscribe((data) => {
                 this.auth = data.auth;
                 this.customers = data.surfcamp.customers;
+
                 this.usersService
                     .getAll(data.auth.token)
                     .subscribe((allUsers) => {
@@ -47,7 +48,6 @@ export class CustomerListComponent implements OnInit {
                                 ),
                             })
                         );
-                        console.log(this.customers);
                     });
             });
     }

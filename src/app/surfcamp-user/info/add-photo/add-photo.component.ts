@@ -52,15 +52,16 @@ export class AddPhotoComponent implements OnInit {
     }
 
     async handleSubmit() {
-        console.log(this.newPhotoForm.controls['photo']);
         let url = '';
         const imageRef = ref(this.storage, this.fileToUpload.name);
+        console.log(imageRef);
         await uploadBytes(imageRef, this.fileToUpload);
         url = await getDownloadURL(imageRef);
         const payload = {
             description: this.newPhotoForm.value.description,
             photoUrl: url,
         };
+        console.log(payload);
         this.surfcampsService
             .addPhoto(this.auth.token, this.surfcamp._id, payload)
             .subscribe((resp) => {

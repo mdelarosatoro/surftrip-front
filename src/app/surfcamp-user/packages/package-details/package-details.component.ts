@@ -57,11 +57,13 @@ export class PackageDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.route.snapshot.paramMap.get('id'));
+        console.log(this.editMode);
         this.store
             .select((store) => ({ auth: store.auth, surfcamp: store.surfcamp }))
             .subscribe((data) => {
                 this.auth = data.auth;
+                console.log(data.surfcamp.packages);
+                console.log(this.route.snapshot.paramMap.get('id'));
                 this.package = data.surfcamp.packages.find(
                     (item) =>
                         item._id === this.route.snapshot.paramMap.get('id')
@@ -81,7 +83,6 @@ export class PackageDetailsComponent implements OnInit {
     }
 
     savePackage() {
-        console.log(this.editPackageForm.value);
         this.packagesService
             .updatePackage(
                 this.auth.token,

@@ -1,6 +1,10 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { SurfcampsService } from 'src/app/services/surfcamps.service';
+import { loadSurfcamp } from 'src/app/state/surfcamp/surfcamp.actions';
 import { SurfcampLoginResponseI } from '../../interfaces/surfcamps.interfaces';
 import { AuthService } from '../../services/auth.service';
 import { login } from '../../state/auth/auth.actions';
@@ -15,7 +19,9 @@ export class LoginComponent implements OnInit {
     constructor(
         public fb: FormBuilder,
         public authService: AuthService,
-        private store: Store<{ auth: SurfcampLoginResponseI }>
+        private store: Store<{ auth: SurfcampLoginResponseI }>,
+        private router: Router,
+        private surfcampsService: SurfcampsService
     ) {
         this.loginSurfcampForm = fb.group({
             userType: ['', []],
@@ -48,6 +54,16 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('token', resp.token);
                     this.store.dispatch(login({ loginResponse: resp }));
                     //redirect to surfcamp dashboard
+                    this.surfcampsService
+                        .getSurfcampById(resp.token as string, resp.id)
+                        .subscribe((resp) => {
+                            this.store.dispatch(
+                                loadSurfcamp({
+                                    surfcamp: resp,
+                                })
+                            );
+                        });
+                    this.router.navigateByUrl('/surfcamp-dashboard');
                 }
             });
         }
