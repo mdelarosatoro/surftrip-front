@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SurcampSearchComponent } from './surcamp-search.component';
+import { SurfcampSearchComponent } from './surfcamp-search.component';
 
-const routes: Routes = [{ path: '', component: SurcampSearchComponent }];
+const routes: Routes = [{ path: '', component: SurfcampSearchComponent }];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

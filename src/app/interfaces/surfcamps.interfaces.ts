@@ -28,6 +28,25 @@ export interface SurfcampI {
     customers: string[];
 }
 
+export interface SurfcampWithReviewScoreI {
+    _id: string;
+    email: string;
+    username: string;
+    name: string;
+    rating: string;
+    packages: PackageI[];
+    role: string;
+    photos: PhotoI[];
+    skillLevels: string[];
+    location: string;
+    description: string;
+    comments: CommentsI[];
+    customers: string[];
+    reviewScore: number;
+    starArr: number[];
+    emptyStarArr: number[];
+}
+
 export interface CommentsI {
     user: string;
     comment: string;
@@ -79,4 +98,13 @@ export interface UpdatedSurfcampI {
     location: string;
     skillLevels: string[];
     description: string;
+}
+
+export interface SurfcampQueryI {
+    skillBeginner: boolean;
+    skillIntermediate: boolean;
+    skillAdvanced: boolean;
+    skillExpert: boolean;
+    rating: number;
+    location: string;
 }
