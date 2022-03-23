@@ -4,6 +4,7 @@ import { BookingsI, PackageI } from 'src/app/interfaces/packages.interfaces';
 import { UserLoginResponseI } from 'src/app/interfaces/users.interfaces';
 import { UsersService } from 'src/app/services/users.service';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-bookings',
@@ -15,7 +16,8 @@ export class BookingsComponent implements OnInit {
     bookings!: BookingsI[];
     constructor(
         private store: Store<{ auth: UserLoginResponseI }>,
-        private usersService: UsersService
+        private usersService: UsersService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -36,5 +38,9 @@ export class BookingsComponent implements OnInit {
                         }));
                     });
             });
+    }
+
+    goToPackage(packageId: string) {
+        this.router.navigateByUrl('surfcamp-packages');
     }
 }

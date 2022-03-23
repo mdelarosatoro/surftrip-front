@@ -1,6 +1,10 @@
 <div class="bookings">
     <h2>Bookings</h2>
-    <div *ngFor="let booking of bookings" class="booking">
+    <div
+        (click)="goToPackage(booking.package._id)"
+        *ngFor="let booking of bookings"
+        class="booking"
+    >
         <div class="booking__info-container">
             <p class="booking__name">{{ booking.package.name }}</p>
             <p class="booking__nights">{{ booking.package.days }} nights</p>
