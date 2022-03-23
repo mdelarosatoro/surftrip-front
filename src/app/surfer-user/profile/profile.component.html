@@ -1,0 +1,68 @@
+<form [formGroup]="editUserForm" class="profile">
+    <div class="profile__top-container">
+        <div class="profile__title-container">
+            <div class="profile__img-container">
+                <img [src]="auth.profilePicUrl" alt="" class="profile__img" />
+            </div>
+            <h2 class="profile__title">Profile</h2>
+        </div>
+        <div class="profile__icon-container">
+            <fa-icon
+                *ngIf="!editMode"
+                (click)="toggleEditMode()"
+                class="profile__icon"
+                [icon]="faPencilAlt"
+            ></fa-icon>
+            <fa-icon
+                *ngIf="editMode"
+                class="profile__icon"
+                [icon]="faSave"
+                (click)="updateUser()"
+            ></fa-icon>
+            <fa-icon
+                (click)="toggleEditMode()"
+                *ngIf="editMode"
+                class="profile__icon"
+                [icon]="faTimesCircle"
+            ></fa-icon>
+        </div>
+    </div>
+    <div class="profile__info-outer-container">
+        <div class="profile__input-container">
+            <label class="profile__field">Name</label>
+            <input
+                *ngIf="editMode"
+                class="profile__input"
+                id="name"
+                type="text"
+                placeholder="Enter your name"
+                formControlName="name"
+            />
+            <p *ngIf="!editMode" class="profile__value">{{ auth.name }}</p>
+        </div>
+        <div class="profile__input-container">
+            <label class="profile__field">Last Name</label>
+            <input
+                *ngIf="editMode"
+                class="profile__input"
+                id="lastName"
+                type="text"
+                placeholder="Enter your last name"
+                formControlName="lastName"
+            />
+            <p *ngIf="!editMode" class="profile__value">{{ auth.lastName }}</p>
+        </div>
+        <div class="profile__input-container">
+            <label class="profile__field">Email</label>
+            <input
+                *ngIf="editMode"
+                class="profile__input"
+                id="email"
+                type="text"
+                placeholder="Enter your email"
+                formControlName="email"
+            />
+            <p *ngIf="!editMode" class="profile__value">{{ auth.email }}</p>
+        </div>
+    </div>
+</form>

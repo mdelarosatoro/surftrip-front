@@ -1,7 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserI } from '../interfaces/users.interfaces';
+import {
+    UpdateUserI,
+    UpdateUserResponseI,
+    UserI,
+} from '../interfaces/users.interfaces';
 
 @Injectable({
     providedIn: 'root',
@@ -24,5 +28,22 @@ export class UsersService {
             `Bearer ${token}`
         );
         return this.http.get<UserI>(this.apiUrl + id, { headers });
+    }
+    updateUser(
+        token: string,
+        id: string,
+        newUserData: UpdateUserI
+    ): Observable<UpdateUserResponseI> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        return this.http.patch<UpdateUserResponseI>(
+            this.apiUrl + id,
+            newUserData,
+            {
+                headers,
+            }
+        );
     }
 }
