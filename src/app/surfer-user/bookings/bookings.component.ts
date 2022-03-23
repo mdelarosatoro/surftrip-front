@@ -33,14 +33,17 @@ export class BookingsComponent implements OnInit {
                         this.bookings = resp.bookings.map((item) => ({
                             ...item,
                             bookedAt: moment(item.bookedAt).format(
-                                'MM/DD/YYYY'
+                                'MM/DD/YYYY HH:mm'
                             ),
                         }));
+                        this.bookings = this.bookings.reverse();
                     });
             });
     }
 
-    goToPackage(packageId: string) {
-        this.router.navigateByUrl('surfcamp-packages');
+    goToPackage(packageId: string, surfcampId: string) {
+        this.router.navigateByUrl(
+            `/surfcamp-packages/${surfcampId}/packages/${packageId}`
+        );
     }
 }

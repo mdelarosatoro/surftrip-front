@@ -1,7 +1,7 @@
 <div class="bookings">
     <h2>Bookings</h2>
     <div
-        (click)="goToPackage(booking.package._id)"
+        (click)="goToPackage(booking.package._id, booking.package.surfcamp._id)"
         *ngFor="let booking of bookings"
         class="booking"
     >
