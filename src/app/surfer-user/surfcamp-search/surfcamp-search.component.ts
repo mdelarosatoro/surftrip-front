@@ -30,6 +30,7 @@ export class SurfcampSearchComponent implements OnInit {
         private surfampsService: SurfcampsService,
         private router: Router
     ) {
+        this.surfcamps = [];
         this.filterState = false;
         this.reviewScore = 0;
     }
@@ -39,7 +40,6 @@ export class SurfcampSearchComponent implements OnInit {
             .select((store) => ({ auth: store.auth }))
             .subscribe((data) => {
                 this.auth = data.auth;
-
                 this.surfampsService
                     .getAllSurfcamps(this.auth.token)
                     .subscribe((resp) => {

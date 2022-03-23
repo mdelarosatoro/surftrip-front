@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SurfcampSearchComponent } from './surfcamp-search.component';
+import { SurfcampInfoComponent } from './surfcamp-info.component';
 
-const routes: Routes = [{ path: '', component: SurfcampSearchComponent }];
+const routes: Routes = [{ path: '', component: SurfcampInfoComponent }];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class SurfcampSearchRoutingModule {}
+export class SurfcampInfoRoutingModule {}

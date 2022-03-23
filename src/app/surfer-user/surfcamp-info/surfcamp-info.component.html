@@ -1,0 +1,18 @@
+<div class="info">
+    <h2 class="info__title">{{ surfcamp.name }}</h2>
+    <div class="info__container">
+        <p class="info__field">Skill Levels</p>
+        <p *ngFor="let skill of surfcamp.skillLevels" class="info__value">
+            {{ skill }}
+        </p>
+    </div>
+    <div class="info__container">
+        <p class="info__field">Location</p>
+        <p class="info__value">{{ surfcamp.location }}</p>
+    </div>
+    <div class="info__container">
+        <p class="info__field">Description</p>
+        <p class="info__value">{{ surfcamp.description }}</p>
+    </div>
+</div>
+<app-button-back></app-button-back>

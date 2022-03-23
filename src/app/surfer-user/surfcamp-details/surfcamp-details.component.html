@@ -29,6 +29,11 @@
             class="surfcamp__link"
             >Gallery</a
         >
-        <a routerLink="/surfcamp-info" class="surfcamp__link">Information</a>
+        <a
+            [routerLink]="'/surfcamp-info/' + surfcamp._id"
+            class="surfcamp__link"
+            >Information</a
+        >
     </div>
 </div>
+<app-button-back></app-button-back>

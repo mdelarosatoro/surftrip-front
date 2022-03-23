@@ -20,8 +20,10 @@ export const addSurfcampReviewData = (surfcamps: SurfcampI[]) => {
             surfcamp.comments.length !== 0
                 ? surfcamp.reviewScore / surfcamp.comments.length
                 : 0;
-        surfcamp.starArr = Array(surfcamp.reviewScore).fill(1);
-        surfcamp.emptyStarArr = Array(5 - surfcamp.reviewScore).fill(1);
+        surfcamp.starArr = Array(Math.floor(surfcamp.reviewScore)).fill(1);
+        surfcamp.emptyStarArr = Array(
+            5 - Math.floor(surfcamp.reviewScore)
+        ).fill(1);
     });
     return remodelledSurfcamps;
 };
