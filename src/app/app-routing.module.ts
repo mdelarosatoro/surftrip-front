@@ -91,6 +91,13 @@ const routes: Routes = [
                 (m) => m.SurfcampInfoModule
             ),
     },
+    {
+        path: 'surfer/profile',
+        loadChildren: () =>
+            import('./surfer-user/profile/profile.module').then(
+                (m) => m.ProfileModule
+            ),
+    },
 ];
 
 @NgModule({

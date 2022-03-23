@@ -27,5 +27,19 @@ export interface UserLoginResponseI {
     id: string;
     username?: string;
     name: string;
+    email?: string;
+    lastName: string;
+    profilePicUrl?: string;
     role: string;
+}
+
+export interface UpdateUserI {
+    name: string;
+    lastName: string;
+    email: string;
+}
+
+export interface UpdateUserResponseI {
+    user: UserI;
+    token: string;
 }

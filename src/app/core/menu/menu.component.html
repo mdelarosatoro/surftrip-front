@@ -86,4 +86,49 @@
             </a>
         </div>
     </div>
+    <div *ngIf="auth.role === 'user'" class="menu__auth-outer-container">
+        <div class="menu__auth-container">
+            <a
+                (click)="toggleMenu()"
+                class="menu__link"
+                routerLink="/surfer-dashboard"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faFolderOpen"></fa-icon>
+                <p>Dashboard</p></a
+            >
+        </div>
+        <div class="menu__auth-container">
+            <a
+                (click)="toggleMenu()"
+                class="menu__link"
+                routerLink="/surfcamp-search"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faBox"></fa-icon>
+                <p>Surfcamp Search</p></a
+            >
+        </div>
+        <div class="menu__auth-container">
+            <a
+                (click)="toggleMenu()"
+                class="menu__link"
+                routerLink="/surfer/profile"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faInfoCircle"></fa-icon>
+                <p>Profile</p>
+            </a>
+        </div>
+        <div class="menu__auth-container">
+            <a
+                (click)="logout()"
+                class="menu__link"
+                routerLink="/login"
+                routerLinkActive="menu__link--active"
+                ><fa-icon
+                    class="menu__icon"
+                    [icon]="faArrowCircleDown"
+                ></fa-icon>
+                <p>Logout</p>
+            </a>
+        </div>
+    </div>
 </nav>
