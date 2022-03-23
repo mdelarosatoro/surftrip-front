@@ -1,6 +1,6 @@
 @use "../../scss/variables";
 
-.surfcamps {
+.packages {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
@@ -22,7 +22,7 @@
     }
 }
 
-.surfcamp {
+.package {
     display: flex;
     flex-direction: column;
     cursor: pointer;

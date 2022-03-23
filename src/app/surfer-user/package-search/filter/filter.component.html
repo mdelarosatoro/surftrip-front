@@ -1,0 +1,79 @@
+<form [formGroup]="filterForm" (ngSubmit)="handleSubmit()" class="filter">
+    <p class="filter__title">Filters</p>
+    <div class="filter__star-container">
+        <p>Minimum rating:</p>
+        <fa-icon
+            *ngFor="let star of starArr"
+            [class]="
+                star <= filterForm.value.rating
+                    ? 'filter__star--active'
+                    : 'filter__star'
+            "
+            [icon]="faStar"
+            (click)="setMinRating(star)"
+        ></fa-icon>
+    </div>
+    <div class="filter__checkbox-outer-container">
+        <div class="filter__checkbox-container">
+            <input
+                type="checkbox"
+                id="beginner"
+                name="beginner"
+                formControlName="skillBeginner"
+            />
+            <label class="filter__label" for="beginner">Beginner</label>
+        </div>
+        <div class="filter__checkbox-container">
+            <input
+                type="checkbox"
+                id="intermediate"
+                name="intermediate"
+                formControlName="skillIntermediate"
+            />
+            <label class="filter__label" for="intermediate">Intermediate</label>
+        </div>
+        <div class="filter__checkbox-container">
+            <input
+                type="checkbox"
+                id="advanced"
+                name="advanced"
+                formControlName="skillAdvanced"
+            />
+            <label class="filter__label" for="advanced">Advanced</label>
+        </div>
+        <div class="filter__checkbox-container">
+            <input
+                type="checkbox"
+                id="expert"
+                name="expert"
+                formControlName="skillExpert"
+            />
+            <label class="filter__label" for="expert">Expert</label>
+        </div>
+    </div>
+    <div class="filter__input-container">
+        <input
+            type="text"
+            placeholder="Enter a location"
+            class="filter__input"
+            formControlName="location"
+        />
+    </div>
+    <div class="filter__input-container">
+        <input
+            type="text"
+            placeholder="Maximum price"
+            class="filter__input"
+            formControlName="price"
+        />
+    </div>
+    <div class="filter__input-container">
+        <input
+            type="text"
+            placeholder="Maximum days"
+            class="filter__input"
+            formControlName="days"
+        />
+    </div>
+    <app-button [type]="'submit'" [text]="'Search'"></app-button>
+</form>

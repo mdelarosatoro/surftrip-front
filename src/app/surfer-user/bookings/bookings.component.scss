@@ -1,0 +1,46 @@
+.bookings {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.booking {
+    border: 1px solid rgb(184, 184, 184);
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #e2e2e2;
+    box-shadow: 8px 8px 8px -2px rgba(0, 0, 0, 0.4);
+    display: flex;
+    column-gap: 2rem;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s ease all;
+
+    &:hover {
+        transform: scale(1.01);
+        transition: 0.3s ease all;
+    }
+
+    &__info-container {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+
+    &__name {
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    &__nights {
+        font-size: 0.7rem;
+    }
+
+    &__price-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        align-items: center;
+    }
+}

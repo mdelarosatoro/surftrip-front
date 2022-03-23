@@ -1,0 +1,55 @@
+<div class="packages">
+    <h2>Packages</h2>
+    <p *ngIf="packages">Showing {{ packages.length }} packages</p>
+    <fa-icon
+        (click)="toggleFilter()"
+        class="packages__filter-icon"
+        [icon]="faFilter"
+    ></fa-icon>
+    <app-filter
+        (filterEvent)="handleFilter($event)"
+        *ngIf="filterState"
+    ></app-filter>
+    <div
+        (click)="goToDetails(package)"
+        *ngFor="let package of packages"
+        class="package"
+    >
+        <div class="package__img-container">
+            <img
+                [src]="
+                    'https://m.psecn.photoshelter.com/img-get2/I0000eXqe0K.cKrg/sec=/fit=1200x1200/I0000eXqe0K.cKrg.jpg'
+                "
+                alt=""
+                class="package__img"
+            />
+        </div>
+        <div class="package__info-container">
+            <div class="package__star-container">
+                <fa-icon
+                    *ngFor="let star of package.surfcamp.starArr"
+                    class="package__star--yellow"
+                    [icon]="faStar"
+                ></fa-icon>
+                <fa-icon
+                    *ngFor="let emptyStar of package.surfcamp.emptyStarArr"
+                    class="package__star--grey"
+                    [icon]="faStar"
+                ></fa-icon>
+            </div>
+            <p class="package__location">{{ package.surfcamp.location }}</p>
+            <p class="package__name">{{ package.name }}</p>
+            <p class="package__name">€{{ package.price }}</p>
+            <p class="package__name">{{ package.days }} days</p>
+            <p class="package__info">{{ package.surfcamp.name }}</p>
+            <div class="package__skill-container">
+                <p
+                    class="package__skill"
+                    *ngFor="let skill of package.surfcamp.skillLevels"
+                >
+                    {{ skill }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

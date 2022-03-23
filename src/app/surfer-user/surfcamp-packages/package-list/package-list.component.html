@@ -1,0 +1,24 @@
+<div class="packages">
+    <h2>{{ surfcamp.name }} Packages</h2>
+    <p>Showing {{ surfcamp.packages.length }} packages</p>
+    <p class="packages__book-message" *ngIf="successBookMessage.state">
+        Successfully booked package {{ successBookMessage.package }}
+    </p>
+    <div
+        (click)="goToPackage(package._id)"
+        *ngFor="let package of surfcamp.packages"
+        class="package"
+    >
+        <div class="package__info-container">
+            <p class="package__name">{{ package.name }}</p>
+            <p class="package__nights">{{ package.days }} nights</p>
+        </div>
+        <div class="package__price-container">
+            <p class="package__price">€{{ package.price }}</p>
+            <button (click)="bookPackage(package._id)" class="package__button">
+                Book
+            </button>
+        </div>
+    </div>
+</div>
+<app-button-back></app-button-back>

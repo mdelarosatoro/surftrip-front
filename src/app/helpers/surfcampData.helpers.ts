@@ -2,6 +2,10 @@ import {
     SurfcampI,
     SurfcampWithReviewScoreI,
 } from '../interfaces/surfcamps.interfaces';
+import {
+    PackageI,
+    PackageithReviewScoreI,
+} from '../interfaces/packages.interfaces';
 
 export const addSurfcampReviewData = (surfcamps: SurfcampI[]) => {
     const remodelledSurfcamps: SurfcampWithReviewScoreI[] = surfcamps.map(
@@ -26,4 +30,27 @@ export const addSurfcampReviewData = (surfcamps: SurfcampI[]) => {
         ).fill(1);
     });
     return remodelledSurfcamps;
+};
+
+export const addPackageReviewData = (packages: PackageI[]) => {
+    const remodelledPackages: PackageithReviewScoreI[] = packages.map(
+        (packageItem) => ({
+            ...packageItem,
+            surfcamp: {
+                ...packageItem.surfcamp,
+                reviewScore: 0,
+                starArr: [],
+                emptyStarArr: [],
+            },
+        })
+    );
+    remodelledPackages.forEach((packageItem) => {
+        packageItem.surfcamp.starArr = Array(
+            Math.floor(Number(packageItem.surfcamp.rating))
+        ).fill(1);
+        packageItem.surfcamp.emptyStarArr = Array(
+            5 - Math.floor(Number(packageItem.surfcamp.rating))
+        ).fill(1);
+    });
+    return remodelledPackages;
 };

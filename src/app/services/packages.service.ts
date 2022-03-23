@@ -1,7 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PackageI, UpdatedPackageI } from '../interfaces/packages.interfaces';
+import {
+    PackageI,
+    PackageQueryI,
+    UpdatedPackageI,
+} from '../interfaces/packages.interfaces';
 
 @Injectable({
     providedIn: 'root',
@@ -12,12 +16,20 @@ export class PackagesService {
         this.packageUrl = 'http://localhost:4500/packages/';
     }
 
-    getPackageById(id: string, token: string) {
+    getAllPackages(token: string): Observable<PackageI[]> {
         const headers = new HttpHeaders().set(
             'Authorization',
             `Bearer ${token}`
         );
-        return this.http.get(`${this.packageUrl}${id}`, { headers });
+        return this.http.get<PackageI[]>(this.packageUrl, { headers });
+    }
+
+    getPackageById(token: string, id: string): Observable<PackageI> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        return this.http.get<PackageI>(`${this.packageUrl}${id}`, { headers });
     }
 
     updatePackage(
@@ -45,6 +57,20 @@ export class PackagesService {
         );
         return this.http.get<{ message: string }>(
             `${this.packageUrl}${id}/book`,
+            {
+                headers,
+            }
+        );
+    }
+
+    search(token: string, query: PackageQueryI): Observable<PackageI[]> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        const queryString = `days=${query.days}&price=${query.price}&location=${query.location}&rating=${query.rating}&skillBeginner=${query.skillBeginner}&skillIntermediate=${query.skillIntermediate}&skillAdvanced=${query.skillAdvanced}&skillExpert=${query.skillExpert}`;
+        return this.http.get<PackageI[]>(
+            `${this.packageUrl}search?${queryString}`,
             {
                 headers,
             }

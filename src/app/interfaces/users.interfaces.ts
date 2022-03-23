@@ -1,6 +1,8 @@
+import { BookingsI, PackageI } from './packages.interfaces';
+
 export interface UserI {
     _id: string;
-    bookings: string[];
+    bookings: BookingsI[];
     role: string;
     profilePicUrl: string;
     lastName: string;
