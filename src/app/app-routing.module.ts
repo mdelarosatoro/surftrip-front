@@ -98,6 +98,13 @@ const routes: Routes = [
                 (m) => m.ProfileModule
             ),
     },
+    {
+        path: 'surfer/bookings',
+        loadChildren: () =>
+            import('./surfer-user/bookings/bookings.module').then(
+                (m) => m.BookingsModule
+            ),
+    },
 ];
 
 @NgModule({

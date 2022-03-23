@@ -1,0 +1,14 @@
+<div class="bookings">
+    <h2>Bookings</h2>
+    <div *ngFor="let booking of bookings" class="booking">
+        <div class="booking__info-container">
+            <p class="booking__name">{{ booking.package.name }}</p>
+            <p class="booking__nights">{{ booking.package.days }} nights</p>
+            <p>Booked on {{ booking.bookedAt }}</p>
+        </div>
+        <div class="booking__price-container">
+            <p class="booking__price">€{{ booking.package.price }}</p>
+        </div>
+    </div>
+</div>
+<app-button-back></app-button-back>

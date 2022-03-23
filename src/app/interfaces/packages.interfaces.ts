@@ -16,3 +16,8 @@ export interface UpdatedPackageI {
     days: number;
     description: string;
 }
+
+export interface BookingsI {
+    package: PackageI;
+    bookedAt: string;
+}
