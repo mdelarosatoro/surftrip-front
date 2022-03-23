@@ -57,6 +57,13 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'package-search',
+        loadChildren: () =>
+            import('./surfer-user/package-search/package-search.module').then(
+                (m) => m.PackageSearchModule
+            ),
+    },
+    {
         path: 'surfcamp-details/:id',
         loadChildren: () =>
             import(
