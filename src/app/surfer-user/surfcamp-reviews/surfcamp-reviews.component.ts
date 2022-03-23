@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-surfcamp-reviews',
-  templateUrl: './surfcamp-reviews.component.html',
-  styleUrls: ['./surfcamp-reviews.component.scss']
+    selector: 'app-surfcamp-reviews',
+    templateUrl: './surfcamp-reviews.component.html',
+    styleUrls: ['./surfcamp-reviews.component.scss'],
 })
 export class SurfcampReviewsComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }
