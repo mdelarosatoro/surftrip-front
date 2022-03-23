@@ -7,14 +7,21 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from 'src/app/core/core.module';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [SurfcampReviewsComponent, AddReviewComponent, ReviewsComponent],
+    declarations: [
+        SurfcampReviewsComponent,
+        AddReviewComponent,
+        ReviewsComponent,
+    ],
     imports: [
         CommonModule,
         SurfcampReviewsRoutingModule,
         FontAwesomeModule,
         CoreModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
 })
 export class SurfcampReviewsModule {}

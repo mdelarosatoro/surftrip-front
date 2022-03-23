@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DeletePhotoI, UploadPhotoI } from '../interfaces/photos.interfaces';
 import {
+    AddCommentI,
+    CommentsI,
     CommentsPopulatedMI,
     SurfcampI,
     SurfcampQueryI,
@@ -120,6 +122,24 @@ export class SurfcampsService {
         );
         return this.http.get<CommentsPopulatedMI[]>(
             `${this.authUrl}${surfcampId}/comments`,
+            {
+                headers,
+            }
+        );
+    }
+
+    addComment(
+        token: string,
+        surfcampId: string,
+        newComment: AddCommentI
+    ): Observable<CommentsI[]> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        return this.http.post<CommentsI[]>(
+            `${this.authUrl}${surfcampId}/comments`,
+            newComment,
             {
                 headers,
             }

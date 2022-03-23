@@ -89,6 +89,11 @@ export interface CommentsPopulatedI {
     emptyStarArr: number[];
 }
 
+export interface AddCommentI {
+    comment: string;
+    rating: number;
+}
+
 export interface CustomersI {
     _id: string;
     user: string;
