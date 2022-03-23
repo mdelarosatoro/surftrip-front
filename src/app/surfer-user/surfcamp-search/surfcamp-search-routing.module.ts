@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SurfcampDetailsComponent } from '../surfcamp-details/surfcamp-details.component';
 import { SurfcampSearchComponent } from './surfcamp-search.component';
 
-const routes: Routes = [{ path: '', component: SurfcampSearchComponent }];
+const routes: Routes = [{ path: '', component: SurfcampDetailsComponent }];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

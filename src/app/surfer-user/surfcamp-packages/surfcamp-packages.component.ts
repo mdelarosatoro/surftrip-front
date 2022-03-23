@@ -1,24 +1,27 @@
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SurfcampI } from 'src/app/interfaces/surfcamps.interfaces';
 import { UserLoginResponseI } from 'src/app/interfaces/users.interfaces';
+import { PackagesService } from 'src/app/services/packages.service';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-surfcamp-details',
-    templateUrl: './surfcamp-details.component.html',
-    styleUrls: ['./surfcamp-details.component.scss'],
+    selector: 'app-surfcamp-packages',
+    templateUrl: './surfcamp-packages.component.html',
+    styleUrls: ['./surfcamp-packages.component.scss'],
 })
-export class SurfcampDetailsComponent implements OnInit {
+export class SurfcampPackagesComponent implements OnInit {
     auth!: UserLoginResponseI;
     surfcamp!: SurfcampI;
+    successBookMessage: { state: boolean; package: string };
     constructor(
         private route: ActivatedRoute,
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        private surfcampsService: SurfcampsService
+        private surfcampsService: SurfcampsService,
+        private packagesService: PackagesService
     ) {
         this.surfcamp = {
             _id: '',
@@ -35,6 +38,7 @@ export class SurfcampDetailsComponent implements OnInit {
             comments: [],
             customers: [],
         };
+        this.successBookMessage = { state: false, package: '' };
     }
 
     ngOnInit(): void {
@@ -50,8 +54,24 @@ export class SurfcampDetailsComponent implements OnInit {
                     )
                     .subscribe((resp) => {
                         this.surfcamp = resp;
-                        console.log(this.surfcamp);
+                        console.log(this.surfcamp.packages);
                     });
+            });
+    }
+
+    bookPackage(id: string) {
+        console.log(id);
+        this.packagesService
+            .bookPackage(this.auth.token, id)
+            .subscribe((resp) => {
+                if (resp.message) {
+                    this.successBookMessage = {
+                        state: true,
+                        package: this.surfcamp.packages.find(
+                            (item) => item._id === id
+                        )?.name as string,
+                    };
+                }
             });
     }
 }

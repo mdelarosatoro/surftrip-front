@@ -14,9 +14,13 @@
     </div>
     <h2 class="surfcamp__title">{{ surfcamp.name }}</h2>
     <div class="surfcamp__button-container">
-        <app-button [text]="'Packages'"></app-button>
-        <app-button [text]="'Reviews'"></app-button>
-        <app-button [text]="'Gallery'"></app-button>
-        <app-button [text]="'Information'"></app-button>
+        <a
+            [routerLink]="'/surfcamp-packages/' + surfcamp._id"
+            class="surfcamp__link"
+            >Packages</a
+        >
+        <a routerLink="/surfcamp-customers" class="surfcamp__link">Reviews</a>
+        <a routerLink="/surfcamp-info" class="surfcamp__link">Gallery</a>
+        <a routerLink="/surfcamp-info" class="surfcamp__link">Information</a>
     </div>
 </div>

@@ -1,3 +1,5 @@
+@use "../../scss/variables";
+
 .surfcamp {
     display: flex;
     flex-direction: column;
@@ -30,5 +32,25 @@
         flex-direction: column;
         width: 100%;
         row-gap: 1rem;
+    }
+
+    &__link {
+        display: block;
+        background-color: variables.$secondary-color;
+        border: none;
+        padding: 0.9rem 0.9rem;
+        border-radius: 2rem;
+        color: white;
+        width: 100%;
+        letter-spacing: 1px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.3s ease all;
+
+        &:hover {
+            background-color: variables.$secondary-color-dark;
+            transition: 0.3s ease all;
+        }
     }
 }

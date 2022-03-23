@@ -57,11 +57,18 @@ const routes: Routes = [
             ),
     },
     {
-        path: 'surfcamp-details',
+        path: 'surfcamp-details/:id',
         loadChildren: () =>
             import(
                 './surfer-user/surfcamp-details/surfcamp-details.module'
             ).then((m) => m.SurfcampDetailsModule),
+    },
+    {
+        path: 'surfcamp-packages/:id',
+        loadChildren: () =>
+            import(
+                './surfer-user/surfcamp-packages/surfcamp-packages.module'
+            ).then((m) => m.SurfcampPackagesModule),
     },
 ];
 
