@@ -37,4 +37,17 @@ export class PackagesService {
             }
         );
     }
+
+    bookPackage(token: string, id: string): Observable<{ message: string }> {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        return this.http.get<{ message: string }>(
+            `${this.packageUrl}${id}/book`,
+            {
+                headers,
+            }
+        );
+    }
 }

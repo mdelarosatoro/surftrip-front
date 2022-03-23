@@ -1,0 +1,68 @@
+@use "../../../scss/variables";
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.comment {
+    border: 1px solid rgb(192, 192, 192);
+    padding: 1rem;
+    position: relative;
+    border-radius: 1rem;
+    box-shadow: 6px 7px 13px -4px #000000;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    &__link {
+        display: block;
+        background-color: variables.$secondary-color;
+        border: none;
+        padding: 0.9rem 0.9rem;
+        border-radius: 2rem;
+        color: white;
+        width: 100%;
+        letter-spacing: 1px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.3s ease all;
+
+        &:hover {
+            background-color: variables.$secondary-color-dark;
+            transition: 0.3s ease all;
+        }
+    }
+
+    &__star-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    &__star {
+        &--yellow {
+            color: variables.$secondary-color;
+        }
+        &--grey {
+            color: rgb(204, 204, 204);
+        }
+    }
+
+    &__user-info-container {
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+    }
+
+    &__img-container {
+        width: 40px;
+    }
+
+    &__img {
+        width: 100%;
+        border-radius: 50%;
+    }
+}

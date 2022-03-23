@@ -56,6 +56,41 @@ const routes: Routes = [
                 (m) => m.SurfcampSearchModule
             ),
     },
+    {
+        path: 'surfcamp-details/:id',
+        loadChildren: () =>
+            import(
+                './surfer-user/surfcamp-details/surfcamp-details.module'
+            ).then((m) => m.SurfcampDetailsModule),
+    },
+    {
+        path: 'surfcamp-packages/:id',
+        loadChildren: () =>
+            import(
+                './surfer-user/surfcamp-packages/surfcamp-packages.module'
+            ).then((m) => m.SurfcampPackagesModule),
+    },
+    {
+        path: 'surfcamp-reviews/:id',
+        loadChildren: () =>
+            import(
+                './surfer-user/surfcamp-reviews/surfcamp-reviews.module'
+            ).then((m) => m.SurfcampReviewsModule),
+    },
+    {
+        path: 'surfcamp-gallery/:id',
+        loadChildren: () =>
+            import(
+                './surfer-user/surfcamp-gallery/surfcamp-gallery.module'
+            ).then((m) => m.SurfcampGalleryModule),
+    },
+    {
+        path: 'surfcamp-info/:id',
+        loadChildren: () =>
+            import('./surfer-user/surfcamp-info/surfcamp-info.module').then(
+                (m) => m.SurfcampInfoModule
+            ),
+    },
 ];
 
 @NgModule({

@@ -1,0 +1,36 @@
+<form
+    [formGroup]="addReviewForm"
+    class="add-review"
+    (ngSubmit)="handleSubmit()"
+>
+    <h2>Add a Review</h2>
+    <div class="add-review__star-outer-container">
+        <p>Rating:</p>
+        <div class="add-review__star-container">
+            <fa-icon
+                *ngFor="let star of starArr"
+                [class]="
+                    star <= addReviewForm.value.rating
+                        ? 'add-review__star--active'
+                        : 'add-review__star'
+                "
+                [icon]="faStar"
+                (click)="setRating(star)"
+            ></fa-icon>
+        </div>
+    </div>
+    <div class="add-review__input-container">
+        <label class="add-review__label" for="comment">Comment:</label>
+        <textarea
+            class="add-review__input"
+            name="comment"
+            formControlName="comment"
+            id="comment"
+            cols="30"
+            rows="10"
+        ></textarea>
+    </div>
+    <app-button [type]="'submit'" [text]="'Submit'"></app-button>
+    <app-button-back></app-button-back>
+</form>
+{{ addReviewForm.value | json }}

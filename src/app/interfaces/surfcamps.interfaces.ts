@@ -54,6 +54,32 @@ export interface CommentsI {
     _id: string;
 }
 
+export interface CommentsPopulatedMI {
+    user: {
+        _id: string;
+        name: string;
+        lastName: string;
+        profilePicUrl: string;
+    };
+    comment: string;
+    rating: number;
+    _id: string;
+}
+
+export interface CommentsPopulatedMStarsI {
+    user: {
+        _id: string;
+        name: string;
+        lastName: string;
+        profilePicUrl: string;
+    };
+    comment: string;
+    rating: number;
+    _id: string;
+    starArr: number[];
+    emptyStarArr: number[];
+}
+
 export interface CommentsPopulatedI {
     user: UserI;
     comment: string;
@@ -61,6 +87,11 @@ export interface CommentsPopulatedI {
     _id: string;
     starArr: number[];
     emptyStarArr: number[];
+}
+
+export interface AddCommentI {
+    comment: string;
+    rating: number;
 }
 
 export interface CustomersI {

@@ -1,0 +1,36 @@
+<div class="gallery">
+    <div *ngIf="overlayState" class="gallery__overlay">
+        <fa-icon
+            class="gallery__overlay-exit-icon"
+            [icon]="faMinusCircle"
+            (click)="hideOverlay()"
+        ></fa-icon>
+        <div class="gallery__overlay-outer-container">
+            <div class="gallery__overlay-photo-container">
+                <img
+                    class="gallery__overlay-img"
+                    [src]="overlayImg.photoUrl"
+                    [alt]="overlayImg.description"
+                />
+            </div>
+            <div class="gallery__overlay-text-container">
+                <p class="gallery__overlay-text">
+                    {{ overlayImg.description }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <h2>{{ surfcamp.name }} Gallery</h2>
+    <div
+        (click)="showOverlay(photo)"
+        *ngFor="let photo of surfcamp.photos"
+        class="photo"
+    >
+        <img
+            class="photo__img"
+            [src]="photo.photoUrl"
+            [alt]="photo.description"
+        />
+    </div>
+</div>
+<app-button-back></app-button-back>

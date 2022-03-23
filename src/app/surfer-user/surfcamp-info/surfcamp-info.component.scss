@@ -1,0 +1,24 @@
+.info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        border: 1px solid rgb(199, 199, 199);
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 7px 7px 7px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    &__field {
+        color: grey;
+        margin-bottom: 1rem;
+    }
+
+    &__value {
+        margin-bottom: 0.3rem;
+    }
+}

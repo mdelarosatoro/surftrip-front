@@ -1,0 +1,56 @@
+@use "../../scss/variables";
+
+.surfcamp {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    align-items: center;
+
+    &__hero {
+        margin: -1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        z-index: 2;
+        top: 20%;
+        left: 30%;
+    }
+
+    &__img-container {
+        width: 100%;
+    }
+
+    &__img {
+        width: 100%;
+        display: block;
+    }
+
+    &__button-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        row-gap: 1rem;
+    }
+
+    &__link {
+        display: block;
+        background-color: variables.$secondary-color;
+        border: none;
+        padding: 0.9rem 0.9rem;
+        border-radius: 2rem;
+        color: white;
+        width: 100%;
+        letter-spacing: 1px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.3s ease all;
+
+        &:hover {
+            background-color: variables.$secondary-color-dark;
+            transition: 0.3s ease all;
+        }
+    }
+}

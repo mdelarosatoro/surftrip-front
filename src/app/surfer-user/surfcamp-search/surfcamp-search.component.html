@@ -10,7 +10,11 @@
         (filterEvent)="handleFilter($event)"
         *ngIf="filterState"
     ></app-filter>
-    <div *ngFor="let surfcamp of surfcamps" class="surfcamp">
+    <div
+        (click)="goToDetails(surfcamp._id)"
+        *ngFor="let surfcamp of surfcamps"
+        class="surfcamp"
+    >
         <div class="surfcamp__img-container">
             <img
                 [src]="
