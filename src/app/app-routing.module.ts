@@ -77,6 +77,13 @@ const routes: Routes = [
                 './surfer-user/surfcamp-reviews/surfcamp-reviews.module'
             ).then((m) => m.SurfcampReviewsModule),
     },
+    {
+        path: 'surfcamp-gallery/:id',
+        loadChildren: () =>
+            import(
+                './surfer-user/surfcamp-gallery/surfcamp-gallery.module'
+            ).then((m) => m.SurfcampGalleryModule),
+    },
 ];
 
 @NgModule({
