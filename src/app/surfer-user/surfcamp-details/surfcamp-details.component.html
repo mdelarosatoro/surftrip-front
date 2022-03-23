@@ -19,7 +19,11 @@
             class="surfcamp__link"
             >Packages</a
         >
-        <a routerLink="/surfcamp-customers" class="surfcamp__link">Reviews</a>
+        <a
+            [routerLink]="'/surfcamp-reviews/' + surfcamp._id"
+            class="surfcamp__link"
+            >Reviews</a
+        >
         <a routerLink="/surfcamp-info" class="surfcamp__link">Gallery</a>
         <a routerLink="/surfcamp-info" class="surfcamp__link">Information</a>
     </div>

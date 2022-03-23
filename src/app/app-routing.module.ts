@@ -70,6 +70,13 @@ const routes: Routes = [
                 './surfer-user/surfcamp-packages/surfcamp-packages.module'
             ).then((m) => m.SurfcampPackagesModule),
     },
+    {
+        path: 'surfcamp-reviews/:id',
+        loadChildren: () =>
+            import(
+                './surfer-user/surfcamp-reviews/surfcamp-reviews.module'
+            ).then((m) => m.SurfcampReviewsModule),
+    },
 ];
 
 @NgModule({
