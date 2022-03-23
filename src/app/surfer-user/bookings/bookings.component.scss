@@ -13,6 +13,13 @@
     display: flex;
     column-gap: 2rem;
     align-items: center;
+    cursor: pointer;
+    transition: 0.3s ease all;
+
+    &:hover {
+        transform: scale(1.01);
+        transition: 0.3s ease all;
+    }
 
     &__info-container {
         width: 80%;
