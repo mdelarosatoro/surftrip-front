@@ -12,12 +12,12 @@ export class PackagesService {
         this.packageUrl = 'http://localhost:4500/packages/';
     }
 
-    getPackageById(id: string, token: string) {
+    getPackageById(token: string, id: string): Observable<PackageI> {
         const headers = new HttpHeaders().set(
             'Authorization',
             `Bearer ${token}`
         );
-        return this.http.get(`${this.packageUrl}${id}`, { headers });
+        return this.http.get<PackageI>(`${this.packageUrl}${id}`, { headers });
     }
 
     updatePackage(

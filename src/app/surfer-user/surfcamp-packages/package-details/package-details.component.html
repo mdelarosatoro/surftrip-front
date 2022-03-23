@@ -1,0 +1,46 @@
+<div class="package">
+    <div class="package__title-container">
+        <div class="package__img-container">
+            <img [src]="package.icon" alt="" class="package__img" />
+        </div>
+        <h2 class="package__title">{{ package.name }}</h2>
+    </div>
+    <p class="package__book-message" *ngIf="successBookMessage.state">
+        Successfully booked package {{ successBookMessage.package }}
+    </p>
+    <div class="package__info-outer-container">
+        <button (click)="bookPackage(package._id)" class="package__button">
+            Book
+        </button>
+        <div class="package__input-container">
+            <p class="package__field">Name</p>
+            <p class="package__value">{{ package.name }}</p>
+        </div>
+        <div class="package__input-container">
+            <p class="package__field">Surfcamp</p>
+            <a
+                class="package__link"
+                [routerLink]="'/surfcamp-details/' + package.surfcamp._id"
+            >
+                <p class="package__value">{{ package.surfcamp.name }}</p>
+            </a>
+        </div>
+        <div class="package__input-container">
+            <p class="package__field">Location</p>
+            <p class="package__value">{{ package.surfcamp.location }}</p>
+        </div>
+        <div class="package__input-container">
+            <p class="package__field">Surfcamp Rating</p>
+            <p class="package__value">{{ package.surfcamp.rating }} / 5</p>
+        </div>
+        <div class="package__input-container">
+            <p class="package__field">Days</p>
+            <p class="package__value">{{ package.days }}</p>
+        </div>
+        <div class="package__input-container">
+            <p class="package__field">Price</p>
+            <p class="package__value">€{{ package.price }}</p>
+        </div>
+    </div>
+</div>
+<app-button-back></app-button-back>

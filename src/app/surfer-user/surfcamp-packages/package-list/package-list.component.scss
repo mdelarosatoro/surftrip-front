@@ -1,0 +1,60 @@
+@use "../../../scss/variables";
+
+.packages {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    &__book-message {
+        color: green;
+    }
+}
+
+.package {
+    border: 1px solid rgb(184, 184, 184);
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #e2e2e2;
+    box-shadow: 8px 8px 8px -2px rgba(0, 0, 0, 0.4);
+    display: flex;
+    column-gap: 2rem;
+    align-items: center;
+
+    &__info-container {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+
+    &__name {
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    &__nights {
+        font-size: 0.7rem;
+    }
+
+    &__price-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        align-items: center;
+    }
+
+    &__button {
+        background-color: variables.$secondary-color;
+        color: white;
+        border: none;
+        padding: 0.7rem 0.8rem;
+        border-radius: 1rem;
+        cursor: pointer;
+        transition: 0.3s ease all;
+
+        &:hover {
+            background-color: variables.$secondary-color-dark;
+            transition: 0.3s ease all;
+        }
+    }
+}
