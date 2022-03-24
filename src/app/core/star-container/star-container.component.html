@@ -1,0 +1,13 @@
+<div class="star-container">
+    <p>Minimum rating:</p>
+    <fa-icon
+        *ngFor="let star of starArr"
+        [class]="
+            star <= rating
+                ? 'star-container__star--active'
+                : 'star-container__star'
+        "
+        [icon]="faStar"
+        (click)="setMinRating(star)"
+    ></fa-icon>
+</div>

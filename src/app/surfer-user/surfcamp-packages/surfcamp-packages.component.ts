@@ -9,7 +9,7 @@ import { SurfcampsService } from 'src/app/services/surfcamps.service';
 @Component({
     selector: 'app-surfcamp-packages',
     templateUrl: './surfcamp-packages.component.html',
-    styleUrls: ['./surfcamp-packages.component.scss'],
+    styleUrls: [],
 })
 export class SurfcampPackagesComponent implements OnInit {
     constructor() {}

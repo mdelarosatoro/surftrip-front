@@ -1,18 +1,9 @@
 <form [formGroup]="filterForm" (ngSubmit)="handleSubmit()" class="filter">
     <p class="filter__title">Filters</p>
-    <div class="filter__star-container">
-        <p>Minimum rating:</p>
-        <fa-icon
-            *ngFor="let star of starArr"
-            [class]="
-                star <= filterForm.value.rating
-                    ? 'filter__star--active'
-                    : 'filter__star'
-            "
-            [icon]="faStar"
-            (click)="setMinRating(star)"
-        ></fa-icon>
-    </div>
+    <app-star-container
+        [rating]="filterForm.value.rating"
+        (setRating)="setMinRating($event)"
+    ></app-star-container>
     <div class="filter__checkbox-outer-container">
         <div class="filter__checkbox-container">
             <input
