@@ -4,44 +4,9 @@
         [rating]="filterForm.value.rating"
         (setRating)="setMinRating($event)"
     ></app-star-container>
-    <div class="filter__checkbox-outer-container">
-        <div class="filter__checkbox-container">
-            <input
-                type="checkbox"
-                id="beginner"
-                name="beginner"
-                formControlName="skillBeginner"
-            />
-            <label class="filter__label" for="beginner">Beginner</label>
-        </div>
-        <div class="filter__checkbox-container">
-            <input
-                type="checkbox"
-                id="intermediate"
-                name="intermediate"
-                formControlName="skillIntermediate"
-            />
-            <label class="filter__label" for="intermediate">Intermediate</label>
-        </div>
-        <div class="filter__checkbox-container">
-            <input
-                type="checkbox"
-                id="advanced"
-                name="advanced"
-                formControlName="skillAdvanced"
-            />
-            <label class="filter__label" for="advanced">Advanced</label>
-        </div>
-        <div class="filter__checkbox-container">
-            <input
-                type="checkbox"
-                id="expert"
-                name="expert"
-                formControlName="skillExpert"
-            />
-            <label class="filter__label" for="expert">Expert</label>
-        </div>
-    </div>
+    <app-skills-form
+        (skillChanged)="changeSkillValue($event)"
+    ></app-skills-form>
     <div class="filter__input-container">
         <input
             type="text"
@@ -68,3 +33,4 @@
     </div>
     <app-button [type]="'submit'" [text]="'Search'"></app-button>
 </form>
+{{ filterForm.value | json }}

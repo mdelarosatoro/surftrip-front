@@ -1,0 +1,42 @@
+<div class="filter__checkbox-outer-container">
+    <div class="filter__checkbox-container">
+        <input
+            type="checkbox"
+            id="beginner"
+            name="beginner"
+            formControlName="skillBeginner"
+            (change)="emitChange('skillBeginner')"
+        />
+        <label class="filter__label" for="beginner">Beginner</label>
+    </div>
+    <div class="filter__checkbox-container">
+        <input
+            type="checkbox"
+            id="intermediate"
+            name="intermediate"
+            formControlName="skillIntermediate"
+            (change)="emitChange('skillIntermediate')"
+        />
+        <label class="filter__label" for="intermediate">Intermediate</label>
+    </div>
+    <div class="filter__checkbox-container">
+        <input
+            type="checkbox"
+            id="advanced"
+            name="advanced"
+            formControlName="skillAdvanced"
+            (change)="emitChange('skillAdvanced')"
+        />
+        <label class="filter__label" for="advanced">Advanced</label>
+    </div>
+    <div class="filter__checkbox-container">
+        <input
+            type="checkbox"
+            id="expert"
+            name="expert"
+            formControlName="skillExpert"
+            (change)="emitChange('skillExpert')"
+        />
+        <label class="filter__label" for="expert">Expert</label>
+    </div>
+</div>

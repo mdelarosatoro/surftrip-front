@@ -9,6 +9,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { RouterModule } from '@angular/router';
 import { ButtonBackComponent } from './button-back/button-back.component';
 import { StarContainerComponent } from './star-container/star-container.component';
+import { SkillsFormComponent } from './skills-form/skills-form.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { StarContainerComponent } from './star-container/star-container.componen
         LayoutComponent,
         ButtonBackComponent,
         StarContainerComponent,
+        SkillsFormComponent,
     ],
     imports: [CommonModule, FontAwesomeModule, RouterModule],
     exports: [
@@ -29,6 +31,7 @@ import { StarContainerComponent } from './star-container/star-container.componen
         LayoutComponent,
         ButtonBackComponent,
         StarContainerComponent,
+        SkillsFormComponent,
     ],
 })
 export class CoreModule {}
