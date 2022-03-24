@@ -15,33 +15,45 @@ export interface CreateSurfcampI {
 export interface SurfcampI {
     _id: string;
     email: string;
-    username: string;
+    username?: string;
     name: string;
-    rating: string;
-    packages: PackageI[];
-    role: string;
+    rating: string | number;
+    packages?: PackageI[];
+    role?: string;
     photos: PhotoI[];
     skillLevels: string[];
     location: string;
     description: string;
     comments: CommentsI[];
-    customers: string[];
+    customers?: CustomersI[];
+}
+
+export interface SurfcampFilteredDataI {
+    _id: string;
+    email: string;
+    name: string;
+    rating: string | number;
+    photos: PhotoI[];
+    skillLevels: string[];
+    location: string;
+    description: string;
+    comments: CommentsI[];
 }
 
 export interface SurfcampWithReviewScoreI {
     _id: string;
     email: string;
-    username: string;
+    username?: string;
     name: string;
-    rating: string;
-    packages: PackageI[];
-    role: string;
+    rating: number | string;
+    packages?: PackageI[];
+    role?: string;
     photos: PhotoI[];
     skillLevels: string[];
     location: string;
     description: string;
     comments: CommentsI[];
-    customers: string[];
+    customers?: CustomersI[];
     reviewScore: number;
     starArr: number[];
     emptyStarArr: number[];

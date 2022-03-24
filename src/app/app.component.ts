@@ -36,9 +36,7 @@ export class AppComponent {
             .select((store) => {
                 return store.auth;
             })
-            .subscribe((auth) => {
-                // console.log(auth);
-            });
+            .subscribe((auth) => {});
         if (this.token) {
             this.authService
                 .loginToken(this.token)

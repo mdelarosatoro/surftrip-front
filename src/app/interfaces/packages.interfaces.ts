@@ -1,4 +1,8 @@
-import { SurfcampI, SurfcampWithReviewScoreI } from './surfcamps.interfaces';
+import {
+    SurfcampFilteredDataI,
+    SurfcampI,
+    SurfcampWithReviewScoreI,
+} from './surfcamps.interfaces';
 
 export interface PackageI {
     _id: string;

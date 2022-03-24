@@ -22,7 +22,7 @@ export class FilterComponent implements OnInit {
 
     constructor(
         public fb: FormBuilder,
-        private packagesService: PackagesService,
+        public packagesService: PackagesService,
         private store: Store<{
             auth: UserLoginResponseI;
         }>
@@ -50,7 +50,6 @@ export class FilterComponent implements OnInit {
     }
 
     setMinRating(star: number) {
-        console.log(star);
         if (this.filterForm.value.rating === star) {
             this.filterForm.setValue({ ...this.filterForm.value, rating: 0 });
         } else {

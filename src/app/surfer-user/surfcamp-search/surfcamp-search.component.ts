@@ -27,8 +27,8 @@ export class SurfcampSearchComponent implements OnInit {
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        private surfampsService: SurfcampsService,
-        private router: Router
+        public surfampsService: SurfcampsService,
+        public router: Router
     ) {
         this.surfcamps = [];
         this.filterState = false;

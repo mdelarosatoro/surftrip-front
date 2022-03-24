@@ -29,6 +29,51 @@ describe('SurfcampsService', () => {
     it('should be created', () => {
         expect(service).toBeTruthy();
     });
+    describe('When getAllSurfcamps is called', () => {
+        it('httpClient should be called', () => {
+            const idSurfcamp = '1';
+
+            service.getAllSurfcamps(mockToken).subscribe((response: any) => {});
+
+            const req = httpTestingController.expectOne({
+                method: 'GET',
+                url: `http://localhost:4500/surfcamps/`,
+            });
+
+            expect(req.request.url).toBe(`http://localhost:4500/surfcamps/`);
+
+            req.flush([packageMock]);
+        });
+    });
+    describe('When search is called', () => {
+        it('httpClient should be called', () => {
+            const idSurfcamp = '1';
+
+            const query = {
+                skillBeginner: true,
+                skillIntermediate: true,
+                skillAdvanced: true,
+                skillExpert: true,
+                rating: 0,
+                location: ',',
+            };
+
+            service.search(mockToken, query).subscribe((response: any) => {});
+
+            const queryString = `location=${query.location}&rating=${query.rating}&skillBeginner=${query.skillBeginner}&skillIntermediate=${query.skillIntermediate}&skillAdvanced=${query.skillAdvanced}&skillExpert=${query.skillExpert}`;
+
+            const req = httpTestingController.expectOne({
+                method: 'GET',
+                url: `http://localhost:4500/surfcamps/search?${queryString}`,
+            });
+
+            expect(req.request.url).toBe(
+                `http://localhost:4500/surfcamps/search?${queryString}`
+            );
+
+            req.flush([getSurfcampResponse]);
+        });
+    });
     describe('When getSurfcampPackages is called', () => {
         it('httpClient should be called', () => {
             const idSurfcamp = '1';
@@ -124,6 +169,49 @@ describe('SurfcampsService', () => {
 
             expect(req.request.url).toBe(
                 `http://localhost:4500/surfcamps/${idSurfcamp}/photos`
+            );
+
+            req.flush(getSurfcampResponse);
+        });
+    });
+    describe('When getSurfcampCommentsById is called', () => {
+        it('httpClient should be called', () => {
+            const idSurfcamp = '1';
+
+            service
+                .getSurfcampCommentsById(mockToken, idSurfcamp)
+                .subscribe((response: any) => {});
+
+            const req = httpTestingController.expectOne({
+                method: 'GET',
+                url: `http://localhost:4500/surfcamps/${idSurfcamp}/comments`,
+            });
+
+            expect(req.request.url).toBe(
+                `http://localhost:4500/surfcamps/${idSurfcamp}/comments`
+            );
+
+            req.flush(getSurfcampResponse);
+        });
+    });
+    describe('When addComment is called', () => {
+        it('httpClient should be called', () => {
+            const idSurfcamp = '1';
+            const newComment = {
+                comment: '',
+                rating: 0,
+            };
+            service
+                .addComment(mockToken, idSurfcamp, newComment)
+                .subscribe((response: any) => {});
+
+            const req = httpTestingController.expectOne({
+                method: 'POST',
+                url: `http://localhost:4500/surfcamps/${idSurfcamp}/comments`,
+            });
+
+            expect(req.request.url).toBe(
+                `http://localhost:4500/surfcamps/${idSurfcamp}/comments`
             );
 
             req.flush(getSurfcampResponse);

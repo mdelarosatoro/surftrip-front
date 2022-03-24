@@ -10,8 +10,10 @@ import {
     getSurfcampResponse,
     mockLoginSurfcampResponse,
 } from 'src/app/mocks/surfcamps.mocks';
+import { mockUser, mockUserLoginResponse } from 'src/app/mocks/users.mocks';
 import { AuthService } from 'src/app/services/auth.service';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
+import { UsersService } from 'src/app/services/users.service';
 
 import { LoginComponent } from './login.component';
 
@@ -32,8 +34,10 @@ describe('LoginComponent', () => {
     let authService: AuthService;
     const mockService = {
         loginSurfcamp: jasmine.createSpy('loginSurfcamp'),
+        loginUser: jasmine.createSpy('loginUser'),
     };
     mockService.loginSurfcamp.and.returnValue(of(mockLoginSurfcampResponse));
+    mockService.loginUser.and.returnValue(of(mockUserLoginResponse));
 
     let surfcampsService: SurfcampsService;
     const mockSurfcampService = {
@@ -43,9 +47,15 @@ describe('LoginComponent', () => {
         of(getSurfcampResponse)
     );
 
+    let usersService: UsersService;
+    const mockUsersService = {
+        getUserById: jasmine.createSpy('getUserById'),
+    };
+    mockUsersService.getUserById.and.returnValue(of(mockUser));
+
     let router: Router;
     const mockRouterService = {
-        nagivateByUrl: jasmine.createSpy('nagivateByUrl'),
+        navigateByUrl: jasmine.createSpy('navigateByUrl'),
     };
 
     beforeEach(async () => {
@@ -62,6 +72,7 @@ describe('LoginComponent', () => {
                 provideMockStore({ initialState }),
                 { provide: AuthService, useValue: mockService },
                 { provide: SurfcampsService, useValue: mockSurfcampService },
+                { provide: UsersService, useValue: mockUsersService },
                 { provide: Router, useValue: mockRouterService },
             ],
         }).compileComponents();
@@ -71,13 +82,14 @@ describe('LoginComponent', () => {
         fixture = TestBed.createComponent(LoginComponent);
         authService = TestBed.inject(AuthService);
         surfcampsService = TestBed.inject(SurfcampsService);
+        usersService = TestBed.inject(UsersService);
         router = TestBed.inject(Router);
 
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it('should create With userType surfcamp', () => {
         expect(component).toBeTruthy();
 
         component.loginSurfcampForm.setValue({
@@ -89,5 +101,20 @@ describe('LoginComponent', () => {
         component.handleSubmit();
 
         expect(component.authService.loginSurfcamp).toHaveBeenCalled();
+        expect(component.surfcampsService.getSurfcampById).toHaveBeenCalled();
+    });
+    it('should create With userType surfer', () => {
+        expect(component).toBeTruthy();
+
+        component.loginSurfcampForm.setValue({
+            userType: 'surfer',
+            username: 'test',
+            password: 'test',
+        });
+
+        component.handleSubmit();
+
+        expect(component.authService.loginUser).toHaveBeenCalled();
+        expect(component.usersService.getUserById).toHaveBeenCalled();
     });
 });

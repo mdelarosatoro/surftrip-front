@@ -14,11 +14,11 @@ export class SurfcampDetailsComponent implements OnInit {
     auth!: UserLoginResponseI;
     surfcamp!: SurfcampI;
     constructor(
-        private route: ActivatedRoute,
+        public route: ActivatedRoute,
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        private surfcampsService: SurfcampsService
+        public surfcampsService: SurfcampsService
     ) {
         this.surfcamp = {
             _id: '',
@@ -42,7 +42,6 @@ export class SurfcampDetailsComponent implements OnInit {
             .select((store) => ({ auth: store.auth }))
             .subscribe((data) => {
                 this.auth = data.auth;
-                console.log(this.auth);
                 this.surfcampsService
                     .getSurfcampById(
                         this.auth.token,
@@ -50,7 +49,6 @@ export class SurfcampDetailsComponent implements OnInit {
                     )
                     .subscribe((resp) => {
                         this.surfcamp = resp;
-                        console.log(this.surfcamp);
                     });
             });
     }

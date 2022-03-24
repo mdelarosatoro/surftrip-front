@@ -11,6 +11,7 @@ import { RegisterSurfcampComponent } from './register-surfcamp.component';
 describe('RegisterSurfcampComponent', () => {
     let component: RegisterSurfcampComponent;
     let fixture: ComponentFixture<RegisterSurfcampComponent>;
+
     let authService: AuthService;
     const mockService = {
         registerSurfcamp: jasmine.createSpy('registerSurfcamp'),

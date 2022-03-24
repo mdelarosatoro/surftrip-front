@@ -17,11 +17,11 @@ export class PackageDetailsComponent implements OnInit {
     package!: PackageI;
     successBookMessage: { state: boolean; package: string };
     constructor(
-        private route: ActivatedRoute,
+        public route: ActivatedRoute,
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        private packagesService: PackagesService
+        public packagesService: PackagesService
     ) {
         this.package = {
             _id: '',
@@ -44,18 +44,15 @@ export class PackageDetailsComponent implements OnInit {
             .select((store) => ({ auth: store.auth }))
             .subscribe((data) => {
                 this.auth = data.auth;
-                console.log(this.auth);
                 this.packagesService
                     .getPackageById(this.auth.token, this.packageId)
                     .subscribe((resp) => {
-                        console.log(resp);
                         this.package = resp;
                     });
             });
     }
 
     bookPackage(id: string) {
-        console.log(id);
         this.packagesService
             .bookPackage(this.auth.token, id)
             .subscribe((resp) => {

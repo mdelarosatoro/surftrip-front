@@ -35,8 +35,8 @@ export class PackageSearchComponent implements OnInit {
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        private packagesService: PackagesService,
-        private router: Router
+        public packagesService: PackagesService,
+        public router: Router
     ) {
         this.packages = [];
         this.filterState = false;

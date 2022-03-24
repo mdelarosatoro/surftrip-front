@@ -16,8 +16,8 @@ export class BookingsComponent implements OnInit {
     bookings!: BookingsI[];
     constructor(
         private store: Store<{ auth: UserLoginResponseI }>,
-        private usersService: UsersService,
-        private router: Router
+        public usersService: UsersService,
+        public router: Router
     ) {}
 
     ngOnInit(): void {
@@ -25,11 +25,9 @@ export class BookingsComponent implements OnInit {
             .select((store) => store.auth)
             .subscribe((data) => {
                 this.auth = { ...data };
-                console.log(this.auth);
                 this.usersService
                     .getUserById(this.auth.token, this.auth.id)
                     .subscribe((resp) => {
-                        console.log(resp);
                         this.bookings = resp.bookings.map((item) => ({
                             ...item,
                             bookedAt: moment(item.bookedAt).format(

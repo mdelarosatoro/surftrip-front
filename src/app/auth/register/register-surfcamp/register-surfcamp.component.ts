@@ -28,11 +28,9 @@ export class RegisterSurfcampComponent implements OnInit {
     ngOnInit(): void {}
 
     handleSubmit(): void {
-        console.log(this.registerSurfcampForm.value);
         this.authService
             .registerSurfcamp(this.registerSurfcampForm.value)
             .subscribe((resp) => {
-                console.log(resp);
                 if (resp._id) {
                     console.log('Registration success');
                 }

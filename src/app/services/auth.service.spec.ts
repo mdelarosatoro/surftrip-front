@@ -4,6 +4,7 @@ import {
     HttpTestingController,
 } from '@angular/common/http/testing';
 import { AuthService } from './auth.service';
+import { mockRegisterUser, mockUserLoginResponse } from '../mocks/users.mocks';
 
 const mockLoginSurfcampResponse: any = {
     token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzBkZWQwYjRiYjRiNzE2YTNkMTE2MyIsIm5hbWUiOiJ0ZXN0MSIsInVzZXJuYW1lIjoidGVzdDEiLCJyb2xlIjoic3VyZmNhbXAiLCJpYXQiOjE2NDc2MDY4NTF9.unyOCEWPGuv4gG672Y7qTS8grXm_6rlIOjC-H2kmQXk',
@@ -105,6 +106,54 @@ describe('AuthService', () => {
             );
 
             req.flush(mockLoginSurfcampResponse);
+        });
+    });
+    describe('When registerUser is called', () => {
+        it('httpClient should be called', () => {
+            service
+                .registerUser(mockRegisterUser)
+                .subscribe((response: any) => {
+                    expect(response).not.toBe(null);
+                    expect(JSON.stringify(response)).toEqual(
+                        JSON.stringify(mockRegisterUser)
+                    );
+                });
+
+            const req = httpTestingController.expectOne({
+                method: 'POST',
+                url: 'http://localhost:4500/auth/users/register',
+            });
+
+            expect(req.request.url).toBe(
+                'http://localhost:4500/auth/users/register'
+            );
+
+            req.flush(mockRegisterUser);
+        });
+    });
+    describe('When loginUser is called', () => {
+        it('httpClient should be called', () => {
+            const login = {
+                username: 'test',
+                password: 'test',
+            };
+            service.loginUser(login).subscribe((response: any) => {
+                expect(response).not.toBe(null);
+                expect(JSON.stringify(response)).toEqual(
+                    JSON.stringify(mockUserLoginResponse)
+                );
+            });
+
+            const req = httpTestingController.expectOne({
+                method: 'POST',
+                url: 'http://localhost:4500/auth/users/login',
+            });
+
+            expect(req.request.url).toBe(
+                'http://localhost:4500/auth/users/login'
+            );
+
+            req.flush(mockUserLoginResponse);
         });
     });
 });

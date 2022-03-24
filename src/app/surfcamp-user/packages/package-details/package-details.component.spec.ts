@@ -29,13 +29,13 @@ describe('PackageDetailsComponent', () => {
             paramMap: { get: jasmine.createSpy('get') },
         },
     };
+    routeStub.snapshot.paramMap.get.and.returnValue('6230dedcb4bb4b716a3d1167');
+
     let packagesService: PackagesService;
     const mockService = {
         updatePackage: jasmine.createSpy('updatePackage'),
     };
     mockService.updatePackage.and.returnValue(of(packageMock));
-
-    routeStub.snapshot.paramMap.get.and.returnValue('6230dedcb4bb4b716a3d1167');
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
