@@ -2,21 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faStar, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import {
-    addPackageReviewData,
-    addSurfcampReviewData,
-} from 'src/app/helpers/surfcampData.helpers';
+import { addPackageReviewData } from 'src/app/helpers/surfcampData.helpers';
 import {
     PackageI,
     PackageithReviewScoreI,
 } from 'src/app/interfaces/packages.interfaces';
-import {
-    SurfcampI,
-    SurfcampWithReviewScoreI,
-} from 'src/app/interfaces/surfcamps.interfaces';
 import { UserLoginResponseI } from 'src/app/interfaces/users.interfaces';
 import { PackagesService } from 'src/app/services/packages.service';
-import { SurfcampsService } from 'src/app/services/surfcamps.service';
 
 @Component({
     selector: 'app-package-search',

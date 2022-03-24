@@ -3,30 +3,6 @@
     <p *ngIf="reviewScore">
         Average Review Score: {{ reviewScore / comments.length }}
     </p>
-    <div *ngFor="let comment of comments" class="comment">
-        <div class="comment__star-container">
-            <fa-icon
-                *ngFor="let star of comment.starArr"
-                class="comment__star--yellow"
-                [icon]="faStar"
-            ></fa-icon>
-            <fa-icon
-                *ngFor="let emptyStar of comment.emptyStarArr"
-                class="comment__star--grey"
-                [icon]="faStar"
-            ></fa-icon>
-        </div>
-        <div class="comment__user-info-container">
-            <div class="comment__img-container">
-                <img
-                    [src]="comment.user.profilePicUrl"
-                    alt=""
-                    class="comment__img"
-                />
-            </div>
-            <p class="comment__name">{{ comment.user.name }}</p>
-        </div>
-        <p class="comment__text">{{ comment.comment }}</p>
-    </div>
+    <app-comments [comments]="comments"></app-comments>
 </div>
 <app-button-back></app-button-back>

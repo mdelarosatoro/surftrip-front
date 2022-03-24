@@ -67,5 +67,9 @@ describe('FilterComponent', () => {
 
         component.handleSubmit();
         expect(component.surfcampsService.search).toHaveBeenCalled();
+
+        expect(component.filterForm.value.skillBeginner).toBe(false);
+        component.changeSkillValue('skillBeginner');
+        expect(component.filterForm.value.skillBeginner).toBe(true);
     });
 });
