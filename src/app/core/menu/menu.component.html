@@ -111,6 +111,16 @@
             <a
                 (click)="toggleMenu()"
                 class="menu__link"
+                routerLink="/package-search"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faBox"></fa-icon>
+                <p>Package Search</p></a
+            >
+        </div>
+        <div class="menu__auth-container">
+            <a
+                (click)="toggleMenu()"
+                class="menu__link"
                 routerLink="/surfer/profile"
                 routerLinkActive="menu__link--active"
                 ><fa-icon class="menu__icon" [icon]="faInfoCircle"></fa-icon>
