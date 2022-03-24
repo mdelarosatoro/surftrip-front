@@ -1,5 +1,5 @@
-<div class="filter__checkbox-outer-container">
-    <div class="filter__checkbox-container">
+<div class="skills-form__checkbox-outer-container">
+    <div class="skills-form__checkbox-container">
         <input
             type="checkbox"
             id="beginner"
@@ -7,9 +7,9 @@
             formControlName="skillBeginner"
             (change)="emitChange('skillBeginner')"
         />
-        <label class="filter__label" for="beginner">Beginner</label>
+        <label class="skills-form__label" for="beginner">Beginner</label>
     </div>
-    <div class="filter__checkbox-container">
+    <div class="skills-form__checkbox-container">
         <input
             type="checkbox"
             id="intermediate"
@@ -17,9 +17,11 @@
             formControlName="skillIntermediate"
             (change)="emitChange('skillIntermediate')"
         />
-        <label class="filter__label" for="intermediate">Intermediate</label>
+        <label class="skills-form__label" for="intermediate"
+            >Intermediate</label
+        >
     </div>
-    <div class="filter__checkbox-container">
+    <div class="skills-form__checkbox-container">
         <input
             type="checkbox"
             id="advanced"
@@ -27,9 +29,9 @@
             formControlName="skillAdvanced"
             (change)="emitChange('skillAdvanced')"
         />
-        <label class="filter__label" for="advanced">Advanced</label>
+        <label class="skills-form__label" for="advanced">Advanced</label>
     </div>
-    <div class="filter__checkbox-container">
+    <div class="skills-form__checkbox-container">
         <input
             type="checkbox"
             id="expert"
@@ -37,6 +39,6 @@
             formControlName="skillExpert"
             (change)="emitChange('skillExpert')"
         />
-        <label class="filter__label" for="expert">Expert</label>
+        <label class="skills-form__label" for="expert">Expert</label>
     </div>
 </div>
