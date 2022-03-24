@@ -8,6 +8,9 @@ import { MenuComponent } from './menu/menu.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RouterModule } from '@angular/router';
 import { ButtonBackComponent } from './button-back/button-back.component';
+import { StarContainerComponent } from './star-container/star-container.component';
+import { SkillsFormComponent } from './skills-form/skills-form.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
     declarations: [
@@ -17,6 +20,9 @@ import { ButtonBackComponent } from './button-back/button-back.component';
         MenuComponent,
         LayoutComponent,
         ButtonBackComponent,
+        StarContainerComponent,
+        SkillsFormComponent,
+        CommentsComponent,
     ],
     imports: [CommonModule, FontAwesomeModule, RouterModule],
     exports: [
@@ -26,6 +32,9 @@ import { ButtonBackComponent } from './button-back/button-back.component';
         MenuComponent,
         LayoutComponent,
         ButtonBackComponent,
+        StarContainerComponent,
+        SkillsFormComponent,
+        CommentsComponent,
     ],
 })
 export class CoreModule {}

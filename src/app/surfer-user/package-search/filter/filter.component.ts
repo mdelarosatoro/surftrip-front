@@ -60,6 +60,13 @@ export class FilterComponent implements OnInit {
         }
     }
 
+    changeSkillValue(skill: string) {
+        this.filterForm.setValue({
+            ...this.filterForm.value,
+            [skill]: !this.filterForm.value[skill],
+        });
+    }
+
     handleSubmit() {
         this.packagesService
             .search(this.auth.token, this.filterForm.value)

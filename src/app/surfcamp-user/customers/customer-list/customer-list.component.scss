@@ -41,17 +41,15 @@
         width: 50%;
     }
 
-    &__link {
-        text-decoration: none;
-        color: variables.$secondary-color;
-    }
-
     &__field-value {
         width: 50%;
         word-wrap: break-word;
     }
 
     &__link {
+        text-decoration: none;
+        color: variables.$secondary-color;
+
         &:hover {
             color: variables.$secondary-color-dark;
             transition: 0.3s ease all;

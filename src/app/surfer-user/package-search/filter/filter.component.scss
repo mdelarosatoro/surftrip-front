@@ -10,9 +10,6 @@
         font-weight: bold;
     }
 
-    &__star-container {
-    }
-
     &__star {
         cursor: pointer;
         color: #cccccc;
@@ -29,25 +26,9 @@
         row-gap: 1rem;
     }
 
-    &__label {
-    }
-
     &__input {
         padding: 0.8rem 0.8rem;
         border-radius: 1.5rem;
         border: none;
-    }
-
-    &__checkbox-outer-container {
-        display: flex;
-        flex-wrap: wrap;
-        row-gap: 0.5rem;
-    }
-
-    &__checkbox-container {
-        display: flex;
-        align-items: center;
-        width: 50%;
-        column-gap: 1rem;
     }
 }

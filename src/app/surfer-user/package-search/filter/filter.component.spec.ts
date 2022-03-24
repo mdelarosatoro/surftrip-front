@@ -66,5 +66,9 @@ describe('FilterComponent', () => {
 
         component.handleSubmit();
         expect(component.packagesService.search).toHaveBeenCalled();
+
+        expect(component.filterForm.value.skillBeginner).toBe(false);
+        component.changeSkillValue('skillBeginner');
+        expect(component.filterForm.value.skillBeginner).toBe(true);
     });
 });

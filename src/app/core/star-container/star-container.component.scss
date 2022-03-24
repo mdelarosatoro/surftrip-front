@@ -1,0 +1,13 @@
+@use "../../scss/variables";
+
+.star-container {
+    &__star {
+        cursor: pointer;
+        color: #cccccc;
+
+        &--active {
+            cursor: pointer;
+            color: variables.$secondary-color;
+        }
+    }
+}
