@@ -45,7 +45,7 @@ describe('LoginComponent', () => {
 
     let router: Router;
     const mockRouterService = {
-        nagivateByUrl: jasmine.createSpy('nagivateByUrl'),
+        navigateByUrl: jasmine.createSpy('navigateByUrl'),
     };
 
     beforeEach(async () => {

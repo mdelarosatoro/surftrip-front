@@ -29,7 +29,7 @@ describe('PackagesService', () => {
             const idSurfcamp = '1';
 
             service
-                .getPackageById(idSurfcamp, mockToken)
+                .getPackageById(mockToken, idSurfcamp)
                 .subscribe((response: any) => {});
 
             const req = httpTestingController.expectOne({
