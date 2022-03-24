@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { CoreModule } from 'src/app/core/core.module';
@@ -12,6 +13,12 @@ import { RegisterUserComponent } from './register-user.component';
 describe('RegisterUserComponent', () => {
     let component: RegisterUserComponent;
     let fixture: ComponentFixture<RegisterUserComponent>;
+
+    let router: Router;
+    const mockRouter = {
+        navigateByUrl: jasmine.createSpy('navigateByUrl'),
+    };
+
     let authService: AuthService;
     const mockService = {
         registerUser: jasmine.createSpy('registerUser'),
@@ -28,13 +35,17 @@ describe('RegisterUserComponent', () => {
                 CoreModule,
                 RouterTestingModule,
             ],
-            providers: [{ provide: AuthService, useValue: mockService }],
+            providers: [
+                { provide: AuthService, useValue: mockService },
+                { provide: Router, useValue: mockRouter },
+            ],
         }).compileComponents();
     });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(RegisterUserComponent);
         authService = TestBed.inject(AuthService);
+        router = TestBed.inject(Router);
 
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -42,5 +53,11 @@ describe('RegisterUserComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+
+        component.handleSubmit();
+        expect(component.authService.registerUser).toHaveBeenCalled();
+        expect(component.router.navigateByUrl).toHaveBeenCalledOnceWith(
+            '/login'
+        );
     });
 });

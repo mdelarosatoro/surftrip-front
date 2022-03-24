@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
         public authService: AuthService,
         private store: Store<{ auth: SurfcampLoginResponseI }>,
         private router: Router,
-        private surfcampsService: SurfcampsService,
-        private usersService: UsersService
+        public surfcampsService: SurfcampsService,
+        public usersService: UsersService
     ) {
         this.loginSurfcampForm = fb.group({
             userType: ['', []],
@@ -38,25 +38,19 @@ export class LoginComponent implements OnInit {
             .select((store) => {
                 return store.auth;
             })
-            .subscribe((auth) => {
-                console.log(auth);
-            });
+            .subscribe((auth) => {});
     }
 
     handleSubmit(): void {
-        console.log(this.loginSurfcampForm);
         const credentials = {
             username: this.loginSurfcampForm.value.username,
             password: this.loginSurfcampForm.value.password,
         };
-        console.log(credentials);
         if (this.loginSurfcampForm.value.userType === 'surfcamp') {
             this.authService.loginSurfcamp(credentials).subscribe((resp) => {
-                console.log(resp);
                 if (resp.token) {
                     localStorage.setItem('token', resp.token);
                     this.store.dispatch(login({ loginResponse: resp }));
-                    //redirect to surfcamp dashboard
                     this.surfcampsService
                         .getSurfcampById(resp.token as string, resp.id)
                         .subscribe((resp) => {
@@ -71,11 +65,9 @@ export class LoginComponent implements OnInit {
             });
         } else if (this.loginSurfcampForm.value.userType === 'surfer') {
             this.authService.loginUser(credentials).subscribe((resp) => {
-                console.log(resp);
                 if (resp.token) {
                     localStorage.setItem('token', resp.token);
                     this.store.dispatch(login({ loginResponse: resp }));
-                    //redirect to surfcamp dashboard
                     this.usersService
                         .getUserById(resp.token as string, resp.id)
                         .subscribe((resp) => {

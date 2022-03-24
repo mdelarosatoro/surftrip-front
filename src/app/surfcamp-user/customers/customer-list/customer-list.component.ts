@@ -36,16 +36,17 @@ export class CustomerListComponent implements OnInit {
                 this.usersService
                     .getAll(data.auth.token)
                     .subscribe((allUsers) => {
-                        console.log(allUsers);
                         this.customers = this.customers.map(
                             (item: CustomersI) => ({
                                 user: allUsers.find(
                                     (userItem) => userItem._id === item.user
                                 ),
-                                package: data.surfcamp.packages.find(
-                                    (packageItem: PackageI) =>
-                                        packageItem._id === item.package
-                                ),
+                                package:
+                                    data.surfcamp.packages &&
+                                    data.surfcamp.packages.find(
+                                        (packageItem: PackageI) =>
+                                            packageItem._id === item.package
+                                    ),
                             })
                         );
                     });

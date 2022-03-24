@@ -37,7 +37,6 @@ export class GalleryComponent implements OnInit {
                 this.auth = data.auth;
                 this.photos = data.surfcamp.photos;
                 this.surfcampId = data.surfcamp._id;
-                console.log(this.photos);
             });
     }
 
@@ -47,7 +46,6 @@ export class GalleryComponent implements OnInit {
                 deletePhotoUrl: url,
             })
             .subscribe((resp) => {
-                console.log(resp);
                 this.store.dispatch(deletePhoto({ newPhotosArr: resp.photos }));
             });
     }

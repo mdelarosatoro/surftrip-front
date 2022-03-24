@@ -13,7 +13,7 @@ export class RegisterUserComponent implements OnInit {
     constructor(
         public fb: FormBuilder,
         public authService: AuthService,
-        private router: Router
+        public router: Router
     ) {
         this.registerUserForm = fb.group({
             name: ['', []],
@@ -28,12 +28,9 @@ export class RegisterUserComponent implements OnInit {
     ngOnInit(): void {}
 
     handleSubmit(): void {
-        console.log(this.registerUserForm.value);
-
         this.authService
             .registerUser(this.registerUserForm.value)
             .subscribe((resp) => {
-                console.log(resp);
                 if (resp._id) {
                     console.log('Registration success');
                     this.router.navigateByUrl('/login');

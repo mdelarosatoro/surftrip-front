@@ -16,13 +16,13 @@ export class PackageListComponent implements OnInit {
     surfcamp!: SurfcampI;
     successBookMessage: { state: boolean; package: string };
     constructor(
-        private route: ActivatedRoute,
+        public route: ActivatedRoute,
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        private surfcampsService: SurfcampsService,
-        private packagesService: PackagesService,
-        private router: Router
+        public surfcampsService: SurfcampsService,
+        public packagesService: PackagesService,
+        public router: Router
     ) {
         this.surfcamp = {
             _id: '',
@@ -47,7 +47,6 @@ export class PackageListComponent implements OnInit {
             .select((store) => ({ auth: store.auth }))
             .subscribe((data) => {
                 this.auth = data.auth;
-                console.log(this.auth);
                 this.surfcampsService
                     .getSurfcampById(
                         this.auth.token,
@@ -55,23 +54,23 @@ export class PackageListComponent implements OnInit {
                     )
                     .subscribe((resp) => {
                         this.surfcamp = resp;
-                        console.log(this.surfcamp.packages);
                     });
             });
     }
 
     bookPackage(id: string) {
-        console.log(id);
         this.packagesService
             .bookPackage(this.auth.token, id)
             .subscribe((resp) => {
                 if (resp.message) {
-                    this.successBookMessage = {
-                        state: true,
-                        package: this.surfcamp.packages.find(
-                            (item) => item._id === id
-                        )?.name as string,
-                    };
+                    if (this.surfcamp.packages) {
+                        this.successBookMessage = {
+                            state: true,
+                            package: this.surfcamp.packages.find(
+                                (item) => item._id === id
+                            )?.name as string,
+                        };
+                    }
                 }
             });
     }

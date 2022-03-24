@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { CoreModule } from 'src/app/core/core.module';
 import { AuthService } from 'src/app/services/auth.service';
@@ -21,6 +22,7 @@ describe('RegisterComponent', () => {
                 ReactiveFormsModule,
                 HttpClientTestingModule,
                 CoreModule,
+                RouterTestingModule,
             ],
         }).compileComponents();
     });

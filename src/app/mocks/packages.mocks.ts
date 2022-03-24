@@ -30,6 +30,7 @@ export const packageMock = {
         'blalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbablablalbabla',
     days: 10,
     price: 700,
+    name: 'test',
 };
 
 export const updatedPackageMock = {

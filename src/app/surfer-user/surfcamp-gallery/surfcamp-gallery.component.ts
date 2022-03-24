@@ -20,11 +20,11 @@ export class SurfcampGalleryComponent implements OnInit {
     overlayImg: PhotoI;
     overlayState: boolean;
     constructor(
-        private route: ActivatedRoute,
+        public route: ActivatedRoute,
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        private surfcampsService: SurfcampsService
+        public surfcampsService: SurfcampsService
     ) {
         this.surfcamp = {
             _id: '',
@@ -54,7 +54,6 @@ export class SurfcampGalleryComponent implements OnInit {
                 this.surfcampsService
                     .getSurfcampById(this.auth.token, this.surfcampId)
                     .subscribe((resp) => {
-                        console.log(resp);
                         this.surfcamp = resp;
                     });
             });

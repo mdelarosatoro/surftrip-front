@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
             auth: UserLoginResponseI;
         }>,
         public fb: FormBuilder,
-        private usersService: UsersService
+        public usersService: UsersService
     ) {
         this.editMode = false;
         this.editUserForm = this.fb.group({
@@ -48,7 +48,6 @@ export class ProfileComponent implements OnInit {
                     lastName: this.auth.lastName,
                     email: this.auth.email,
                 });
-                console.log(this.auth);
             });
     }
 

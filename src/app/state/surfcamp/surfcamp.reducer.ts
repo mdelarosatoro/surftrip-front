@@ -30,9 +30,11 @@ export const surfcampReducer = createReducer(
     on(udpatePackage, (state, { updatedPackage }) => {
         return {
             ...state,
-            packages: state.packages.map((item) =>
-                item._id === updatedPackage._id ? updatedPackage : item
-            ),
+            packages:
+                state.packages &&
+                state.packages.map((item) =>
+                    item._id === updatedPackage._id ? updatedPackage : item
+                ),
         };
     }),
     on(updateSurfcamp, (state, { updatedSurfcamp }) => ({

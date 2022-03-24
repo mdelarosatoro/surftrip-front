@@ -24,9 +24,9 @@ export class AddReviewComponent implements OnInit {
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        private route: ActivatedRoute,
-        private surfcampsService: SurfcampsService,
-        private location: Location
+        public route: ActivatedRoute,
+        public surfcampsService: SurfcampsService,
+        public location: Location
     ) {
         this.starArr = [1, 2, 3, 4, 5];
         this.addReviewForm = fb.group({
@@ -45,7 +45,6 @@ export class AddReviewComponent implements OnInit {
     }
 
     handleSubmit() {
-        console.log(this.addReviewForm.value);
         this.surfcampsService
             .addComment(
                 this.auth.token,
@@ -60,7 +59,6 @@ export class AddReviewComponent implements OnInit {
     }
 
     setRating(star: number) {
-        console.log(star);
         if (this.addReviewForm.value.rating === star) {
             this.addReviewForm.setValue({
                 ...this.addReviewForm.value,

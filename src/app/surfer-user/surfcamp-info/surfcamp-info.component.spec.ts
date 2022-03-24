@@ -2,6 +2,10 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { provideMockStore } from '@ngrx/store/testing';
+import { of } from 'rxjs';
+import { CoreModule } from 'src/app/core/core.module';
+import { getSurfcampResponse } from 'src/app/mocks/surfcamps.mocks';
+import { SurfcampsService } from 'src/app/services/surfcamps.service';
 
 import { SurfcampInfoComponent } from './surfcamp-info.component';
 
@@ -14,7 +18,16 @@ const initialState = {
 describe('SurfcampInfoComponent', () => {
     let component: SurfcampInfoComponent;
     let fixture: ComponentFixture<SurfcampInfoComponent>;
-    let activatedRoute: ActivatedRoute;
+
+    let surfcampsService: SurfcampsService;
+    const mockSurfcampsService = {
+        getSurfcampById: jasmine.createSpy('getSurfcampById'),
+    };
+    mockSurfcampsService.getSurfcampById.and.returnValue(
+        of(getSurfcampResponse)
+    );
+
+    let route: ActivatedRoute;
     const mockRoute = {
         snapshot: {
             paramMap: { get: jasmine.createSpy('get') },
@@ -25,9 +38,10 @@ describe('SurfcampInfoComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [SurfcampInfoComponent],
-            imports: [HttpClientTestingModule],
+            imports: [HttpClientTestingModule, CoreModule],
             providers: [
                 provideMockStore({ initialState }),
+                { provide: SurfcampsService, useValue: mockSurfcampsService },
                 { provide: ActivatedRoute, useValue: mockRoute },
             ],
         }).compileComponents();
@@ -35,7 +49,8 @@ describe('SurfcampInfoComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SurfcampInfoComponent);
-        activatedRoute = TestBed.inject(ActivatedRoute);
+        surfcampsService = TestBed.inject(SurfcampsService);
+        route = TestBed.inject(ActivatedRoute);
 
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -43,5 +58,9 @@ describe('SurfcampInfoComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+
+        expect(component.route.snapshot.paramMap.get).toHaveBeenCalled();
+        expect(component.surfcampsService.getSurfcampById).toHaveBeenCalled();
+        expect(component.surfcamp).toEqual(getSurfcampResponse);
     });
 });

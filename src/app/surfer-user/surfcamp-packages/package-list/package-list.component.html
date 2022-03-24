@@ -1,6 +1,6 @@
 <div class="packages">
     <h2>{{ surfcamp.name }} Packages</h2>
-    <p>Showing {{ surfcamp.packages.length }} packages</p>
+    <p>Showing {{ surfcamp.packages && surfcamp.packages.length }} packages</p>
     <p class="packages__book-message" *ngIf="successBookMessage.state">
         Successfully booked package {{ successBookMessage.package }}
     </p>

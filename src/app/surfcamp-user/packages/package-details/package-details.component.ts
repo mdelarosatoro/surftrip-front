@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { PackageI } from 'src/app/interfaces/packages.interfaces';
 import {
+    SurfcampFilteredDataI,
     SurfcampI,
     SurfcampLoginResponseI,
 } from 'src/app/interfaces/surfcamps.interfaces';
@@ -45,7 +46,7 @@ export class PackageDetailsComponent implements OnInit {
             icon: '',
             days: 0,
             price: 0,
-            surfcamp: {} as SurfcampI,
+            surfcamp: {} as SurfcampFilteredDataI,
         };
         this.editMode = false;
         this.editPackageForm = this.fb.group({
@@ -57,24 +58,22 @@ export class PackageDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.editMode);
         this.store
             .select((store) => ({ auth: store.auth, surfcamp: store.surfcamp }))
             .subscribe((data) => {
                 this.auth = data.auth;
-                console.log(data.surfcamp.packages);
-                console.log(this.route.snapshot.paramMap.get('id'));
-                this.package = data.surfcamp.packages.find(
-                    (item) =>
-                        item._id === this.route.snapshot.paramMap.get('id')
-                ) as PackageI;
-                console.log(this.package);
-                this.editPackageForm.setValue({
-                    name: this.package.name,
-                    price: this.package.price,
-                    days: this.package.days,
-                    description: this.package.description,
-                });
+                if (data.surfcamp.packages) {
+                    this.package = data.surfcamp.packages.find(
+                        (item) =>
+                            item._id === this.route.snapshot.paramMap.get('id')
+                    ) as PackageI;
+                    this.editPackageForm.setValue({
+                        name: this.package.name,
+                        price: this.package.price,
+                        days: this.package.days,
+                        description: this.package.description,
+                    });
+                }
             });
     }
 
@@ -90,7 +89,6 @@ export class PackageDetailsComponent implements OnInit {
                 this.editPackageForm.value
             )
             .subscribe((resp) => {
-                console.log(resp);
                 this.store.dispatch(udpatePackage({ updatedPackage: resp }));
                 this.editMode = false;
             });

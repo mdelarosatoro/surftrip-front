@@ -24,6 +24,20 @@ describe('PackagesService', () => {
     it('should be created', () => {
         expect(service).toBeTruthy();
     });
+    describe('When getAllPackages is called', () => {
+        it('httpClient should be called', () => {
+            service.getAllPackages(mockToken).subscribe((response: any) => {});
+
+            const req = httpTestingController.expectOne({
+                method: 'GET',
+                url: 'http://localhost:4500/packages/',
+            });
+
+            expect(req.request.url).toBe('http://localhost:4500/packages/');
+
+            req.flush([packageMock]);
+        });
+    });
     describe('When getPackageById is called', () => {
         it('httpClient should be called', () => {
             const idSurfcamp = '1';
@@ -58,6 +72,55 @@ describe('PackagesService', () => {
             expect(req.request.url).toBe('http://localhost:4500/packages/1');
 
             req.flush(packageMock);
+        });
+    });
+    describe('When bookPackage is called', () => {
+        it('httpClient should be called', () => {
+            const idPackage = '1';
+
+            service
+                .bookPackage(mockToken, idPackage)
+                .subscribe((response: any) => {});
+
+            const req = httpTestingController.expectOne({
+                method: 'GET',
+                url: 'http://localhost:4500/packages/1/book',
+            });
+
+            expect(req.request.url).toBe(
+                'http://localhost:4500/packages/1/book'
+            );
+
+            req.flush({ message: 'ok' });
+        });
+    });
+    describe('When search is called', () => {
+        it('httpClient should be called', () => {
+            const query = {
+                skillBeginner: true,
+                skillIntermediate: true,
+                skillAdvanced: true,
+                skillExpert: true,
+                rating: 0,
+                location: '',
+                price: 0,
+                days: 0,
+            };
+
+            const queryString = `days=${query.days}&price=${query.price}&location=${query.location}&rating=${query.rating}&skillBeginner=${query.skillBeginner}&skillIntermediate=${query.skillIntermediate}&skillAdvanced=${query.skillAdvanced}&skillExpert=${query.skillExpert}`;
+
+            service.search(mockToken, query).subscribe((response: any) => {});
+
+            const req = httpTestingController.expectOne({
+                method: 'GET',
+                url: `http://localhost:4500/packages/search?${queryString}`,
+            });
+
+            expect(req.request.url).toBe(
+                `http://localhost:4500/packages/search?${queryString}`
+            );
+
+            req.flush([packageMock]);
         });
     });
 });
