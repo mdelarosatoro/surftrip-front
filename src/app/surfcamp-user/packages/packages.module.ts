@@ -9,12 +9,14 @@ import { PackageDetailsComponent } from './package-details/package-details.compo
 import { PackageListComponent } from './package-list/package-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
+import { CreatePackageComponent } from './create-package/create-package.component';
 
 @NgModule({
     declarations: [
         PackagesComponent,
         PackageDetailsComponent,
         PackageListComponent,
+        CreatePackageComponent,
     ],
     imports: [
         CommonModule,

@@ -1,5 +1,6 @@
 <div class="comments">
     <h2>Reviews & Comments</h2>
+    <p>Showing {{ comments && comments.length }} comments</p>
     <p *ngIf="reviewScore">
         Average Review Score: {{ reviewScore / comments.length }}
     </p>

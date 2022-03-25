@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { CoreModule } from 'src/app/core/core.module';
 import {
     getSurfcampResponse,
@@ -116,5 +116,93 @@ describe('LoginComponent', () => {
 
         expect(component.authService.loginUser).toHaveBeenCalled();
         expect(component.usersService.getUserById).toHaveBeenCalled();
+    });
+});
+describe('LoginComponent', () => {
+    let component: LoginComponent;
+    let fixture: ComponentFixture<LoginComponent>;
+
+    let authService: AuthService;
+    const mockService = {
+        loginSurfcamp: jasmine.createSpy('loginSurfcamp'),
+        loginUser: jasmine.createSpy('loginUser'),
+    };
+    const error = new Error('Error');
+    mockService.loginSurfcamp.and.returnValue(throwError(() => error));
+    mockService.loginUser.and.returnValue(throwError(() => new Error('Error')));
+
+    let surfcampsService: SurfcampsService;
+    const mockSurfcampService = {
+        getSurfcampById: jasmine.createSpy('getSurfcampById'),
+    };
+    mockSurfcampService.getSurfcampById.and.returnValue(
+        of(getSurfcampResponse)
+    );
+
+    let usersService: UsersService;
+    const mockUsersService = {
+        getUserById: jasmine.createSpy('getUserById'),
+    };
+    mockUsersService.getUserById.and.returnValue(of(mockUser));
+
+    let router: Router;
+    const mockRouterService = {
+        navigateByUrl: jasmine.createSpy('navigateByUrl'),
+    };
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [LoginComponent],
+            imports: [
+                FormsModule,
+                ReactiveFormsModule,
+                HttpClientTestingModule,
+                RouterTestingModule,
+                CoreModule,
+            ],
+            providers: [
+                provideMockStore({ initialState }),
+                { provide: AuthService, useValue: mockService },
+                { provide: SurfcampsService, useValue: mockSurfcampService },
+                { provide: UsersService, useValue: mockUsersService },
+                { provide: Router, useValue: mockRouterService },
+            ],
+        }).compileComponents();
+    });
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(LoginComponent);
+        authService = TestBed.inject(AuthService);
+        surfcampsService = TestBed.inject(SurfcampsService);
+        usersService = TestBed.inject(UsersService);
+        router = TestBed.inject(Router);
+
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create With userType surfcamp', () => {
+        expect(component).toBeTruthy();
+
+        component.loginSurfcampForm.setValue({
+            userType: 'surfcamp',
+            username: 'test',
+            password: 'test',
+        });
+
+        component.handleSubmit();
+        expect(component.authService.loginSurfcamp).toHaveBeenCalled();
+    });
+    it('should create With userType surfer', () => {
+        expect(component).toBeTruthy();
+
+        component.loginSurfcampForm.setValue({
+            userType: 'surfer',
+            username: 'test',
+            password: 'test',
+        });
+
+        component.handleSubmit();
+        expect(component.authService.loginUser).toHaveBeenCalled();
     });
 });

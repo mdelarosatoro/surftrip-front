@@ -14,7 +14,11 @@ import {
     faSave,
     faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { udpatePackage } from 'src/app/state/surfcamp/surfcamp.actions';
+import {
+    deletePackage,
+    udpatePackage,
+} from 'src/app/state/surfcamp/surfcamp.actions';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-package-details',
@@ -37,7 +41,8 @@ export class PackageDetailsComponent implements OnInit {
         }>,
         private route: ActivatedRoute,
         public packagesService: PackagesService,
-        public fb: FormBuilder
+        public fb: FormBuilder,
+        public location: Location
     ) {
         this.package = {
             _id: '',

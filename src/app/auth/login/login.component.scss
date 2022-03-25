@@ -1,12 +1,19 @@
 .login {
-    padding: 1rem;
+    padding: 3rem 1rem 1rem 1rem;
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    width: 90vw;
+    max-width: 400px;
 
     &__title {
         margin-bottom: 1rem;
         align-self: center;
+    }
+
+    &__error-msg {
+        align-self: center;
+        color: red;
     }
 
     &__radio-outer-container {

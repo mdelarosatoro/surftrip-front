@@ -14,6 +14,14 @@ export interface PackageI {
     name: string;
 }
 
+export interface CreatePackageI {
+    name: string;
+    price: number;
+    days: number;
+    description: string;
+    icon: string;
+}
+
 export interface UpdatedPackageI {
     name: string;
     price: number;

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
     {
@@ -20,6 +21,7 @@ const routes: Routes = [
             import('./surfcamp-user/dashboard/dashboard.module').then(
                 (m) => m.DashboardModule
             ),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfcamp-packages',
@@ -27,6 +29,7 @@ const routes: Routes = [
             import('./surfcamp-user/packages/packages.module').then(
                 (m) => m.PackagesModule
             ),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfcamp-customers',
@@ -34,6 +37,7 @@ const routes: Routes = [
             import('./surfcamp-user/customers/customers.module').then(
                 (m) => m.CustomersModule
             ),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfcamp-info',
@@ -41,6 +45,7 @@ const routes: Routes = [
             import('./surfcamp-user/info/info.module').then(
                 (m) => m.InfoModule
             ),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfer-dashboard',
@@ -48,6 +53,7 @@ const routes: Routes = [
             import('./surfer-user/dashboard/dashboard.module').then(
                 (m) => m.DashboardModule
             ),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfcamp-search',
@@ -55,6 +61,7 @@ const routes: Routes = [
             import('./surfer-user/surfcamp-search/surfcamp-search.module').then(
                 (m) => m.SurfcampSearchModule
             ),
+        canActivate: [AuthGuard],
     },
     {
         path: 'package-search',
@@ -62,6 +69,7 @@ const routes: Routes = [
             import('./surfer-user/package-search/package-search.module').then(
                 (m) => m.PackageSearchModule
             ),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfcamp-details/:id',
@@ -69,6 +77,7 @@ const routes: Routes = [
             import(
                 './surfer-user/surfcamp-details/surfcamp-details.module'
             ).then((m) => m.SurfcampDetailsModule),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfcamp-packages/:id',
@@ -76,6 +85,7 @@ const routes: Routes = [
             import(
                 './surfer-user/surfcamp-packages/surfcamp-packages.module'
             ).then((m) => m.SurfcampPackagesModule),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfcamp-reviews/:id',
@@ -83,6 +93,7 @@ const routes: Routes = [
             import(
                 './surfer-user/surfcamp-reviews/surfcamp-reviews.module'
             ).then((m) => m.SurfcampReviewsModule),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfcamp-gallery/:id',
@@ -90,6 +101,7 @@ const routes: Routes = [
             import(
                 './surfer-user/surfcamp-gallery/surfcamp-gallery.module'
             ).then((m) => m.SurfcampGalleryModule),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfcamp-info/:id',
@@ -97,6 +109,7 @@ const routes: Routes = [
             import('./surfer-user/surfcamp-info/surfcamp-info.module').then(
                 (m) => m.SurfcampInfoModule
             ),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfer/profile',
@@ -104,6 +117,7 @@ const routes: Routes = [
             import('./surfer-user/profile/profile.module').then(
                 (m) => m.ProfileModule
             ),
+        canActivate: [AuthGuard],
     },
     {
         path: 'surfer/bookings',
@@ -111,6 +125,7 @@ const routes: Routes = [
             import('./surfer-user/bookings/bookings.module').then(
                 (m) => m.BookingsModule
             ),
+        canActivate: [AuthGuard],
     },
 ];
 

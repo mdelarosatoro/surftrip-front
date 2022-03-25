@@ -5,4 +5,7 @@
     padding: 1rem;
     background-color: variables.$light-gray-color;
     position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
