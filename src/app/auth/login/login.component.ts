@@ -18,6 +18,8 @@ import { login } from '../../state/auth/auth.actions';
 })
 export class LoginComponent implements OnInit {
     loginSurfcampForm: FormGroup;
+    invalidMessage: boolean;
+
     constructor(
         public fb: FormBuilder,
         public authService: AuthService,
@@ -27,10 +29,11 @@ export class LoginComponent implements OnInit {
         public usersService: UsersService
     ) {
         this.loginSurfcampForm = fb.group({
-            userType: ['', []],
+            userType: ['surfer', []],
             username: ['', []],
             password: ['', []],
         });
+        this.invalidMessage = false;
     }
 
     ngOnInit(): void {
@@ -47,38 +50,48 @@ export class LoginComponent implements OnInit {
             password: this.loginSurfcampForm.value.password,
         };
         if (this.loginSurfcampForm.value.userType === 'surfcamp') {
-            this.authService.loginSurfcamp(credentials).subscribe((resp) => {
-                if (resp.token) {
-                    localStorage.setItem('token', resp.token);
-                    this.store.dispatch(login({ loginResponse: resp }));
-                    this.surfcampsService
-                        .getSurfcampById(resp.token as string, resp.id)
-                        .subscribe((resp) => {
-                            this.store.dispatch(
-                                loadSurfcamp({
-                                    surfcamp: resp,
-                                })
-                            );
-                        });
-                    this.router.navigateByUrl('/surfcamp-dashboard');
-                }
+            this.authService.loginSurfcamp(credentials).subscribe({
+                next: (resp) => {
+                    if (resp.token) {
+                        localStorage.setItem('token', resp.token);
+                        this.store.dispatch(login({ loginResponse: resp }));
+                        this.surfcampsService
+                            .getSurfcampById(resp.token as string, resp.id)
+                            .subscribe((resp) => {
+                                this.store.dispatch(
+                                    loadSurfcamp({
+                                        surfcamp: resp,
+                                    })
+                                );
+                            });
+                        this.router.navigateByUrl('/surfcamp-dashboard');
+                    }
+                },
+                error: (error) => {
+                    this.invalidMessage = true;
+                },
             });
         } else if (this.loginSurfcampForm.value.userType === 'surfer') {
-            this.authService.loginUser(credentials).subscribe((resp) => {
-                if (resp.token) {
-                    localStorage.setItem('token', resp.token);
-                    this.store.dispatch(login({ loginResponse: resp }));
-                    this.usersService
-                        .getUserById(resp.token as string, resp.id)
-                        .subscribe((resp) => {
-                            this.store.dispatch(
-                                loadUser({
-                                    user: resp,
-                                })
-                            );
-                        });
-                    this.router.navigateByUrl('/surfer-dashboard');
-                }
+            this.authService.loginUser(credentials).subscribe({
+                next: (resp) => {
+                    if (resp.token) {
+                        localStorage.setItem('token', resp.token);
+                        this.store.dispatch(login({ loginResponse: resp }));
+                        this.usersService
+                            .getUserById(resp.token as string, resp.id)
+                            .subscribe((resp) => {
+                                this.store.dispatch(
+                                    loadUser({
+                                        user: resp,
+                                    })
+                                );
+                            });
+                        this.router.navigateByUrl('/surfer-dashboard');
+                    }
+                },
+                error: (error) => {
+                    this.invalidMessage = true;
+                },
             });
         }
     }

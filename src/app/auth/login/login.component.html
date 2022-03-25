@@ -1,5 +1,8 @@
 <form class="login" [formGroup]="loginSurfcampForm" (ngSubmit)="handleSubmit()">
     <h2 class="login__title">Welcome Back!</h2>
+    <p *ngIf="invalidMessage" class="login__error-msg">
+        Invalid Username or Password. Try Again.
+    </p>
     <div class="login__radio-outer-container">
         <div class="login__radio-container">
             <input
@@ -46,4 +49,3 @@
     </div>
     <app-button [type]="'submit'" [text]="'Login'"></app-button>
 </form>
-{{ loginSurfcampForm.value | json }}
