@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+} from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -9,20 +14,31 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class RegisterSurfcampComponent implements OnInit {
     registerSurfcampForm: FormGroup;
+    registrationError: boolean;
     constructor(public fb: FormBuilder, public authService: AuthService) {
         this.registerSurfcampForm = fb.group({
-            name: ['', []],
-            location: ['', []],
-            email: ['', []],
-            username: ['', []],
-            password: ['', []],
-            confirmPassword: ['', []],
+            name: new FormControl('', [
+                Validators.required,
+                Validators.minLength(4),
+            ]),
+            location: new FormControl('', [Validators.required]),
+            email: new FormControl('', [Validators.required, Validators.email]),
+            username: new FormControl('', [
+                Validators.required,
+                Validators.minLength(6),
+            ]),
+            password: new FormControl('', [
+                Validators.required,
+                Validators.minLength(6),
+            ]),
+            confirmPassword: new FormControl('', [Validators.required]),
             beginner: [false, []],
             intermediate: [false, []],
             advanced: [false, []],
             expert: [false, []],
             description: ['', []],
         });
+        this.registrationError = false;
     }
 
     ngOnInit(): void {}
@@ -30,10 +46,46 @@ export class RegisterSurfcampComponent implements OnInit {
     handleSubmit(): void {
         this.authService
             .registerSurfcamp(this.registerSurfcampForm.value)
-            .subscribe((resp) => {
-                if (resp._id) {
-                    console.log('Registration success');
-                }
+            .subscribe({
+                next: (resp) => {
+                    if (resp._id) {
+                        console.log('Registration success');
+                    }
+                },
+                error: (error) => {
+                    this.registrationError = true;
+                },
             });
+    }
+
+    get name() {
+        return this.registerSurfcampForm.get('name');
+    }
+    get location() {
+        return this.registerSurfcampForm.get('location');
+    }
+    get email() {
+        return this.registerSurfcampForm.get('email');
+    }
+    get username() {
+        return this.registerSurfcampForm.get('username');
+    }
+    get password() {
+        return this.registerSurfcampForm.get('password');
+    }
+    get confirmPassword() {
+        return this.registerSurfcampForm.get('confirmPassword');
+    }
+    get beginner() {
+        return this.registerSurfcampForm.get('beginner');
+    }
+    get intermediate() {
+        return this.registerSurfcampForm.get('intermediate');
+    }
+    get advanced() {
+        return this.registerSurfcampForm.get('advanced');
+    }
+    get expert() {
+        return this.registerSurfcampForm.get('expert');
     }
 }

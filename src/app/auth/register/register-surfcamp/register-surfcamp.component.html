@@ -5,8 +5,21 @@
 >
     <h2 class="register__title">Register your Surfcamp</h2>
     <p>Already have an account? Click here to sign in.</p>
+    <p class="register__registration-error" *ngIf="registrationError">
+        An Error Ocurred while registering, please check you filled the fields
+        correctly.
+    </p>
     <div class="register__input-container">
         <label class="register__label" for="name">Surfcamp Name:</label>
+        <div
+            *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+            class="register__error-container"
+        >
+            <div *ngIf="name?.errors?.['required']">Name is required.</div>
+            <div *ngIf="name?.errors?.['minlength']">
+                Name must be at least 4 characters long.
+            </div>
+        </div>
         <input
             class="register__input"
             id="name"
@@ -17,6 +30,14 @@
     </div>
     <div class="register__input-container">
         <label class="register__label" for="name">Surfcamp Location:</label>
+        <div
+            *ngIf="location?.invalid && (location?.dirty || location?.touched)"
+            class="register__error-container"
+        >
+            <div *ngIf="location?.errors?.['required']">
+                Location is required.
+            </div>
+        </div>
         <input
             class="register__input"
             id="location"
@@ -27,6 +48,15 @@
     </div>
     <div class="register__input-container">
         <label class="register__label" for="email">Email:</label>
+        <div
+            *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+            class="register__error-container"
+        >
+            <div *ngIf="email?.errors?.['required']">Email is required.</div>
+            <div *ngIf="email?.errors?.['email']">
+                You have to enter a valid email address.
+            </div>
+        </div>
         <input
             class="register__input"
             id="email"
@@ -37,6 +67,17 @@
     </div>
     <div class="register__input-container">
         <label class="register__label" for="email">Username:</label>
+        <div
+            *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+            class="register__error-container"
+        >
+            <div *ngIf="username?.errors?.['required']">
+                Username is required.
+            </div>
+            <div *ngIf="username?.errors?.['minlength']">
+                Username must be at least 6 characters long.
+            </div>
+        </div>
         <input
             class="register__input"
             id="username"
@@ -46,7 +87,18 @@
         />
     </div>
     <div class="register__input-container">
-        <label class="register__label" for="email">Password:</label>
+        <label class="register__label" for="password">Password:</label>
+        <div
+            *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+            class="register__error-container"
+        >
+            <div *ngIf="password?.errors?.['required']">
+                Password is required.
+            </div>
+            <div *ngIf="password?.errors?.['minlength']">
+                Password must be at least 6 characters long.
+            </div>
+        </div>
         <input
             class="register__input"
             id="password"
@@ -56,19 +108,55 @@
         />
     </div>
     <div class="register__input-container">
-        <label class="register__label" for="email">Confirm password:</label>
+        <label class="register__label" for="confirm-password"
+            >Confirm password:</label
+        >
+        <div
+            *ngIf="
+                confirmPassword?.invalid &&
+                (confirmPassword?.dirty || confirmPassword?.touched)
+            "
+            class="register__error-container"
+        >
+            <div *ngIf="confirmPassword?.errors?.['required']">
+                Password confirmation is required.
+            </div>
+            <div *ngIf="confirmPassword?.errors?.['pattern']">
+                Passwords do not match.
+            </div>
+        </div>
         <input
             class="register__input"
             id="confirm-password"
             type="password"
             placeholder="Confirm your password"
             formControlName="confirmPassword"
+            [pattern]="password?.value"
         />
     </div>
     <div class="register__input-container">
         <p class="register__label">
             Choose the skill levels your clients should have:
         </p>
+        <div
+            *ngIf="
+                (beginner?.dirty ||
+                    beginner?.touched ||
+                    intermediate?.dirty ||
+                    intermediate?.touched ||
+                    advanced?.dirty ||
+                    advanced?.touched ||
+                    expert?.dirty ||
+                    expert?.touched) &&
+                !registerSurfcampForm.value.beginner &&
+                !registerSurfcampForm.value.intermediate &&
+                !registerSurfcampForm.value.advanced &&
+                !registerSurfcampForm.value.expert
+            "
+            class="register__error-container"
+        >
+            <p>You have to select at least one skill</p>
+        </div>
         <div class="register__checkbox-outer-container">
             <div class="register__checkbox-container">
                 <input
