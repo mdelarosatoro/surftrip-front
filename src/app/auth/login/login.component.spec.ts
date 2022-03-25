@@ -127,9 +127,8 @@ describe('LoginComponent', () => {
         loginSurfcamp: jasmine.createSpy('loginSurfcamp'),
         loginUser: jasmine.createSpy('loginUser'),
     };
-    mockService.loginSurfcamp.and.returnValue(
-        throwError(() => new Error('Error'))
-    );
+    const error = new Error('Error');
+    mockService.loginSurfcamp.and.returnValue(throwError(() => error));
     mockService.loginUser.and.returnValue(throwError(() => new Error('Error')));
 
     let surfcampsService: SurfcampsService;
@@ -192,9 +191,7 @@ describe('LoginComponent', () => {
         });
 
         component.handleSubmit();
-
         expect(component.authService.loginSurfcamp).toHaveBeenCalled();
-        expect(component.surfcampsService.getSurfcampById).toHaveBeenCalled();
     });
     it('should create With userType surfer', () => {
         expect(component).toBeTruthy();
@@ -206,8 +203,6 @@ describe('LoginComponent', () => {
         });
 
         component.handleSubmit();
-
         expect(component.authService.loginUser).toHaveBeenCalled();
-        expect(component.usersService.getUserById).toHaveBeenCalled();
     });
 });

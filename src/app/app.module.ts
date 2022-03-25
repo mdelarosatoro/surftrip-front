@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { authReducer } from './state/auth/auth.reducer';
 import { surfcampReducer } from './state/surfcamp/surfcamp.reducer';
 import { userReducer } from './state/user/user.reducer';
+import { AuthGuard } from './services/auth-guard.service';
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -33,7 +34,7 @@ import { userReducer } from './state/user/user.reducer';
         FontAwesomeModule,
         RegisterModule,
     ],
-    providers: [],
+    providers: [{ provide: AuthGuard }],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

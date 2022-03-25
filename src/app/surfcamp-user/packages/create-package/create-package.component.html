@@ -1,0 +1,94 @@
+<form [formGroup]="createPackageForm" class="create-package">
+    <h2>Create Package</h2>
+    <div class="create-package__input-container">
+        <label class="create-package__label" for="name">Name:</label>
+        <div
+            *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+            class="create-package__error-container"
+        >
+            <div *ngIf="name?.errors?.['required']">Name is required.</div>
+            <div *ngIf="name?.errors?.['minlength']">
+                Name must be at least 4 characters long.
+            </div>
+        </div>
+        <input
+            class="create-package__input"
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            formControlName="name"
+        />
+    </div>
+    <div class="create-package__input-container">
+        <label class="create-package__label" for="price">Price (€):</label>
+        <div
+            *ngIf="price?.invalid && (price?.dirty || price?.touched)"
+            class="create-package__error-container"
+        >
+            <div *ngIf="price?.errors?.['required']">Price is required.</div>
+        </div>
+        <input
+            class="create-package__input"
+            id="price"
+            min="0.01"
+            step="0.01"
+            type="number"
+            placeholder="Enter your package's price"
+            formControlName="price"
+            required
+        />
+    </div>
+    <div class="create-package__input-container">
+        <label class="create-package__label" for="price">Days:</label>
+        <div
+            *ngIf="days?.invalid && (days?.dirty || days?.touched)"
+            class="create-package__error-container"
+        >
+            <div *ngIf="days?.errors?.['required']">Days is required.</div>
+        </div>
+        <input
+            class="create-package__input"
+            min="1"
+            max="100"
+            id="days"
+            type="number"
+            placeholder="Enter your package's amount of days"
+            formControlName="days"
+            required
+        />
+    </div>
+    <div class="create-package__input-container">
+        <label class="create-package__label" for="price">Description:</label>
+        <div
+            *ngIf="
+                description?.invalid &&
+                (description?.dirty || description?.touched)
+            "
+            class="create-package__error-container"
+        >
+            <div *ngIf="description?.errors?.['required']">
+                Description is required.
+            </div>
+        </div>
+        <textarea
+            class="create-package__input"
+            id="description"
+            placeholder="Enter your package's amount of days"
+            formControlName="description"
+            required
+        ></textarea>
+    </div>
+    <div class="create-package__input-container">
+        <label class="create-package__label" for="price">Icon:</label>
+        <input
+            class="create-package__input"
+            type="file"
+            id="description"
+            placeholder="Enter your package's amount of days"
+            formControlName="description"
+            required
+        />
+    </div>
+    <app-button [type]="'submit'" [text]="'Create'"></app-button>
+</form>
+<app-button-back></app-button-back>

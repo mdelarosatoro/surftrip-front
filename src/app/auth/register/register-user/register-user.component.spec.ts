@@ -109,8 +109,5 @@ describe('RegisterUserComponent', () => {
 
         component.handleSubmit();
         expect(component.authService.registerUser).toHaveBeenCalled();
-        expect(component.router.navigateByUrl).toHaveBeenCalledOnceWith(
-            '/login'
-        );
     });
 });
