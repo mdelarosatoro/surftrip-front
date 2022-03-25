@@ -14,6 +14,9 @@ const initialState = {
     auth: {
         id: '12345',
     },
+    surfcamp: {
+        packages: [{ name: 'test' }],
+    },
 };
 
 describe('PackageListComponent', () => {

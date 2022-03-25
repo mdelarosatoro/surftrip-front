@@ -91,7 +91,4 @@ export class CreatePackageComponent implements OnInit {
     get description() {
         return this.createPackageForm.get('description');
     }
-    get icon() {
-        return this.createPackageForm.get('icon');
-    }
 }

@@ -24,6 +24,30 @@ describe('PackagesService', () => {
     it('should be created', () => {
         expect(service).toBeTruthy();
     });
+    describe('When createPackage is called', () => {
+        it('httpClient should be called', () => {
+            const idPackage = '1';
+            const newPackage = {
+                name: '',
+                price: 0,
+                description: '',
+                days: 0,
+                icon: '',
+            };
+            service
+                .createPackage(mockToken, newPackage)
+                .subscribe((response: any) => {});
+
+            const req = httpTestingController.expectOne({
+                method: 'POST',
+                url: 'http://localhost:4500/packages/',
+            });
+
+            expect(req.request.url).toBe('http://localhost:4500/packages/');
+
+            req.flush({ message: 'ok' });
+        });
+    });
     describe('When getAllPackages is called', () => {
         it('httpClient should be called', () => {
             service.getAllPackages(mockToken).subscribe((response: any) => {});
@@ -121,6 +145,24 @@ describe('PackagesService', () => {
             );
 
             req.flush([packageMock]);
+        });
+    });
+    describe('When deletePackage is called', () => {
+        it('httpClient should be called', () => {
+            const idPackage = '1';
+
+            service
+                .deletePackage(mockToken, idPackage)
+                .subscribe((response: any) => {});
+
+            const req = httpTestingController.expectOne({
+                method: 'DELETE',
+                url: 'http://localhost:4500/packages/1',
+            });
+
+            expect(req.request.url).toBe('http://localhost:4500/packages/1');
+
+            req.flush({ message: 'ok' });
         });
     });
 });
