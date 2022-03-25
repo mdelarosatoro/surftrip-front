@@ -1,5 +1,13 @@
 <div class="packages">
     <h2>Packages</h2>
+    <p class="packages__aditional-info">
+        Showing {{ packages.length }} packages
+    </p>
+    <p class="packages__aditional-info">
+        Your average price is €{{
+            (packagesPriceTotal / packages.length).toFixed(2)
+        }}
+    </p>
     <a routerLink="/surfcamp-packages/create" class="package__link-create"
         >Create Package</a
     >

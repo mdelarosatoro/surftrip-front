@@ -6,7 +6,7 @@
         <h2 class="package__title">{{ package.name }}</h2>
     </div>
     <p class="package__book-message" *ngIf="successBookMessage.state">
-        Successfully booked package {{ successBookMessage.package }}
+        Successfully booked package with id {{ successBookMessage.package }}
     </p>
     <div class="package__info-outer-container">
         <button (click)="bookPackage(package._id)" class="package__button">

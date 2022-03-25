@@ -15,12 +15,15 @@ export class PackageListComponent implements OnInit {
     faInfoCircle = faInfoCircle;
     auth!: SurfcampLoginResponseI;
     packages!: any;
+    packagesPriceTotal: number;
     constructor(
         private store: Store<{
             auth: SurfcampLoginResponseI;
             surfcamp: SurfcampI;
         }>
-    ) {}
+    ) {
+        this.packagesPriceTotal = 0;
+    }
 
     ngOnInit(): void {
         this.store
@@ -28,6 +31,9 @@ export class PackageListComponent implements OnInit {
             .subscribe((data) => {
                 this.auth = data.auth;
                 this.packages = data.surfcamp.packages;
+                data.surfcamp.packages?.forEach(
+                    (item) => (this.packagesPriceTotal += item.price)
+                );
             });
     }
 }

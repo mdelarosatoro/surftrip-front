@@ -98,15 +98,4 @@ export class PackageDetailsComponent implements OnInit {
                 this.editMode = false;
             });
     }
-
-    deletePackage() {
-        this.packagesService
-            .deletePackage(this.auth.token, this.package._id)
-            .subscribe((resp) => {
-                this.store.dispatch(
-                    deletePackage({ packageId: this.package._id })
-                );
-                this.location.back();
-            });
-    }
 }
