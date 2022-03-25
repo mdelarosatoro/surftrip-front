@@ -79,7 +79,9 @@
         <p *ngIf="!editMode" class="package__info">{{ package.description }}</p>
     </div>
 </form>
-<app-button-back></app-button-back>
-<button (click)="deletePackage()" class="package__delete-btn">
-    Delete Package
-</button>
+<div class="package__bottom-btn-container">
+    <app-button-back></app-button-back>
+    <button (click)="deletePackage()" class="package__delete-btn">
+        Delete Package
+    </button>
+</div>
