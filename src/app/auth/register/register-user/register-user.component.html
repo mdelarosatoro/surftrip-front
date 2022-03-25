@@ -5,8 +5,21 @@
 >
     <h2 class="register__title">Hello Surfer! Let's get your started.</h2>
     <p>Let Surftrip be your guide to surfing perfect waves around the globe</p>
+    <p class="register__registration-error" *ngIf="registrationError">
+        An Error Ocurred while registering, please check you filled the fields
+        correctly.
+    </p>
     <div class="register__input-container">
         <label class="register__label" for="name">Name:</label>
+        <div
+            *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+            class="register__error-container"
+        >
+            <div *ngIf="name?.errors?.['required']">Name is required.</div>
+            <div *ngIf="name?.errors?.['minlength']">
+                Name must be at least 4 characters long.
+            </div>
+        </div>
         <input
             class="register__input"
             id="name"
@@ -17,6 +30,17 @@
     </div>
     <div class="register__input-container">
         <label class="register__label" for="lastName">Last Name:</label>
+        <div
+            *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+            class="register__error-container"
+        >
+            <div *ngIf="lastName?.errors?.['required']">
+                Last Name is required.
+            </div>
+            <div *ngIf="lastName?.errors?.['minlength']">
+                Name must be at least 4 characters long.
+            </div>
+        </div>
         <input
             class="register__input"
             id="lastName"
@@ -27,6 +51,15 @@
     </div>
     <div class="register__input-container">
         <label class="register__label" for="email">Email:</label>
+        <div
+            *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+            class="register__error-container"
+        >
+            <div *ngIf="email?.errors?.['required']">Email is required.</div>
+            <div *ngIf="email?.errors?.['email']">
+                You have to enter a valid email address.
+            </div>
+        </div>
         <input
             class="register__input"
             id="email"
@@ -37,6 +70,17 @@
     </div>
     <div class="register__input-container">
         <label class="register__label" for="email">Username:</label>
+        <div
+            *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+            class="register__error-container"
+        >
+            <div *ngIf="username?.errors?.['required']">
+                Username is required.
+            </div>
+            <div *ngIf="username?.errors?.['minlength']">
+                Username must be at least 6 characters long.
+            </div>
+        </div>
         <input
             class="register__input"
             id="username"
@@ -45,26 +89,19 @@
             formControlName="username"
         />
     </div>
-    <p
-        *ngIf="
-            registerUserForm.value.password !==
-            registerUserForm.value.confirmPassword
-        "
-        class="register__validation-message"
-    >
-        Passwords do not match.
-    </p>
-    <p
-        *ngIf="
-            registerUserForm.value.password.length < 6 &&
-            registerUserForm.value.password.length > 0
-        "
-        class="register__validation-message"
-    >
-        Password must be at least 6 characters long.
-    </p>
     <div class="register__input-container">
         <label class="register__label" for="email">Password:</label>
+        <div
+            *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+            class="register__error-container"
+        >
+            <div *ngIf="password?.errors?.['required']">
+                Password is required.
+            </div>
+            <div *ngIf="password?.errors?.['minlength']">
+                Password must be at least 6 characters long.
+            </div>
+        </div>
         <input
             class="register__input"
             id="password"
@@ -75,11 +112,26 @@
     </div>
     <div class="register__input-container">
         <label class="register__label" for="email">Confirm password:</label>
+        <div
+            *ngIf="
+                confirmPassword?.invalid &&
+                (confirmPassword?.dirty || confirmPassword?.touched)
+            "
+            class="register__error-container"
+        >
+            <div *ngIf="confirmPassword?.errors?.['required']">
+                Password confirmation is required.
+            </div>
+            <div *ngIf="confirmPassword?.errors?.['pattern']">
+                Passwords do not match.
+            </div>
+        </div>
         <input
             class="register__input"
             id="confirm-password"
             type="password"
             placeholder="Confirm your password"
+            [pattern]="password?.value"
             formControlName="confirmPassword"
         />
     </div>

@@ -3,9 +3,20 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    width: 90vw;
+    max-width: 400px;
 
     &__title {
         margin-bottom: 1rem;
+    }
+
+    &__registration-error {
+        color: red;
+        font-size: 1.5rem;
+    }
+
+    &__error-container {
+        color: red;
     }
 
     &__input-container {
