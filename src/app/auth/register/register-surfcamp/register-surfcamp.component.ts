@@ -5,6 +5,7 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -15,7 +16,11 @@ import { AuthService } from '../../../services/auth.service';
 export class RegisterSurfcampComponent implements OnInit {
     registerSurfcampForm: FormGroup;
     registrationError: boolean;
-    constructor(public fb: FormBuilder, public authService: AuthService) {
+    constructor(
+        public fb: FormBuilder,
+        public authService: AuthService,
+        public router: Router
+    ) {
         this.registerSurfcampForm = fb.group({
             name: new FormControl('', [
                 Validators.required,
@@ -50,6 +55,7 @@ export class RegisterSurfcampComponent implements OnInit {
                 next: (resp) => {
                     if (resp._id) {
                         console.log('Registration success');
+                        this.router.navigateByUrl('/login');
                     }
                 },
                 error: (error) => {
