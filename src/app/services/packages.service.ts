@@ -90,4 +90,14 @@ export class PackagesService {
             }
         );
     }
+
+    deletePackage(token: string, idPackage: string) {
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${token}`
+        );
+        return this.http.delete(`${this.packageUrl}${idPackage}`, {
+            headers,
+        });
+    }
 }

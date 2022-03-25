@@ -4,11 +4,28 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    width: 90vw;
+    max-width: 400px;
 
     &__title-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    &__inner-title-container {
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+    }
+
+    &__p-icon-container {
+        width: 50px;
+    }
+
+    &__p-icon {
+        width: 100%;
+        border-radius: 50%;
     }
 
     &__icon-container {

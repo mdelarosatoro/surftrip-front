@@ -1,6 +1,15 @@
 <form class="package" [formGroup]="editPackageForm">
     <div class="package__title-container">
-        <h2 class="package__title">Packages</h2>
+        <div class="package__inner-title-container">
+            <div class="package__p-icon-container">
+                <img
+                    class="package__p-icon"
+                    [src]="package.icon"
+                    [alt]="package.description + ' icon'"
+                />
+            </div>
+            <h2 class="package__title">{{ package.name }}</h2>
+        </div>
         <div class="package__icon-container">
             <fa-icon
                 *ngIf="!editMode"
@@ -71,3 +80,6 @@
     </div>
 </form>
 <app-button-back></app-button-back>
+<button (click)="deletePackage()" class="package__delete-btn">
+    Delete Package
+</button>

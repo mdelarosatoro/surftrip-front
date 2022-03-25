@@ -8,9 +8,19 @@ export const loadSurfcamp = createAction(
     props<{ surfcamp: Readonly<SurfcampI> }>()
 );
 
+export const addPackage = createAction(
+    '[Surfcamp] Add Package',
+    props<{ newPackage: Readonly<PackageI> }>()
+);
+
 export const udpatePackage = createAction(
     '[Surfcamp] Update Package',
     props<{ updatedPackage: Readonly<PackageI> }>()
+);
+
+export const deletePackage = createAction(
+    '[Surfcamp] Delete Package',
+    props<{ packageId: Readonly<string> }>()
 );
 
 export const updateSurfcamp = createAction(

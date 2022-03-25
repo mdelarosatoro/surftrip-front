@@ -1,7 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import { SurfcampI } from '../../interfaces/surfcamps.interfaces';
 import {
+    addPackage,
     addPhoto,
+    deletePackage,
     deletePhoto,
     loadSurfcamp,
     udpatePackage,
@@ -27,6 +29,10 @@ export const initialState: Readonly<SurfcampI> = {
 export const surfcampReducer = createReducer(
     initialState,
     on(loadSurfcamp, (state, { surfcamp }) => surfcamp),
+    on(addPackage, (state, { newPackage }) => ({
+        ...state,
+        packages: state.packages && [...state.packages, newPackage],
+    })),
     on(udpatePackage, (state, { updatedPackage }) => {
         return {
             ...state,
@@ -35,6 +41,14 @@ export const surfcampReducer = createReducer(
                 state.packages.map((item) =>
                     item._id === updatedPackage._id ? updatedPackage : item
                 ),
+        };
+    }),
+    on(deletePackage, (state, { packageId }) => {
+        return {
+            ...state,
+            packages:
+                state.packages &&
+                state.packages.filter((item) => item._id !== packageId),
         };
     }),
     on(updateSurfcamp, (state, { updatedSurfcamp }) => ({

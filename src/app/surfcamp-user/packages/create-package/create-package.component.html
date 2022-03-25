@@ -1,4 +1,8 @@
-<form [formGroup]="createPackageForm" class="create-package">
+<form
+    [formGroup]="createPackageForm"
+    (ngSubmit)="handleSubmit()"
+    class="create-package"
+>
     <h2>Create Package</h2>
     <div class="create-package__input-container">
         <label class="create-package__label" for="name">Name:</label>
@@ -85,8 +89,8 @@
             type="file"
             id="description"
             placeholder="Enter your package's amount of days"
-            formControlName="description"
             required
+            (change)="handleFileInput($event)"
         />
     </div>
     <app-button [type]="'submit'" [text]="'Create'"></app-button>
