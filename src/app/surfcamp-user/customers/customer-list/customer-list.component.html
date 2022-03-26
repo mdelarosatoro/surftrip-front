@@ -28,6 +28,12 @@
             <p class="customer__field-name">Price:</p>
             <p class="customer__field-value">€ {{ customer.package.price }}</p>
         </div>
+        <div class="customer__field-container">
+            <p class="customer__field-name">Booked At:</p>
+            <p class="customer__field-value">
+                {{ customer.bookedAt }}
+            </p>
+        </div>
     </div>
 </div>
 <app-button-back></app-button-back>

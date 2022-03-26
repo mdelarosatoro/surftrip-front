@@ -14,7 +14,6 @@ import { SurfcampsService } from 'src/app/services/surfcamps.service';
 export class PackageListComponent implements OnInit {
     auth!: UserLoginResponseI;
     surfcamp!: SurfcampI;
-    successBookMessage: { state: boolean; package: string };
     constructor(
         public route: ActivatedRoute,
         private store: Store<{
@@ -39,7 +38,6 @@ export class PackageListComponent implements OnInit {
             comments: [],
             customers: [],
         };
-        this.successBookMessage = { state: false, package: '' };
     }
 
     ngOnInit(): void {
@@ -55,23 +53,6 @@ export class PackageListComponent implements OnInit {
                     .subscribe((resp) => {
                         this.surfcamp = resp;
                     });
-            });
-    }
-
-    bookPackage(id: string) {
-        this.packagesService
-            .bookPackage(this.auth.token, id)
-            .subscribe((resp) => {
-                if (resp.message) {
-                    if (this.surfcamp.packages) {
-                        this.successBookMessage = {
-                            state: true,
-                            package: this.surfcamp.packages.find(
-                                (item) => item._id === id
-                            )?.name as string,
-                        };
-                    }
-                }
             });
     }
 

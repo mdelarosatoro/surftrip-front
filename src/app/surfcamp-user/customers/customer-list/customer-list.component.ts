@@ -8,6 +8,7 @@ import {
     SurfcampLoginResponseI,
 } from 'src/app/interfaces/surfcamps.interfaces';
 import { UsersService } from 'src/app/services/users.service';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-customer-list',
@@ -38,6 +39,9 @@ export class CustomerListComponent implements OnInit {
                     .subscribe((allUsers) => {
                         this.customers = this.customers.map(
                             (item: CustomersI) => ({
+                                bookedAt: moment(item.bookedAt).format(
+                                    'MM/DD/YYYY HH:mm'
+                                ),
                                 user: allUsers.find(
                                     (userItem) => userItem._id === item.user
                                 ),
@@ -49,6 +53,8 @@ export class CustomerListComponent implements OnInit {
                                     ),
                             })
                         );
+                        this.customers = this.customers.reverse();
+                        console.log(this.customers);
                     });
             });
     }

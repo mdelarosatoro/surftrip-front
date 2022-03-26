@@ -91,3 +91,10 @@
         font-size: 0.7rem;
     }
 }
+
+@media (min-width: 768px) {
+    .package {
+        width: 100vw;
+        max-width: 500px;
+    }
+}
