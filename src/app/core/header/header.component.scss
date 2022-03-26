@@ -20,4 +20,22 @@
         font-size: 1.5rem;
         cursor: pointer;
     }
+
+    &__desktop-menu {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .header {
+        padding: 1rem 3rem;
+
+        &__burger {
+            display: none;
+        }
+
+        &__desktop-menu {
+            display: block;
+        }
+    }
 }

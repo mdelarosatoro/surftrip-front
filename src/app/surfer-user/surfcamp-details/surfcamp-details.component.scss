@@ -54,3 +54,25 @@
         }
     }
 }
+
+@media screen and (min-width: 768px) {
+    .surfcamp {
+        &__hero {
+            width: 100vw;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        &__img-container {
+            width: 100vw;
+        }
+
+        &__img {
+            margin-top: -300px;
+        }
+
+        &__button-container {
+            max-width: 300px;
+        }
+    }
+}

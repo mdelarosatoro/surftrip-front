@@ -9,14 +9,17 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    animation: move 5s ease;
+    animation: move 9s ease;
 }
 
 @keyframes move {
     0% {
         left: 100vw;
     }
-    50% {
+    20% {
+        left: 0;
+    }
+    80% {
         left: 0;
     }
     100% {

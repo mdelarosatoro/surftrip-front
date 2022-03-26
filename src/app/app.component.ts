@@ -10,7 +10,6 @@ import { AuthService } from './services/auth.service';
 import { SurfcampsService } from './services/surfcamps.service';
 import { login } from './state/auth/auth.actions';
 import { loadSurfcamp } from './state/surfcamp/surfcamp.actions';
-import { Socket } from 'ngx-socket-io';
 import { SocketService } from './services/socket.service';
 @Component({
     selector: 'app-root',
@@ -82,7 +81,7 @@ export class AppComponent {
                                                     this.notificationState =
                                                         false;
                                                     this.notification = '';
-                                                }, 5000);
+                                                }, 9000);
                                             }
                                         });
                                 });

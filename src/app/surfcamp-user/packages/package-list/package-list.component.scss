@@ -4,6 +4,9 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    width: 100vw;
+    max-width: 800px;
+    padding: 1rem;
 
     &__aditional-info {
         color: grey;
@@ -43,6 +46,7 @@
         cursor: pointer;
         text-decoration: none;
         transition: 0.3s ease all;
+        max-width: 200px;
 
         &:hover {
             background-color: variables.$secondary-color-dark;
@@ -80,5 +84,23 @@
             color: variables.$secondary-color-dark !important;
             transition: 0.3s ease all;
         }
+    }
+}
+
+@media (min-width: 768px) {
+    .packages {
+        width: 100vw;
+        max-width: 500px;
+        align-items: center;
+        border: 1px solid black;
+        border-radius: 1rem;
+        margin-top: 2rem;
+        box-shadow: 8px 8px 8px 2px rgba(0, 0, 0, 0.2);
+        padding: 2rem;
+    }
+
+    .package {
+        width: 100vw;
+        max-width: 400px;
     }
 }

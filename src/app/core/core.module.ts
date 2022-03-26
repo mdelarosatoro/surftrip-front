@@ -11,6 +11,7 @@ import { ButtonBackComponent } from './button-back/button-back.component';
 import { StarContainerComponent } from './star-container/star-container.component';
 import { SkillsFormComponent } from './skills-form/skills-form.component';
 import { CommentsComponent } from './comments/comments.component';
+import { MenuDesktopComponent } from './menu-desktop/menu-desktop.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import { CommentsComponent } from './comments/comments.component';
         StarContainerComponent,
         SkillsFormComponent,
         CommentsComponent,
+        MenuDesktopComponent,
     ],
     imports: [CommonModule, FontAwesomeModule, RouterModule],
     exports: [

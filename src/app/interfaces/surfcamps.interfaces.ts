@@ -110,6 +110,7 @@ export interface CustomersI {
     _id: string;
     user: string;
     package: string;
+    bookedAt: string;
 }
 
 export interface SurfcampLoginI {

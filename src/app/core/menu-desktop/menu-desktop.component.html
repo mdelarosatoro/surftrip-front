@@ -1,8 +1,7 @@
-<nav class="menu" *ngIf="menuState">
+<nav class="menu">
     <div *ngIf="!auth || auth.role === ''" class="menu__auth-outer-container">
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/login"
                 routerLinkActive="menu__link--active"
@@ -12,7 +11,6 @@
         </div>
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/register/surfcamp"
                 routerLinkActive="menu__link--active"
@@ -22,7 +20,6 @@
         </div>
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/register/user"
                 routerLinkActive="menu__link--active"
@@ -34,7 +31,6 @@
     <div *ngIf="auth.role === 'surfcamp'" class="menu__auth-outer-container">
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/surfcamp-dashboard"
                 routerLinkActive="menu__link--active"
@@ -44,7 +40,6 @@
         </div>
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/surfcamp-packages"
                 routerLinkActive="menu__link--active"
@@ -54,7 +49,6 @@
         </div>
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/surfcamp-customers"
                 routerLinkActive="menu__link--active"
@@ -64,7 +58,6 @@
         </div>
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/surfcamp-info"
                 routerLinkActive="menu__link--active"
@@ -74,7 +67,6 @@
         </div>
         <div class="menu__auth-container">
             <a
-                (click)="logout()"
                 class="menu__link"
                 routerLink="/login"
                 routerLinkActive="menu__link--active"
@@ -89,7 +81,6 @@
     <div *ngIf="auth.role === 'user'" class="menu__auth-outer-container">
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/surfer-dashboard"
                 routerLinkActive="menu__link--active"
@@ -99,7 +90,6 @@
         </div>
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/surfcamp-search"
                 routerLinkActive="menu__link--active"
@@ -109,7 +99,6 @@
         </div>
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/package-search"
                 routerLinkActive="menu__link--active"
@@ -119,17 +108,15 @@
         </div>
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/surfer/bookings"
                 routerLinkActive="menu__link--active"
-                ><fa-icon class="menu__icon" [icon]="faBox"></fa-icon>
-                <p>Bookings</p></a
-            >
+                ><fa-icon class="menu__icon" [icon]="faInfoCircle"></fa-icon>
+                <p>Bookings</p>
+            </a>
         </div>
         <div class="menu__auth-container">
             <a
-                (click)="toggleMenu()"
                 class="menu__link"
                 routerLink="/surfer/profile"
                 routerLinkActive="menu__link--active"

@@ -4,8 +4,9 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
-    width: 90vw;
+    width: 100vw;
     max-width: 400px;
+    padding: 1rem;
 
     &__title-container {
         display: flex;
@@ -87,5 +88,14 @@
             color: white;
             transition: 0.3s ease all;
         }
+    }
+}
+
+@media (min-width: 768px) {
+    .package {
+        border: 1px solid black;
+        border-radius: 1rem;
+        margin-top: 2rem;
+        box-shadow: 8px 8px 8px 2px rgba(0, 0, 0, 0.2);
     }
 }
