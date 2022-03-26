@@ -28,6 +28,7 @@
         "@ngrx/store-devtools": "^13.0.2",
         "firebase": "^9.6.9",
         "moment": "^2.29.1",
+        "ngx-socket-io": "^4.2.0",
         "rxjs": "~7.5.0",
         "tslib": "^2.3.0",
         "zone.js": "~0.11.4"
