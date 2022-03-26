@@ -5,11 +5,13 @@ import {
     SurfcampLoginResponseI,
     SurfcampLoginTokenResponseI,
 } from './interfaces/surfcamps.interfaces';
+import { UserLoginResponseI } from './interfaces/users.interfaces';
 import { AuthService } from './services/auth.service';
 import { SurfcampsService } from './services/surfcamps.service';
 import { login } from './state/auth/auth.actions';
 import { loadSurfcamp } from './state/surfcamp/surfcamp.actions';
-
+import { Socket } from 'ngx-socket-io';
+import { SocketService } from './services/socket.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -18,6 +20,8 @@ import { loadSurfcamp } from './state/surfcamp/surfcamp.actions';
 export class AppComponent {
     title = 'surftrip-front';
     token: string | null;
+    notification: string;
+    notificationState: boolean;
 
     constructor(
         private store: Store<{
@@ -25,9 +29,12 @@ export class AppComponent {
             surfcamp: SurfcampI;
         }>,
         public authService: AuthService,
-        public surfcampsService: SurfcampsService
+        public surfcampsService: SurfcampsService,
+        public socket: SocketService
     ) {
         this.token = null;
+        this.notification = '';
+        this.notificationState = false;
     }
 
     ngOnInit(): void {
@@ -40,25 +47,48 @@ export class AppComponent {
         if (this.token) {
             this.authService
                 .loginToken(this.token)
-                .subscribe((resp: SurfcampLoginTokenResponseI) => {
-                    this.store.dispatch(
-                        login({
-                            loginResponse: {
-                                ...resp,
-                                token: this.token as string,
-                            },
-                        })
-                    );
-                    this.surfcampsService
-                        .getSurfcampById(this.token as string, resp.id)
-                        .subscribe((resp) => {
-                            this.store.dispatch(
-                                loadSurfcamp({
-                                    surfcamp: resp,
-                                })
-                            );
-                        });
-                });
+                .subscribe(
+                    (
+                        resp: SurfcampLoginTokenResponseI | UserLoginResponseI
+                    ) => {
+                        this.store.dispatch(
+                            login({
+                                loginResponse: {
+                                    ...resp,
+                                    token: this.token as string,
+                                },
+                            })
+                        );
+                        if (resp.role === 'surfcamp') {
+                            this.surfcampsService
+                                .getSurfcampById(this.token as string, resp.id)
+                                .subscribe((resp) => {
+                                    this.store.dispatch(
+                                        loadSurfcamp({
+                                            surfcamp: resp,
+                                        })
+                                    );
+                                    this.socket
+                                        .getBookingNotification()
+                                        .subscribe((socketResp) => {
+                                            console.log(resp);
+                                            if (
+                                                socketResp.surfcampId ===
+                                                resp._id
+                                            ) {
+                                                this.notification = `Your package ${socketResp.packageId} was booked by User ${socketResp.userId}`;
+                                                this.notificationState = true;
+                                                setTimeout(() => {
+                                                    this.notificationState =
+                                                        false;
+                                                    this.notification = '';
+                                                }, 5000);
+                                            }
+                                        });
+                                });
+                        }
+                    }
+                );
         }
     }
 }

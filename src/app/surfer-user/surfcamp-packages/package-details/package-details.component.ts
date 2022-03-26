@@ -5,6 +5,7 @@ import { PackageI } from 'src/app/interfaces/packages.interfaces';
 import { SurfcampI } from 'src/app/interfaces/surfcamps.interfaces';
 import { UserLoginResponseI } from 'src/app/interfaces/users.interfaces';
 import { PackagesService } from 'src/app/services/packages.service';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
     selector: 'app-package-details',
@@ -21,7 +22,8 @@ export class PackageDetailsComponent implements OnInit {
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        public packagesService: PackagesService
+        public packagesService: PackagesService,
+        public socket: SocketService
     ) {
         this.package = {
             _id: '',
@@ -61,6 +63,12 @@ export class PackageDetailsComponent implements OnInit {
                         state: true,
                         package: this.package._id,
                     };
+                    const booking = {
+                        userId: this.auth.id,
+                        packageId: this.package._id,
+                        surfcampId: this.package.surfcamp._id,
+                    };
+                    this.socket.sendBooking(booking);
                 }
             });
     }
