@@ -1,0 +1,25 @@
+@use "./scss/variables";
+
+.notification {
+    position: absolute;
+    z-index: 5;
+    border: 1px solid black;
+    background-color: variables.$primary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    animation: move 5s ease;
+}
+
+@keyframes move {
+    0% {
+        left: 100vw;
+    }
+    50% {
+        left: 0;
+    }
+    100% {
+        left: 100vw;
+    }
+}
