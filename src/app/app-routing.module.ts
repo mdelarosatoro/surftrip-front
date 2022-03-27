@@ -127,6 +127,14 @@ const routes: Routes = [
             ),
         canActivate: [AuthGuard],
     },
+    {
+        path: 'world-map',
+        loadChildren: () =>
+            import('./surfer-user/world-map/world-map.module').then(
+                (m) => m.WorldMapModule
+            ),
+        canActivate: [AuthGuard],
+    },
 ];
 
 @NgModule({

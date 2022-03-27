@@ -7,7 +7,9 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-
+import { environment } from '../../../../environments/environment';
+import * as mapboxgl from 'mapbox-gl';
+import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 @Component({
     selector: 'app-register-surfcamp',
     templateUrl: './register-surfcamp.component.html',
@@ -16,6 +18,14 @@ import { AuthService } from '../../../services/auth.service';
 export class RegisterSurfcampComponent implements OnInit {
     registerSurfcampForm: FormGroup;
     registrationError: boolean;
+    mapbox = mapboxgl as typeof mapboxgl;
+    geocoder: any;
+    map: mapboxgl.Map;
+    style = `mapbox://styles/mapbox/streets-v11`;
+    // Coordenadas de la localización donde queremos centrar el mapa
+    lat = 43.1746;
+    lng = -2.4125;
+    zoom = 0;
     constructor(
         public fb: FormBuilder,
         public authService: AuthService,
@@ -26,7 +36,8 @@ export class RegisterSurfcampComponent implements OnInit {
                 Validators.required,
                 Validators.minLength(4),
             ]),
-            location: new FormControl('', [Validators.required]),
+            longitude: new FormControl('', [Validators.required]),
+            latitude: new FormControl('', [Validators.required]),
             email: new FormControl('', [Validators.required, Validators.email]),
             username: new FormControl('', [
                 Validators.required,
@@ -44,13 +55,50 @@ export class RegisterSurfcampComponent implements OnInit {
             description: ['', []],
         });
         this.registrationError = false;
+        this.mapbox.accessToken = environment.mapBoxToken;
+        this.map = {} as unknown as mapboxgl.Map;
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.map = new mapboxgl.Map({
+            container: 'map',
+            style: this.style,
+            zoom: this.zoom,
+            center: [this.lng, this.lat],
+        });
+        this.geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: this.map,
+        });
+        document
+            .getElementById('geocoder')!
+            .appendChild(this.geocoder.onAdd(this.map));
+        this.map.on('style.load', () => {
+            this.map.on('click', (e: any) => {
+                var coordinates = e.lngLat;
+                console.log(coordinates);
+                this.registerSurfcampForm.setValue({
+                    ...this.registerSurfcampForm.value,
+                    longitude: coordinates.lng,
+                    latitude: coordinates.lat,
+                });
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML('you clicked here: <br/>' + coordinates)
+                    .addTo(this.map);
+            });
+        });
+    }
 
     handleSubmit(): void {
         this.authService
-            .registerSurfcamp(this.registerSurfcampForm.value)
+            .registerSurfcamp({
+                ...this.registerSurfcampForm.value,
+                location: [
+                    this.registerSurfcampForm.value.longitude,
+                    this.registerSurfcampForm.value.latitude,
+                ],
+            })
             .subscribe({
                 next: (resp) => {
                     if (resp._id) {
@@ -67,8 +115,11 @@ export class RegisterSurfcampComponent implements OnInit {
     get name() {
         return this.registerSurfcampForm.get('name');
     }
-    get location() {
-        return this.registerSurfcampForm.get('location');
+    get longitude() {
+        return this.registerSurfcampForm.get('longitude');
+    }
+    get latitude() {
+        return this.registerSurfcampForm.get('latitude');
     }
     get email() {
         return this.registerSurfcampForm.get('email');
