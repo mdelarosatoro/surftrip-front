@@ -49,6 +49,7 @@ describe('CustomerListComponent', () => {
     it('should create', () => {
         const expectedCustomers = [
             {
+                bookedAt: '01/01/1234 00:00',
                 user: {
                     _id: '6230dee9b4bb4b716a3d116a',
                     bookings: [
@@ -88,6 +89,7 @@ describe('CustomerListComponent', () => {
         ];
 
         expect(component).toBeTruthy();
+        console.log(component.customers);
         expect(component.customers).toEqual(expectedCustomers);
     });
 });

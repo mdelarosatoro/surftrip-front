@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MapService } from 'src/app/services/map.service';
 import { environment } from '../../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';

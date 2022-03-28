@@ -12,6 +12,7 @@ import {
     SurfcampLoginResponseI,
     SurfcampWithLocationI,
 } from 'src/app/interfaces/surfcamps.interfaces';
+import { SurfcampHelpersService } from 'src/app/services/surfcamp-helpers.service';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
 import { updateSurfcamp } from 'src/app/state/surfcamp/surfcamp.actions';
 
@@ -36,7 +37,8 @@ export class InfoListComponent implements OnInit {
             surfcamp: SurfcampI;
         }>,
         public surfcampsService: SurfcampsService,
-        public fb: FormBuilder
+        public fb: FormBuilder,
+        public helpers: SurfcampHelpersService
     ) {
         this.surfcamp = {
             _id: '',
@@ -49,6 +51,22 @@ export class InfoListComponent implements OnInit {
             photos: [],
             skillLevels: [],
             location: [],
+            description: '',
+            comments: [],
+            customers: [],
+        };
+        this.surfcampWithLocation = {
+            _id: '',
+            email: '',
+            username: '',
+            name: '',
+            rating: '',
+            packages: [],
+            role: '',
+            photos: [],
+            skillLevels: [],
+            location: [],
+            locationString: '',
             description: '',
             comments: [],
             customers: [],
@@ -68,7 +86,7 @@ export class InfoListComponent implements OnInit {
     ngOnInit(): void {
         this.store
             .select((store) => ({ auth: store.auth, surfcamp: store.surfcamp }))
-            .subscribe(async (data) => {
+            .subscribe((data) => {
                 this.auth = data.auth;
                 this.surfcamp = data.surfcamp;
                 this.editSurfcampForm.setValue({
@@ -94,9 +112,11 @@ export class InfoListComponent implements OnInit {
                         ? true
                         : false,
                 });
-                this.surfcampWithLocation = await addLocationStringToSurfcamp(
-                    this.surfcamp
-                );
+                this.helpers
+                    .addLocationStringToSurfcamp(this.surfcamp)
+                    .then((result) => {
+                        this.surfcampWithLocation = result;
+                    });
             });
     }
 

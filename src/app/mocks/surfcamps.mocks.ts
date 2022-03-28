@@ -26,7 +26,7 @@ export const getSurfcampResponse = {
         },
     ],
     skillLevels: ['Beginner', 'Intermediate', 'Advanced', 'Expert'],
-    location: 'testino',
+    location: [1, 2],
     name: 'Clara Camp',
     username: 'test1',
     email: 'test1@test.com',
@@ -40,6 +40,7 @@ export const getSurfcampResponse = {
     ],
     customers: [
         {
+            bookedAt: '1234',
             user: '6230dee9b4bb4b716a3d116a',
             package: '6230dedcb4bb4b716a3d1167',
             _id: '6230defab4bb4b716a3d1173',

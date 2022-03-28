@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { CoreModule } from 'src/app/core/core.module';
 import { packageMock } from 'src/app/mocks/packages.mocks';
 import { PackagesService } from 'src/app/services/packages.service';
+import { SocketService } from 'src/app/services/socket.service';
 
 import { PackageDetailsComponent } from './package-details.component';
 
@@ -20,6 +21,11 @@ describe('PackageDetailsComponent', () => {
     let component: PackageDetailsComponent;
     let fixture: ComponentFixture<PackageDetailsComponent>;
     let activatedRoute: ActivatedRoute;
+
+    let socket: SocketService;
+    const mockSocket = {
+        sendBooking: jasmine.createSpy('sendBooking'),
+    };
 
     let packagesService: PackagesService;
     const mockPackageService = {
@@ -44,6 +50,7 @@ describe('PackageDetailsComponent', () => {
                 provideMockStore({ initialState }),
                 { provide: ActivatedRoute, useValue: mockRoute },
                 { provide: PackagesService, useValue: mockPackageService },
+                { provide: SocketService, useValue: mockSocket },
             ],
         }).compileComponents();
     });
@@ -52,6 +59,7 @@ describe('PackageDetailsComponent', () => {
         fixture = TestBed.createComponent(PackageDetailsComponent);
         activatedRoute = TestBed.inject(ActivatedRoute);
         packagesService = TestBed.inject(PackagesService);
+        socket = TestBed.inject(SocketService);
 
         component = fixture.componentInstance;
         fixture.detectChanges();

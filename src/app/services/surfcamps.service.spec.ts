@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http';
 import {
     HttpClientTestingModule,
     HttpTestingController,
