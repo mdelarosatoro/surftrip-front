@@ -2,7 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faStar, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { addSurfcampReviewData } from 'src/app/helpers/surfcampData.helpers';
+import {
+    addLocationString,
+    addSurfcampReviewData,
+} from 'src/app/helpers/surfcampData.helpers';
 import {
     SurfcampI,
     SurfcampWithReviewScoreAndLocationI,
@@ -48,19 +51,8 @@ export class SurfcampSearchComponent implements OnInit {
                     .getAllSurfcamps(this.auth.token)
                     .subscribe(async (resp) => {
                         this.surfcamps = addSurfcampReviewData(resp);
-                        console.log(this.surfcamps);
-                        this.surfcampsWithLocation = await Promise.all(
-                            this.surfcamps.map(async (item) => {
-                                const response = await fetch(
-                                    `https://api.mapbox.com/geocoding/v5/mapbox.places/${item.location[0]},${item.location[1]}.json?types=country&access_token=${environment.mapBoxToken}`
-                                );
-                                const data = await response.json();
-                                console.log(data);
-                                return {
-                                    ...item,
-                                    locationString: data.features[0].place_name,
-                                };
-                            })
+                        this.surfcampsWithLocation = await addLocationString(
+                            this.surfcamps
                         );
                     });
             });

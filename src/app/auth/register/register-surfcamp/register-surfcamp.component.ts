@@ -91,25 +91,33 @@ export class RegisterSurfcampComponent implements OnInit {
     }
 
     handleSubmit(): void {
-        this.authService
-            .registerSurfcamp({
-                ...this.registerSurfcampForm.value,
-                location: [
-                    this.registerSurfcampForm.value.longitude,
-                    this.registerSurfcampForm.value.latitude,
-                ],
-            })
-            .subscribe({
-                next: (resp) => {
-                    if (resp._id) {
-                        console.log('Registration success');
-                        this.router.navigateByUrl('/login');
-                    }
-                },
-                error: (error) => {
-                    this.registrationError = true;
-                },
-            });
+        const payload = {
+            ...this.registerSurfcampForm.value,
+            skillLevels: [],
+            location: [
+                this.registerSurfcampForm.value.longitude,
+                this.registerSurfcampForm.value.latitude,
+            ],
+        };
+        this.registerSurfcampForm.value.beginner &&
+            payload.skillLevels.push('Beginner');
+        this.registerSurfcampForm.value.intermediate &&
+            payload.skillLevels.push('Intermediate');
+        this.registerSurfcampForm.value.advanced &&
+            payload.skillLevels.push('Advanced');
+        this.registerSurfcampForm.value.expert &&
+            payload.skillLevels.push('Expert');
+        this.authService.registerSurfcamp(payload).subscribe({
+            next: (resp) => {
+                if (resp._id) {
+                    console.log('Registration success');
+                    this.router.navigateByUrl('/login');
+                }
+            },
+            error: (error) => {
+                this.registrationError = true;
+            },
+        });
     }
 
     get name() {

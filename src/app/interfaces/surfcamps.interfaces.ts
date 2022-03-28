@@ -28,6 +28,23 @@ export interface SurfcampI {
     customers?: CustomersI[];
 }
 
+export interface SurfcampWithLocationI {
+    _id: string;
+    email: string;
+    username?: string;
+    name: string;
+    rating: string | number;
+    packages?: PackageI[];
+    role?: string;
+    photos: PhotoI[];
+    skillLevels: string[];
+    location: number[];
+    locationString: string;
+    description: string;
+    comments: CommentsI[];
+    customers?: CustomersI[];
+}
+
 export interface SurfcampFilteredDataI {
     _id: string;
     email: string;

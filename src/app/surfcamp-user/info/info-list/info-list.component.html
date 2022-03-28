@@ -52,7 +52,9 @@
             type="text"
             formControlName="location"
         />
-        <p *ngIf="!editMode" class="surfcamp__info">{{ surfcamp.location }}</p>
+        <p *ngIf="!editMode" class="surfcamp__info">
+            {{ surfcampWithLocation.locationString }}
+        </p>
     </div>
 
     <div class="surfcamp__input-container">

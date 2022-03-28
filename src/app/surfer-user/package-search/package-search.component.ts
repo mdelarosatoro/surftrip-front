@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faStar, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { addPackageReviewData } from 'src/app/helpers/surfcampData.helpers';
+import {
+    addLocationStringToPackages,
+    addPackageReviewData,
+} from 'src/app/helpers/surfcampData.helpers';
 import {
     PackageI,
     PackageithReviewScoreI,
@@ -20,9 +23,9 @@ export class PackageSearchComponent implements OnInit {
     faFilter = faFilter;
     auth!: UserLoginResponseI;
     packages!: PackageithReviewScoreI[];
+    packagesWithLocation!: any[];
     reviewScore: number;
     filterState: boolean;
-
     constructor(
         private store: Store<{
             auth: UserLoginResponseI;
@@ -42,8 +45,10 @@ export class PackageSearchComponent implements OnInit {
                 this.auth = data.auth;
                 this.packagesService
                     .getAllPackages(this.auth.token)
-                    .subscribe((resp) => {
+                    .subscribe(async (resp) => {
                         this.packages = addPackageReviewData(resp);
+                        this.packagesWithLocation =
+                            await addLocationStringToPackages(this.packages);
                     });
             });
     }
