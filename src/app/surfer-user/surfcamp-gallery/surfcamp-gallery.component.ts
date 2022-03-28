@@ -64,7 +64,15 @@ export class SurfcampGalleryComponent implements OnInit {
         this.overlayState = true;
     }
 
-    hideOverlay() {
-        this.overlayState = false;
+    hideOverlay(e: any) {
+        e.stopPropagation();
+        console.log(e.target.classList);
+        if (
+            e.target.classList.contains('gallery__overlay') ||
+            e.target.classList.contains('gallery__overlay-exit-icon') ||
+            e.target.getAttribute('fill') === 'currentColor'
+        ) {
+            this.overlayState = false;
+        }
     }
 }

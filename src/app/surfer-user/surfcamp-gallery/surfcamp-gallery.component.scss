@@ -15,7 +15,7 @@
         z-index: 1;
         top: 0;
         margin-top: -1rem;
-        height: 100vh;
+        height: calc(100% + 2rem);
         width: 100vw;
         display: flex;
         justify-content: center;
@@ -31,6 +31,10 @@
         font-size: 2rem;
         cursor: pointer;
         transition: 0.3s ease all;
+
+        & path {
+            pointer-events: none;
+        }
 
         &:hover {
             color: variables.$secondary-color-dark;
