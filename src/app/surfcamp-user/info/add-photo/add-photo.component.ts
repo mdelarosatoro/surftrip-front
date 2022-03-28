@@ -7,6 +7,7 @@ import {
     SurfcampI,
     SurfcampLoginResponseI,
 } from 'src/app/interfaces/surfcamps.interfaces';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
 import { addPhoto } from 'src/app/state/surfcamp/surfcamp.actions';
 import { app } from '../../../firebase/connection';
@@ -17,21 +18,20 @@ import { app } from '../../../firebase/connection';
 })
 export class AddPhotoComponent implements OnInit {
     newPhotoForm: FormGroup;
-    storage: any;
     fileToUpload: any;
     auth!: SurfcampLoginResponseI;
     surfcamp!: SurfcampI;
 
     constructor(
         public fb: FormBuilder,
-        private surfcampsService: SurfcampsService,
+        public surfcampsService: SurfcampsService,
         private store: Store<{
             auth: SurfcampLoginResponseI;
             surfcamp: SurfcampI;
         }>,
-        private location: Location
+        public location: Location,
+        public firebase: FirebaseService
     ) {
-        this.storage = getStorage(app);
         this.newPhotoForm = this.fb.group({
             description: ['', []],
         });
@@ -51,10 +51,7 @@ export class AddPhotoComponent implements OnInit {
     }
 
     async handleSubmit() {
-        let url = '';
-        const imageRef = ref(this.storage, this.fileToUpload.name);
-        await uploadBytes(imageRef, this.fileToUpload);
-        url = await getDownloadURL(imageRef);
+        const url = await this.firebase.getDownloadUrl(this.fileToUpload);
         const payload = {
             description: this.newPhotoForm.value.description,
             photoUrl: url,

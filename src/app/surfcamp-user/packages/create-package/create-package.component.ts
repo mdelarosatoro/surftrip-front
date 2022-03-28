@@ -13,6 +13,7 @@ import {
     SurfcampI,
     SurfcampLoginResponseI,
 } from 'src/app/interfaces/surfcamps.interfaces';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { PackagesService } from 'src/app/services/packages.service';
 import { addPackage } from 'src/app/state/surfcamp/surfcamp.actions';
 
@@ -23,7 +24,6 @@ import { addPackage } from 'src/app/state/surfcamp/surfcamp.actions';
 })
 export class CreatePackageComponent implements OnInit {
     createPackageForm: FormGroup;
-    storage: any;
     auth!: SurfcampLoginResponseI;
     surfcamp!: SurfcampI;
     fileToUpload: any;
@@ -34,7 +34,8 @@ export class CreatePackageComponent implements OnInit {
             auth: SurfcampLoginResponseI;
             surfcamp: SurfcampI;
         }>,
-        private location: Location
+        private location: Location,
+        public firebase: FirebaseService
     ) {
         this.createPackageForm = fb.group({
             name: new FormControl('', [
@@ -45,7 +46,6 @@ export class CreatePackageComponent implements OnInit {
             days: new FormControl('', [Validators.required]),
             description: new FormControl('', [Validators.required]),
         });
-        this.storage = getStorage(app);
     }
 
     ngOnInit(): void {
@@ -62,10 +62,7 @@ export class CreatePackageComponent implements OnInit {
     }
 
     async handleSubmit() {
-        let url = '';
-        const imageRef = ref(this.storage, this.fileToUpload.name);
-        await uploadBytes(imageRef, this.fileToUpload);
-        url = await getDownloadURL(imageRef);
+        const url = await this.firebase.getDownloadUrl(this.fileToUpload);
         const newPackagePayload = {
             ...this.createPackageForm.value,
             icon: url,

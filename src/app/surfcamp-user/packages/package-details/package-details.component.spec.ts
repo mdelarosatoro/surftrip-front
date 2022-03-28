@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +10,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { packageMock } from 'src/app/mocks/packages.mocks';
 import { getSurfcampResponse } from 'src/app/mocks/surfcamps.mocks';
 import { PackagesService } from 'src/app/services/packages.service';
+import { SocketService } from 'src/app/services/socket.service';
 
 import { PackageDetailsComponent } from './package-details.component';
 
@@ -24,6 +24,12 @@ const initialState = {
 describe('PackageDetailsComponent', () => {
     let component: PackageDetailsComponent;
     let fixture: ComponentFixture<PackageDetailsComponent>;
+
+    let socket: SocketService;
+    const mockSocket = {
+        sendBooking: jasmine.createSpy('sendBooking'),
+    };
+
     const routeStub = {
         snapshot: {
             paramMap: { get: jasmine.createSpy('get') },
@@ -52,6 +58,7 @@ describe('PackageDetailsComponent', () => {
                 provideMockStore({ initialState }),
                 { provide: ActivatedRoute, useValue: routeStub },
                 { provide: PackagesService, useValue: mockService },
+                { provide: SocketService, useValue: mockSocket },
             ],
         }).compileComponents();
     });
@@ -59,6 +66,7 @@ describe('PackageDetailsComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(PackageDetailsComponent);
         packagesService = TestBed.inject(PackagesService);
+        socket = TestBed.inject(SocketService);
 
         component = fixture.componentInstance;
         fixture.detectChanges();

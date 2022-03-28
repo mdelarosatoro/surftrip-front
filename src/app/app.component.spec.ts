@@ -12,6 +12,7 @@ import {
 import { SurfcampsService } from './services/surfcamps.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CoreModule } from './core/core.module';
+import { SocketService } from './services/socket.service';
 
 const initialState = {
     auth: {
@@ -19,9 +20,21 @@ const initialState = {
     },
 };
 
+const mockNotification = {
+    surfcampId: '6230ded0b4bb4b716a3d1163',
+    packageId: '123',
+    userId: '123456',
+};
+
 describe('AppComponent', () => {
     let component: AppComponent;
     let fixture: ComponentFixture<AppComponent>;
+
+    let socket: SocketService;
+    const mockSocket = {
+        getBookingNotification: jasmine.createSpy('getBookingNotification'),
+    };
+    mockSocket.getBookingNotification.and.returnValue(of(mockNotification));
 
     let authService: AuthService;
     const mockService = {
@@ -44,6 +57,7 @@ describe('AppComponent', () => {
             providers: [
                 provideMockStore({ initialState }),
                 { provide: AuthService, useValue: mockService },
+                { provide: SocketService, useValue: mockSocket },
                 { provide: SurfcampsService, useValue: mockSurfcampService },
             ],
         }).compileComponents();
@@ -53,6 +67,7 @@ describe('AppComponent', () => {
         fixture = TestBed.createComponent(AppComponent);
         authService = TestBed.inject(AuthService);
         surfcampsService = TestBed.inject(SurfcampsService);
+        socket = TestBed.inject(SocketService);
 
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -67,5 +82,9 @@ describe('AppComponent', () => {
 
         expect(component.authService.loginToken).toHaveBeenCalled();
         expect(component.surfcampsService.getSurfcampById).toHaveBeenCalled();
+        expect(component.notification).toEqual(
+            `Your package ${mockNotification.packageId} was booked by User ${mockNotification.userId}`
+        );
+        expect(component.notificationState).toBe(true);
     });
 });

@@ -72,7 +72,6 @@ export class SurfcampInfoComponent implements OnInit {
                         this.surfcamp = resp;
                         this.surfcampWithLocation =
                             await addLocationStringToSurfcamp(this.surfcamp);
-                        console.log(this.surfcampWithLocation);
                     });
             });
     }

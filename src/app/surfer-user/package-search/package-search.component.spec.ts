@@ -90,7 +90,7 @@ describe('PackageSearchComponent', () => {
                         'Advanced',
                         'Expert',
                     ],
-                    location: 'testino',
+                    location: [1, 2],
                     name: 'Clara Camp',
                     email: 'test1@test.com',
                     comments: [

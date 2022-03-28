@@ -80,9 +80,6 @@ describe('PackageListComponent', () => {
 
         expect(component.surfcamp).toEqual(getSurfcampResponse);
 
-        component.bookPackage('1');
-        expect(component.packagesService.bookPackage).toHaveBeenCalled();
-
         component.goToPackage('1');
         expect(component.router.navigateByUrl).toHaveBeenCalledWith(
             `/surfcamp-packages/${component.surfcamp._id}/packages/${1}`
