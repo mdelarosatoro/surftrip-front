@@ -31,7 +31,7 @@ export class SurfcampInfoComponent implements OnInit {
             role: '',
             photos: [],
             skillLevels: [],
-            location: '',
+            location: [],
             description: '',
             comments: [],
             customers: [],

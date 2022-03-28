@@ -3,6 +3,7 @@ import {
     faArrowCircleDown,
     faBox,
     faFolderOpen,
+    faGlobe,
     faIdCard,
     faInfoCircle,
     faLockOpen,
@@ -20,6 +21,7 @@ import { logout } from 'src/app/state/auth/auth.actions';
 })
 export class MenuDesktopComponent implements OnInit {
     faIdCard = faIdCard;
+    faGlobe = faGlobe;
     faLockOpen = faLockOpen;
     faFolderOpen = faFolderOpen;
     faBox = faBox;

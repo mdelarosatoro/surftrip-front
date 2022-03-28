@@ -7,6 +7,7 @@ import {
     faInfoCircle,
     faFolderOpen,
     faArrowCircleDown,
+    faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { MenuItemI } from 'src/app/interfaces/menu.interfaces';
@@ -23,6 +24,7 @@ import { logout } from 'src/app/state/auth/auth.actions';
     styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
+    faGlobe = faGlobe;
     faLockOpen = faLockOpen;
     faIdCard = faIdCard;
     faBox = faBox;

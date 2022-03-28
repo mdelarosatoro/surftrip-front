@@ -22,7 +22,7 @@ export interface SurfcampI {
     role?: string;
     photos: PhotoI[];
     skillLevels: string[];
-    location: string;
+    location: number[];
     description: string;
     comments: CommentsI[];
     customers?: CustomersI[];
@@ -35,7 +35,7 @@ export interface SurfcampFilteredDataI {
     rating: string | number;
     photos: PhotoI[];
     skillLevels: string[];
-    location: string;
+    location: number[];
     description: string;
     comments: CommentsI[];
 }
@@ -50,7 +50,7 @@ export interface SurfcampWithReviewScoreI {
     role?: string;
     photos: PhotoI[];
     skillLevels: string[];
-    location: string;
+    location: number[];
     description: string;
     comments: CommentsI[];
     customers?: CustomersI[];

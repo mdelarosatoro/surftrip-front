@@ -101,6 +101,16 @@
             <a
                 (click)="toggleMenu()"
                 class="menu__link"
+                routerLink="/world-map"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faGlobe"></fa-icon>
+                <p>World Map</p></a
+            >
+        </div>
+        <div class="menu__auth-container">
+            <a
+                (click)="toggleMenu()"
+                class="menu__link"
                 routerLink="/surfcamp-search"
                 routerLinkActive="menu__link--active"
                 ><fa-icon class="menu__icon" [icon]="faBox"></fa-icon>

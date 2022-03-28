@@ -45,7 +45,7 @@ export class InfoListComponent implements OnInit {
             role: '',
             photos: [],
             skillLevels: [],
-            location: '',
+            location: [],
             description: '',
             comments: [],
             customers: [],
