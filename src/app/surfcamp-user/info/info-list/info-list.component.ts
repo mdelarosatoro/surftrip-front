@@ -6,9 +6,11 @@ import {
     faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
+import { addLocationStringToSurfcamp } from 'src/app/helpers/surfcampData.helpers';
 import {
     SurfcampI,
     SurfcampLoginResponseI,
+    SurfcampWithLocationI,
 } from 'src/app/interfaces/surfcamps.interfaces';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
 import { updateSurfcamp } from 'src/app/state/surfcamp/surfcamp.actions';
@@ -26,6 +28,7 @@ export class InfoListComponent implements OnInit {
     surfcamp: SurfcampI;
     editSurfcampForm: FormGroup;
     editMode: boolean;
+    surfcampWithLocation!: SurfcampWithLocationI;
 
     constructor(
         private store: Store<{
@@ -45,7 +48,7 @@ export class InfoListComponent implements OnInit {
             role: '',
             photos: [],
             skillLevels: [],
-            location: '',
+            location: [],
             description: '',
             comments: [],
             customers: [],
@@ -65,7 +68,7 @@ export class InfoListComponent implements OnInit {
     ngOnInit(): void {
         this.store
             .select((store) => ({ auth: store.auth, surfcamp: store.surfcamp }))
-            .subscribe((data) => {
+            .subscribe(async (data) => {
                 this.auth = data.auth;
                 this.surfcamp = data.surfcamp;
                 this.editSurfcampForm.setValue({
@@ -91,6 +94,9 @@ export class InfoListComponent implements OnInit {
                         ? true
                         : false,
                 });
+                this.surfcampWithLocation = await addLocationStringToSurfcamp(
+                    this.surfcamp
+                );
             });
     }
 

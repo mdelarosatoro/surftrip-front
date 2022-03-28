@@ -20,7 +20,7 @@ export const initialState: Readonly<SurfcampI> = {
     role: '',
     photos: [],
     skillLevels: [],
-    location: '',
+    location: [],
     description: '',
     comments: [],
     customers: [],

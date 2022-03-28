@@ -1,11 +1,14 @@
 import {
     SurfcampI,
+    SurfcampWithLocationI,
+    SurfcampWithReviewScoreAndLocationI,
     SurfcampWithReviewScoreI,
 } from '../interfaces/surfcamps.interfaces';
 import {
     PackageI,
     PackageithReviewScoreI,
 } from '../interfaces/packages.interfaces';
+import { environment } from 'src/environments/environment';
 
 export const addSurfcampReviewData = (surfcamps: SurfcampI[]) => {
     const remodelledSurfcamps: SurfcampWithReviewScoreI[] = surfcamps.map(
@@ -53,4 +56,54 @@ export const addPackageReviewData = (packages: PackageI[]) => {
         ).fill(1);
     });
     return remodelledPackages;
+};
+
+export const addLocationString = async (
+    surfcamps: SurfcampWithReviewScoreI[]
+): Promise<SurfcampWithReviewScoreAndLocationI[]> => {
+    return Promise.all(
+        surfcamps.map(async (item: SurfcampWithReviewScoreI) => {
+            const response = await fetch(
+                `https://api.mapbox.com/geocoding/v5/mapbox.places/${item.location[0]},${item.location[1]}.json?types=country&access_token=${environment.mapBoxToken}`
+            );
+            const data = await response.json();
+            return {
+                ...item,
+                locationString: data.features[0].place_name,
+            };
+        })
+    );
+};
+
+export const addLocationStringToPackages = async (
+    packages: PackageithReviewScoreI[]
+) => {
+    return Promise.all(
+        packages.map(async (item: PackageithReviewScoreI) => {
+            const response = await fetch(
+                `https://api.mapbox.com/geocoding/v5/mapbox.places/${item.surfcamp.location[0]},${item.surfcamp.location[1]}.json?types=country&access_token=${environment.mapBoxToken}`
+            );
+            const data = await response.json();
+            return {
+                ...item,
+                surfcamp: {
+                    ...item.surfcamp,
+                    locationString: data.features[0].place_name,
+                },
+            };
+        })
+    );
+};
+
+export const addLocationStringToSurfcamp = async (
+    surfcamp: SurfcampI
+): Promise<SurfcampWithLocationI> => {
+    const response = await fetch(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${surfcamp.location[0]},${surfcamp.location[1]}.json?types=country&access_token=${environment.mapBoxToken}`
+    );
+    const data = await response.json();
+    return {
+        ...surfcamp,
+        locationString: data.features[0].place_name,
+    };
 };

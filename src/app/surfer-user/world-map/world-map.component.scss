@@ -1,0 +1,19 @@
+.map {
+    width: 90vw;
+    height: 400px;
+}
+
+.geocoder {
+    position: absolute;
+    z-index: 1;
+    width: 50%;
+    left: 50%;
+    margin-left: -35%;
+    top: 60px;
+}
+.mapboxgl-ctrl-geocoder {
+    min-width: 100%;
+}
+#map {
+    margin-top: 75px;
+}

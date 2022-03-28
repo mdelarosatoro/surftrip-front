@@ -33,7 +33,7 @@ export class PackageListComponent implements OnInit {
             role: '',
             photos: [],
             skillLevels: [],
-            location: '',
+            location: [],
             description: '',
             comments: [],
             customers: [],

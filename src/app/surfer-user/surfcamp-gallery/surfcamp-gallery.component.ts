@@ -36,7 +36,7 @@ export class SurfcampGalleryComponent implements OnInit {
             role: '',
             photos: [],
             skillLevels: [],
-            location: '',
+            location: [],
             description: '',
             comments: [],
             customers: [],

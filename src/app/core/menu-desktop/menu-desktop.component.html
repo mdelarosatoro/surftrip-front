@@ -68,6 +68,7 @@
         <div class="menu__auth-container">
             <a
                 class="menu__link"
+                (click)="logout()"
                 routerLink="/login"
                 routerLinkActive="menu__link--active"
                 ><fa-icon
@@ -86,6 +87,15 @@
                 routerLinkActive="menu__link--active"
                 ><fa-icon class="menu__icon" [icon]="faFolderOpen"></fa-icon>
                 <p>Dashboard</p></a
+            >
+        </div>
+        <div class="menu__auth-container">
+            <a
+                class="menu__link"
+                routerLink="/world-map"
+                routerLinkActive="menu__link--active"
+                ><fa-icon class="menu__icon" [icon]="faGlobe"></fa-icon>
+                <p>World Map</p></a
             >
         </div>
         <div class="menu__auth-container">

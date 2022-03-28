@@ -28,22 +28,40 @@
             formControlName="name"
         />
     </div>
+
     <div class="register__input-container">
         <label class="register__label" for="name">Surfcamp Location:</label>
+        <div class="map-container">
+            <div id="geocoder" class="geocoder"></div>
+            <div id="map" class="map"></div>
+        </div>
         <div
-            *ngIf="location?.invalid && (location?.dirty || location?.touched)"
+            *ngIf="
+                (longitude?.invalid &&
+                    (longitude?.dirty || longitude?.touched)) ||
+                (latitude?.invalid && (latitude?.dirty || latitude?.touched))
+            "
             class="register__error-container"
         >
-            <div *ngIf="location?.errors?.['required']">
+            <div
+                *ngIf="longitude?.errors?.['required'] || latitude?.errors?.['required']"
+            >
                 Location is required.
             </div>
         </div>
         <input
             class="register__input"
-            id="location"
-            type="text"
-            placeholder="Enter the surfcamp's location"
-            formControlName="location"
+            id="longitude"
+            type="number"
+            placeholder="Click on the map to set a point"
+            formControlName="longitude"
+        />
+        <input
+            class="register__input"
+            id="latitude"
+            type="number"
+            placeholder="Click on the map to set a point"
+            formControlName="latitude"
         />
     </div>
     <div class="register__input-container">
@@ -211,3 +229,4 @@
     </div>
     <app-button [type]="'submit'" [text]="'Register'"></app-button>
 </form>
+{{ registerSurfcampForm.value | json }}

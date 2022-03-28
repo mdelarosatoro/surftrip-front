@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { SurfcampI } from 'src/app/interfaces/surfcamps.interfaces';
+import { addLocationStringToSurfcamp } from 'src/app/helpers/surfcampData.helpers';
+import {
+    SurfcampI,
+    SurfcampWithLocationI,
+    SurfcampWithReviewScoreAndLocationI,
+} from 'src/app/interfaces/surfcamps.interfaces';
 import { UserLoginResponseI } from 'src/app/interfaces/users.interfaces';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
 
@@ -14,6 +19,7 @@ export class SurfcampInfoComponent implements OnInit {
     auth!: UserLoginResponseI;
     surfcampId!: string;
     surfcamp!: SurfcampI;
+    surfcampWithLocation!: SurfcampWithLocationI;
     constructor(
         public route: ActivatedRoute,
         private store: Store<{
@@ -31,7 +37,23 @@ export class SurfcampInfoComponent implements OnInit {
             role: '',
             photos: [],
             skillLevels: [],
-            location: '',
+            location: [],
+            description: '',
+            comments: [],
+            customers: [],
+        };
+        this.surfcampWithLocation = {
+            _id: '',
+            email: '',
+            username: '',
+            name: '',
+            rating: '',
+            packages: [],
+            role: '',
+            photos: [],
+            skillLevels: [],
+            location: [],
+            locationString: '',
             description: '',
             comments: [],
             customers: [],
@@ -46,8 +68,11 @@ export class SurfcampInfoComponent implements OnInit {
                 this.auth = data.auth;
                 this.surfcampsService
                     .getSurfcampById(this.auth.token, this.surfcampId)
-                    .subscribe((resp) => {
+                    .subscribe(async (resp) => {
                         this.surfcamp = resp;
+                        this.surfcampWithLocation =
+                            await addLocationStringToSurfcamp(this.surfcamp);
+                        console.log(this.surfcampWithLocation);
                     });
             });
     }

@@ -50,6 +50,15 @@
         />
     </div>
     <div class="register__input-container">
+        <label class="register__label" for="photo">Photo:</label>
+        <input
+            class="register__input"
+            id="photo"
+            type="file"
+            (change)="handleFileInput($event)"
+        />
+    </div>
+    <div class="register__input-container">
         <label class="register__label" for="email">Email:</label>
         <div
             *ngIf="email?.invalid && (email?.dirty || email?.touched)"

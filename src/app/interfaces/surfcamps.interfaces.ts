@@ -22,7 +22,24 @@ export interface SurfcampI {
     role?: string;
     photos: PhotoI[];
     skillLevels: string[];
-    location: string;
+    location: number[];
+    description: string;
+    comments: CommentsI[];
+    customers?: CustomersI[];
+}
+
+export interface SurfcampWithLocationI {
+    _id: string;
+    email: string;
+    username?: string;
+    name: string;
+    rating: string | number;
+    packages?: PackageI[];
+    role?: string;
+    photos: PhotoI[];
+    skillLevels: string[];
+    location: number[];
+    locationString: string;
     description: string;
     comments: CommentsI[];
     customers?: CustomersI[];
@@ -35,7 +52,7 @@ export interface SurfcampFilteredDataI {
     rating: string | number;
     photos: PhotoI[];
     skillLevels: string[];
-    location: string;
+    location: number[];
     description: string;
     comments: CommentsI[];
 }
@@ -50,7 +67,27 @@ export interface SurfcampWithReviewScoreI {
     role?: string;
     photos: PhotoI[];
     skillLevels: string[];
-    location: string;
+    location: number[];
+    description: string;
+    comments: CommentsI[];
+    customers?: CustomersI[];
+    reviewScore: number;
+    starArr: number[];
+    emptyStarArr: number[];
+}
+
+export interface SurfcampWithReviewScoreAndLocationI {
+    _id: string;
+    email: string;
+    username?: string;
+    name: string;
+    rating: number | string;
+    packages?: PackageI[];
+    role?: string;
+    photos: PhotoI[];
+    skillLevels: string[];
+    location: number[];
+    locationString: string;
     description: string;
     comments: CommentsI[];
     customers?: CustomersI[];
