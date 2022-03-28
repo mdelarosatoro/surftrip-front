@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { addSurfcampReviewData } from 'src/app/helpers/surfcampData.helpers';
 import {
     SurfcampI,
+    SurfcampWithReviewScoreAndLocationI,
     SurfcampWithReviewScoreI,
 } from 'src/app/interfaces/surfcamps.interfaces';
 import { UserLoginResponseI } from 'src/app/interfaces/users.interfaces';
@@ -23,7 +24,7 @@ export class SurfcampSearchComponent implements OnInit {
     surfcamps!: SurfcampWithReviewScoreI[];
     reviewScore: number;
     filterState: boolean;
-    test: any[];
+    surfcampsWithLocation: SurfcampWithReviewScoreAndLocationI[];
 
     constructor(
         private store: Store<{
@@ -35,7 +36,7 @@ export class SurfcampSearchComponent implements OnInit {
         this.surfcamps = [];
         this.filterState = false;
         this.reviewScore = 0;
-        this.test = [];
+        this.surfcampsWithLocation = [];
     }
 
     ngOnInit(): void {
@@ -45,17 +46,22 @@ export class SurfcampSearchComponent implements OnInit {
                 this.auth = data.auth;
                 this.surfampsService
                     .getAllSurfcamps(this.auth.token)
-                    .subscribe((resp) => {
+                    .subscribe(async (resp) => {
                         this.surfcamps = addSurfcampReviewData(resp);
                         console.log(this.surfcamps);
-                        this.test = this.surfcamps.map(async (item) => {
-                            const response = await fetch(
-                                `https://api.mapbox.com/geocoding/v5/mapbox.places/${item.location[0]},${item.location[1]}.json?access_token=${environment.mapBoxToken}`
-                            );
-                            const data = await response.json();
-                            console.log(data);
-                            return { ...item, location: item.location };
-                        });
+                        this.surfcampsWithLocation = await Promise.all(
+                            this.surfcamps.map(async (item) => {
+                                const response = await fetch(
+                                    `https://api.mapbox.com/geocoding/v5/mapbox.places/${item.location[0]},${item.location[1]}.json?types=country&access_token=${environment.mapBoxToken}`
+                                );
+                                const data = await response.json();
+                                console.log(data);
+                                return {
+                                    ...item,
+                                    locationString: data.features[0].place_name,
+                                };
+                            })
+                        );
                     });
             });
     }

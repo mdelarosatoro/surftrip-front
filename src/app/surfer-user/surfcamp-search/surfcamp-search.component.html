@@ -12,7 +12,7 @@
     ></app-filter>
     <div
         (click)="goToDetails(surfcamp._id)"
-        *ngFor="let surfcamp of surfcamps"
+        *ngFor="let surfcamp of surfcampsWithLocation"
         class="surfcamp"
     >
         <div class="surfcamp__img-container">
@@ -38,7 +38,7 @@
                     [icon]="faStar"
                 ></fa-icon>
             </div>
-            <p class="surfcamp__location">{{ surfcamp.location }}</p>
+            <p class="surfcamp__location">{{ surfcamp.locationString }}</p>
             <p class="surfcamp__name">{{ surfcamp.name }}</p>
             <p class="surfcamp__info">
                 {{ surfcamp.packages && surfcamp.packages.length }} packages
