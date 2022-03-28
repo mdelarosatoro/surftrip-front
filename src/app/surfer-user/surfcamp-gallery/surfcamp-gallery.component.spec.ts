@@ -124,7 +124,22 @@ describe('SurfcampGalleryComponent', () => {
         expect(component.overlayImg).toEqual(photo);
         expect(component.overlayState).toBe(true);
 
-        component.hideOverlay();
+        const mockEvent = {
+            stopPropagation: jasmine.createSpy('stopPropagation'),
+            target: {
+                getAttribute: jasmine.createSpy('getAttribute'),
+                classList: {
+                    contains: jasmine.createSpy('contains'),
+                },
+            },
+        };
+        mockEvent.target.classList.contains.and.returnValues(false, true);
+        component.hideOverlay(mockEvent);
+        expect(component.overlayState).toBe(false);
+
+        mockEvent.target.classList.contains.and.returnValues(false);
+        mockEvent.target.getAttribute.and.returnValue('currentColor');
+        component.hideOverlay(mockEvent);
         expect(component.overlayState).toBe(false);
     });
 });
