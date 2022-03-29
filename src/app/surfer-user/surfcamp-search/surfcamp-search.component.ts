@@ -3,15 +3,12 @@ import { Router } from '@angular/router';
 import { faStar, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import {
-    addLocationString,
-    addSurfcampReviewData,
-} from 'src/app/helpers/surfcampData.helpers';
-import {
     SurfcampI,
     SurfcampWithReviewScoreAndLocationI,
     SurfcampWithReviewScoreI,
 } from 'src/app/interfaces/surfcamps.interfaces';
 import { UserLoginResponseI } from 'src/app/interfaces/users.interfaces';
+import { SurfcampHelpersService } from 'src/app/services/surfcamp-helpers.service';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
 import { environment } from 'src/environments/environment';
 
@@ -34,7 +31,8 @@ export class SurfcampSearchComponent implements OnInit {
             auth: UserLoginResponseI;
         }>,
         public surfampsService: SurfcampsService,
-        public router: Router
+        public router: Router,
+        public helpers: SurfcampHelpersService
     ) {
         this.surfcamps = [];
         this.filterState = false;
@@ -50,10 +48,12 @@ export class SurfcampSearchComponent implements OnInit {
                 this.surfampsService
                     .getAllSurfcamps(this.auth.token)
                     .subscribe(async (resp) => {
-                        this.surfcamps = addSurfcampReviewData(resp);
-                        this.surfcampsWithLocation = await addLocationString(
-                            this.surfcamps
-                        );
+                        this.surfcamps =
+                            this.helpers.addSurfcampReviewData(resp);
+                        this.surfcampsWithLocation =
+                            await this.helpers.addLocationString(
+                                this.surfcamps
+                            );
                     });
             });
     }
@@ -63,8 +63,10 @@ export class SurfcampSearchComponent implements OnInit {
     }
 
     async handleFilter(filteredSurfcamps: SurfcampI[]) {
-        this.surfcamps = addSurfcampReviewData(filteredSurfcamps);
-        this.surfcampsWithLocation = await addLocationString(this.surfcamps);
+        this.surfcamps = this.helpers.addSurfcampReviewData(filteredSurfcamps);
+        this.surfcampsWithLocation = await this.helpers.addLocationString(
+            this.surfcamps
+        );
     }
 
     goToDetails(id: string) {

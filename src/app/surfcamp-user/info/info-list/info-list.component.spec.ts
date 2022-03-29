@@ -7,7 +7,6 @@ import { of } from 'rxjs';
 import { CoreModule } from 'src/app/core/core.module';
 import { getSurfcampResponse } from 'src/app/mocks/surfcamps.mocks';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
-import * as helpers from 'src/app/helpers/surfcampData.helpers';
 import { InfoListComponent } from './info-list.component';
 import { SurfcampHelpersService } from 'src/app/services/surfcamp-helpers.service';
 

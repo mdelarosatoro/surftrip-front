@@ -141,5 +141,10 @@ describe('SurfcampGalleryComponent', () => {
         mockEvent.target.getAttribute.and.returnValue('currentColor');
         component.hideOverlay(mockEvent);
         expect(component.overlayState).toBe(false);
+
+        component.nextPhoto();
+        component.nextPhoto();
+        component.previousPhoto();
+        component.previousPhoto();
     });
 });
