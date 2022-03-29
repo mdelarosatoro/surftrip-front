@@ -62,8 +62,9 @@ export class SurfcampSearchComponent implements OnInit {
         this.filterState = !this.filterState;
     }
 
-    handleFilter(filteredSurfcamps: SurfcampI[]) {
+    async handleFilter(filteredSurfcamps: SurfcampI[]) {
         this.surfcamps = addSurfcampReviewData(filteredSurfcamps);
+        this.surfcampsWithLocation = await addLocationString(this.surfcamps);
     }
 
     goToDetails(id: string) {

@@ -1,6 +1,8 @@
 <div class="packages">
-    <h2>{{ surfcamp.name }} Packages</h2>
-    <p>Showing {{ surfcamp.packages && surfcamp.packages.length }} packages</p>
+    <h2 class="packages__title">{{ surfcamp.name }} Packages</h2>
+    <p class="packages__info">
+        Showing {{ surfcamp.packages && surfcamp.packages.length }} packages
+    </p>
     <div
         (click)="goToPackage(package._id)"
         *ngFor="let package of surfcamp.packages"

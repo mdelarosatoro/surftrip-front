@@ -4,6 +4,8 @@
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
+    background-color: variables.$primary-color;
+    color: white;
 
     &__link {
         display: block;

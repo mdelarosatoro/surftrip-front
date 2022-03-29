@@ -6,6 +6,7 @@ import { SurfcampI } from 'src/app/interfaces/surfcamps.interfaces';
 import { UserLoginResponseI } from 'src/app/interfaces/users.interfaces';
 import { PackagesService } from 'src/app/services/packages.service';
 import { SocketService } from 'src/app/services/socket.service';
+import { SurfcampHelpersService } from 'src/app/services/surfcamp-helpers.service';
 
 @Component({
     selector: 'app-package-details',
@@ -16,6 +17,7 @@ export class PackageDetailsComponent implements OnInit {
     auth!: UserLoginResponseI;
     packageId!: string;
     package!: PackageI;
+    packageWithLocation!: any;
     successBookMessage: { state: boolean; package: string };
     constructor(
         public route: ActivatedRoute,
@@ -23,11 +25,21 @@ export class PackageDetailsComponent implements OnInit {
             auth: UserLoginResponseI;
         }>,
         public packagesService: PackagesService,
-        public socket: SocketService
+        public socket: SocketService,
+        public helpers: SurfcampHelpersService
     ) {
         this.package = {
             _id: '',
             surfcamp: {} as SurfcampI,
+            icon: '',
+            description: '',
+            days: 0,
+            price: 0,
+            name: '',
+        };
+        this.packageWithLocation = {
+            _id: '',
+            surfcamp: { locationString: '' },
             icon: '',
             description: '',
             days: 0,
@@ -50,6 +62,11 @@ export class PackageDetailsComponent implements OnInit {
                     .getPackageById(this.auth.token, this.packageId)
                     .subscribe((resp) => {
                         this.package = resp;
+                        this.helpers
+                            .addLocationStringToPackage(this.package)
+                            .then((result) => {
+                                this.packageWithLocation = result;
+                            });
                     });
             });
     }

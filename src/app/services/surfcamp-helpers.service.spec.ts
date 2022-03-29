@@ -308,4 +308,15 @@ describe('SurfcampHelpersService', () => {
             mockSurfcampWithReviewScore
         );
     });
+    it('When calling addPackageReviewData it should return the expected Result', () => {
+        expect(service).toBeTruthy();
+
+        const result = service.addLocationStringToPackage({
+            ...packageMock,
+            surfcamp: {
+                ...packageMock.surfcamp,
+                location: [-9.371351359722212, 39.360031662513734],
+            },
+        });
+    });
 });

@@ -8,6 +8,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { packageMock } from 'src/app/mocks/packages.mocks';
 import { PackagesService } from 'src/app/services/packages.service';
 import { SocketService } from 'src/app/services/socket.service';
+import { SurfcampHelpersService } from 'src/app/services/surfcamp-helpers.service';
 
 import { PackageDetailsComponent } from './package-details.component';
 
@@ -21,6 +22,24 @@ describe('PackageDetailsComponent', () => {
     let component: PackageDetailsComponent;
     let fixture: ComponentFixture<PackageDetailsComponent>;
     let activatedRoute: ActivatedRoute;
+
+    let helpers: SurfcampHelpersService;
+    const mockHelpers = {
+        addLocationStringToPackage: jasmine.createSpy(
+            'addLocationStringToPackage'
+        ),
+    };
+    mockHelpers.addLocationStringToPackage.and.resolveTo(
+        new Promise((res, rej) =>
+            res({
+                ...packageMock,
+                surfcamp: {
+                    ...packageMock.surfcamp,
+                    locationString: 'testLocation',
+                },
+            })
+        )
+    );
 
     let socket: SocketService;
     const mockSocket = {
@@ -51,6 +70,7 @@ describe('PackageDetailsComponent', () => {
                 { provide: ActivatedRoute, useValue: mockRoute },
                 { provide: PackagesService, useValue: mockPackageService },
                 { provide: SocketService, useValue: mockSocket },
+                { provide: SurfcampHelpersService, useValue: mockHelpers },
             ],
         }).compileComponents();
     });
@@ -59,6 +79,7 @@ describe('PackageDetailsComponent', () => {
         fixture = TestBed.createComponent(PackageDetailsComponent);
         activatedRoute = TestBed.inject(ActivatedRoute);
         packagesService = TestBed.inject(PackagesService);
+        helpers = TestBed.inject(SurfcampHelpersService);
         socket = TestBed.inject(SocketService);
 
         component = fixture.componentInstance;

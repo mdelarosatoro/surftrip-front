@@ -3,20 +3,32 @@
 .surfcamp {
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
-    padding: 1rem;
-    width: 100vw;
+    row-gap: 2rem;
+    padding: 3rem;
+    width: 90vw;
+    border-radius: 1rem;
     max-width: 600px;
+    background-color: variables.$primary-color;
 
     &__title-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 1rem;
     }
 
     &__link-container {
         display: flex;
-        column-gap: 0.5rem;
+        flex-wrap: wrap;
+        align-self: center;
+        justify-content: center;
+        column-gap: 1rem;
+        row-gap: 1rem;
+        width: 90%;
+    }
+
+    &__title {
+        color: variables.$light-gray-color;
     }
 
     &__link {
@@ -26,7 +38,7 @@
         padding: 0.9rem 0.9rem;
         border-radius: 2rem;
         color: white;
-        width: 100%;
+        width: 150px;
         letter-spacing: 1px;
         text-align: center;
         cursor: pointer;
@@ -47,7 +59,7 @@
 
     &__icon {
         font-size: 1.5rem;
-        color: #979797;
+        color: variables.$secondary-color;
         cursor: pointer;
         transition: 0.3s ease all;
 
@@ -65,6 +77,7 @@
 
     &__label {
         font-weight: bold;
+        color: variables.$dark-gray-color;
     }
 
     &__input {
@@ -76,6 +89,9 @@
     &__info {
         width: 90%;
         word-wrap: break-word;
+        color: variables.$light-gray-color;
+        text-align: justify;
+        line-height: 1.3rem;
     }
 }
 

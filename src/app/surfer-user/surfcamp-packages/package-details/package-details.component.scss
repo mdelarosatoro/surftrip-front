@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    background-color: variables.$primary-color;
 
     &__book-message {
         color: green;
@@ -25,6 +26,10 @@
         border-radius: 50%;
     }
 
+    &__title {
+        color: variables.$light-gray-color;
+    }
+
     &__info-outer-container {
         display: flex;
         flex-direction: column;
@@ -38,7 +43,21 @@
     }
 
     &__field {
-        color: grey;
+        color: variables.$dark-gray-color;
+    }
+
+    &__value {
+        color: variables.$light-gray-color;
+
+        &--link {
+            color: variables.$secondary-color;
+            transition: 0.3s ease all;
+
+            &:hover {
+                color: variables.$secondary-color-dark;
+                transition: 0.3s ease all;
+            }
+        }
     }
 
     &__link {

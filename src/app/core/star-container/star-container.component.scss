@@ -1,6 +1,11 @@
 @use "../../scss/variables";
 
 .star-container {
+    &__label {
+        margin-bottom: 0.4rem;
+        color: variables.$light-gray-color;
+    }
+
     &__star {
         cursor: pointer;
         color: #cccccc;

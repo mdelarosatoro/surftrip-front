@@ -4,9 +4,14 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    background-color: variables.$primary-color;
 
-    &__book-message {
-        color: green;
+    &__title {
+        color: variables.$light-gray-color;
+    }
+
+    &__info {
+        color: variables.$dark-gray-color;
     }
 }
 

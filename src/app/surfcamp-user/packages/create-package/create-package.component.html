@@ -83,11 +83,15 @@
         ></textarea>
     </div>
     <div class="create-package__input-container">
-        <label class="create-package__label" for="price">Icon:</label>
+        <label
+            class="create-package__label create-package__label--icon"
+            for="icon"
+            >Upload Icon</label
+        >
         <input
-            class="create-package__input"
+            class="create-package__input create-package__input--icon"
             type="file"
-            id="description"
+            id="icon"
             placeholder="Enter your package's amount of days"
             required
             (change)="handleFileInput($event)"

@@ -1,7 +1,9 @@
 <div class="comments">
-    <h2>Reviews & Comments</h2>
-    <p>Showing {{ comments && comments.length }} comments</p>
-    <p *ngIf="reviewScore">
+    <h2 class="comments__title">Reviews & Comments</h2>
+    <p class="comments__info">
+        Showing {{ comments && comments.length }} comments
+    </p>
+    <p class="comments__info" *ngIf="reviewScore">
         Average Review Score: {{ reviewScore / comments.length }}
     </p>
     <app-comments [comments]="comments"></app-comments>

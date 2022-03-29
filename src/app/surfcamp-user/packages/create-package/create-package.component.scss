@@ -1,10 +1,15 @@
+@use "../../../scss/variables";
+
 .create-package {
-    padding: 3rem 1rem 1rem 1rem;
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
     width: 90vw;
     max-width: 400px;
+    background-color: variables.$primary-color;
+    border-radius: 1rem;
+    padding: 3rem;
+    color: variables.$light-gray-color;
 
     &__registration-error {
         color: red;
@@ -21,9 +26,38 @@
         row-gap: 1rem;
     }
 
+    &__label {
+        color: variables.$dark-gray-color;
+
+        &--icon {
+            display: block;
+            background-color: variables.$secondary-color;
+            padding: 0.5rem 0.9rem;
+            color: variables.$light-gray-color;
+            width: 200px;
+            text-align: center;
+            border-radius: 1rem;
+            cursor: pointer;
+            align-self: center;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: variables.$secondary-color-dark;
+                transition: all 0.3s ease;
+            }
+        }
+    }
+
     &__input {
         padding: 0.8rem 0.8rem;
         border-radius: 1.5rem;
         border: none;
+
+        &--icon {
+        }
+    }
+
+    input[type="file"] {
+        display: none;
     }
 }

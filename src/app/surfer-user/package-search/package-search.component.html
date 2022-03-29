@@ -1,15 +1,21 @@
-<div class="packages">
-    <h2>Packages</h2>
-    <p *ngIf="packages">Showing {{ packages.length }} packages</p>
+<div class="top-container">
+    <div class="top-container__title-container">
+        <h2 class="top-container__title">Packages</h2>
+        <p class="top-container__info" *ngIf="packages">
+            Showing {{ packages.length }} packages
+        </p>
+        <app-filter
+            (filterEvent)="handleFilter($event)"
+            *ngIf="filterState"
+        ></app-filter>
+    </div>
     <fa-icon
         (click)="toggleFilter()"
-        class="packages__filter-icon"
+        class="top-container__filter-icon"
         [icon]="faFilter"
     ></fa-icon>
-    <app-filter
-        (filterEvent)="handleFilter($event)"
-        *ngIf="filterState"
-    ></app-filter>
+</div>
+<div class="packages">
     <div
         (click)="goToDetails(package)"
         *ngFor="let package of packagesWithLocation"
@@ -41,16 +47,18 @@
                 {{ package.surfcamp.locationString }}
             </p>
             <p class="package__name">{{ package.name }}</p>
-            <p class="package__name">€{{ package.price }}</p>
-            <p class="package__name">{{ package.days }} days</p>
-            <p class="package__info">{{ package.surfcamp.name }}</p>
-            <div class="package__skill-container">
-                <p
-                    class="package__skill"
-                    *ngFor="let skill of package.surfcamp.skillLevels"
-                >
-                    {{ skill }}
-                </p>
+            <div class="package__bottom-info">
+                <p class="package__info-price">€{{ package.price }}</p>
+                <p class="package__info-large">{{ package.days }} days</p>
+                <p class="package__info">{{ package.surfcamp.name }}</p>
+                <div class="package__skill-container">
+                    <p
+                        class="package__skill"
+                        *ngFor="let skill of package.surfcamp.skillLevels"
+                    >
+                        {{ skill }}
+                    </p>
+                </div>
             </div>
         </div>
     </div>

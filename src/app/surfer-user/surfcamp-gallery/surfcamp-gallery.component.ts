@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+    faArrowLeft,
+    faArrowRight,
+    faMinusCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { PhotoI } from 'src/app/interfaces/photos.interfaces';
 import { SurfcampI } from 'src/app/interfaces/surfcamps.interfaces';
@@ -13,6 +17,8 @@ import { SurfcampsService } from 'src/app/services/surfcamps.service';
     styleUrls: ['./surfcamp-gallery.component.scss'],
 })
 export class SurfcampGalleryComponent implements OnInit {
+    faArrowRight = faArrowRight;
+    faArrowLeft = faArrowLeft;
     faMinusCircle = faMinusCircle;
     auth!: UserLoginResponseI;
     surfcampId!: string;
@@ -55,6 +61,7 @@ export class SurfcampGalleryComponent implements OnInit {
                     .getSurfcampById(this.auth.token, this.surfcampId)
                     .subscribe((resp) => {
                         this.surfcamp = resp;
+                        console.log(resp);
                     });
             });
     }
@@ -66,13 +73,28 @@ export class SurfcampGalleryComponent implements OnInit {
 
     hideOverlay(e: any) {
         e.stopPropagation();
-        console.log(e.target.classList);
-        if (
-            e.target.classList.contains('gallery__overlay') ||
-            e.target.classList.contains('gallery__overlay-exit-icon') ||
-            e.target.getAttribute('fill') === 'currentColor'
-        ) {
-            this.overlayState = false;
-        }
+        this.overlayState = false;
+    }
+
+    nextPhoto() {
+        const possibleIndex =
+            this.surfcamp.photos.findIndex(
+                (item) => item._id === this.overlayImg._id
+            ) + 1;
+        this.overlayImg =
+            possibleIndex > this.surfcamp.photos.length - 1
+                ? this.surfcamp.photos[this.surfcamp.photos.length - 1]
+                : this.surfcamp.photos[possibleIndex];
+    }
+
+    previousPhoto() {
+        const possibleIndex =
+            this.surfcamp.photos.findIndex(
+                (item) => item._id === this.overlayImg._id
+            ) - 1;
+        this.overlayImg =
+            possibleIndex < 0
+                ? this.surfcamp.photos[0]
+                : this.surfcamp.photos[possibleIndex];
     }
 }

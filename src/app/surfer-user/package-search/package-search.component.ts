@@ -57,8 +57,11 @@ export class PackageSearchComponent implements OnInit {
         this.filterState = !this.filterState;
     }
 
-    handleFilter(filteredPackages: PackageI[]) {
+    async handleFilter(filteredPackages: PackageI[]) {
         this.packages = addPackageReviewData(filteredPackages);
+        this.packagesWithLocation = await addLocationStringToPackages(
+            this.packages
+        );
     }
 
     goToDetails(packageItem: PackageithReviewScoreI) {

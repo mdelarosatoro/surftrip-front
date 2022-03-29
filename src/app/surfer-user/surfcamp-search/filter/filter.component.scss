@@ -1,13 +1,16 @@
 @use "../../../scss/variables";
 
 .filter {
-    padding: 1rem;
+    padding: 2rem;
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
+    background-color: variables.$primary-color;
     row-gap: 1rem;
 
     &__title {
         font-weight: bold;
+        color: variables.$light-gray-color;
     }
 
     &__star {

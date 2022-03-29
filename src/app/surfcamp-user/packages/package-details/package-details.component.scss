@@ -6,7 +6,8 @@
     row-gap: 1rem;
     width: 100vw;
     max-width: 400px;
-    padding: 1rem;
+    padding: 3rem;
+    background-color: variables.$primary-color;
 
     &__title-container {
         display: flex;
@@ -29,6 +30,10 @@
         border-radius: 50%;
     }
 
+    &__title {
+        color: variables.$light-gray-color;
+    }
+
     &__icon-container {
         display: flex;
         column-gap: 1rem;
@@ -36,7 +41,7 @@
 
     &__icon {
         font-size: 1.5rem;
-        color: #979797;
+        color: variables.$secondary-color;
         cursor: pointer;
         transition: 0.3s ease all;
 
@@ -54,6 +59,7 @@
 
     &__label {
         font-weight: bold;
+        color: variables.$dark-gray-color;
     }
 
     &__input {
@@ -65,6 +71,7 @@
     &__info {
         width: 90%;
         word-wrap: break-word;
+        color: variables.$light-gray-color;
     }
 
     &__bottom-btn-container {

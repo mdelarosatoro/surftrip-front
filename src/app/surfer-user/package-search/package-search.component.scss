@@ -1,10 +1,23 @@
 @use "../../scss/variables";
 
-.packages {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
+.top-container {
     position: relative;
+    display: flex;
+    margin-bottom: 2rem;
+
+    &__title-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+
+    &__title {
+        color: variables.$light-gray-color;
+    }
+
+    &__info {
+        color: variables.$light-gray-color;
+    }
 
     &__filter-icon {
         position: absolute;
@@ -20,6 +33,13 @@
             transition: 0.3s ease all;
         }
     }
+}
+
+.packages {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    position: relative;
 }
 
 .package {
@@ -46,7 +66,8 @@
 
     &__info-container {
         padding: 0.5rem 1rem 1rem 1rem;
-        border: 1px solid black;
+        border: 1px solid variables.$primary-color;
+        background-color: variables.$primary-color;
         border-bottom-left-radius: 1rem;
         border-bottom-right-radius: 1rem;
         display: flex;
@@ -76,10 +97,32 @@
 
     &__name {
         margin-bottom: 1rem;
+        font-size: 1.2rem;
+        color: variables.$light-gray-color;
+    }
+
+    &__bottom-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.7rem;
+    }
+
+    &__info-price {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 1.2rem;
+        color: variables.$light-gray-color;
+    }
+
+    &__info-large {
+        font-size: 1rem;
+        color: variables.$light-gray-color;
     }
 
     &__info {
         font-size: 0.8rem;
+        color: variables.$light-gray-color;
     }
 
     &__skill-container {
@@ -89,12 +132,36 @@
 
     &__skill {
         font-size: 0.7rem;
+        color: variables.$light-gray-color;
     }
 }
 
 @media (min-width: 768px) {
+    .top-container {
+        width: 90vw;
+        max-width: 700px;
+        margin: 3rem auto;
+    }
+
+    .packages {
+        width: 90vw;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 1rem;
+    }
+
     .package {
-        width: 100vw;
+        width: 30%;
         max-width: 500px;
+
+        &__img {
+            height: calc(100vw / 5);
+        }
+
+        &__info-container {
+            height: 160px;
+            row-gap: 0.1rem;
+        }
     }
 }

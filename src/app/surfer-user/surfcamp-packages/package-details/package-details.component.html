@@ -1,7 +1,11 @@
 <div class="package">
     <div class="package__title-container">
         <div class="package__img-container">
-            <img [src]="package.icon" alt="" class="package__img" />
+            <img
+                [src]="package.icon"
+                [alt]="package.name + ' icon'"
+                class="package__img"
+            />
         </div>
         <h2 class="package__title">{{ package.name }}</h2>
     </div>
@@ -22,12 +26,16 @@
                 class="package__link"
                 [routerLink]="'/surfcamp-details/' + package.surfcamp._id"
             >
-                <p class="package__value">{{ package.surfcamp.name }}</p>
+                <p class="package__value package__value--link">
+                    {{ package.surfcamp.name }}
+                </p>
             </a>
         </div>
         <div class="package__input-container">
             <p class="package__field">Location</p>
-            <p class="package__value">{{ package.surfcamp.location }}</p>
+            <p class="package__value">
+                {{ packageWithLocation.surfcamp.locationString }}
+            </p>
         </div>
         <div class="package__input-container">
             <p class="package__field">Surfcamp Rating</p>

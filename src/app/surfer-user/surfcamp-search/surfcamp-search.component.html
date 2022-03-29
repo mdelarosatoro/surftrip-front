@@ -1,15 +1,21 @@
-<div class="surfcamps">
-    <h2>Surfcamps</h2>
-    <p *ngIf="surfcamps">Showing {{ surfcamps.length }} surfcamps</p>
+<div class="top-container">
+    <div class="top-container__title-container">
+        <h2 class="top-container__title">Surfcamps</h2>
+        <p class="top-container__info" *ngIf="surfcamps">
+            Showing {{ surfcamps.length }} surfcamps
+        </p>
+        <app-filter
+            (filterEvent)="handleFilter($event)"
+            *ngIf="filterState"
+        ></app-filter>
+    </div>
     <fa-icon
         (click)="toggleFilter()"
-        class="surfcamps__filter-icon"
+        class="top-container__filter-icon"
         [icon]="faFilter"
     ></fa-icon>
-    <app-filter
-        (filterEvent)="handleFilter($event)"
-        *ngIf="filterState"
-    ></app-filter>
+</div>
+<div class="surfcamps">
     <div
         (click)="goToDetails(surfcamp._id)"
         *ngFor="let surfcamp of surfcampsWithLocation"
