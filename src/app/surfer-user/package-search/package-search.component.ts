@@ -3,15 +3,12 @@ import { Router } from '@angular/router';
 import { faStar, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import {
-    addLocationStringToPackages,
-    addPackageReviewData,
-} from 'src/app/helpers/surfcampData.helpers';
-import {
     PackageI,
     PackageithReviewScoreI,
 } from 'src/app/interfaces/packages.interfaces';
 import { UserLoginResponseI } from 'src/app/interfaces/users.interfaces';
 import { PackagesService } from 'src/app/services/packages.service';
+import { SurfcampHelpersService } from 'src/app/services/surfcamp-helpers.service';
 
 @Component({
     selector: 'app-package-search',
@@ -31,7 +28,8 @@ export class PackageSearchComponent implements OnInit {
             auth: UserLoginResponseI;
         }>,
         public packagesService: PackagesService,
-        public router: Router
+        public router: Router,
+        public helpers: SurfcampHelpersService
     ) {
         this.packages = [];
         this.filterState = false;
@@ -46,9 +44,11 @@ export class PackageSearchComponent implements OnInit {
                 this.packagesService
                     .getAllPackages(this.auth.token)
                     .subscribe(async (resp) => {
-                        this.packages = addPackageReviewData(resp);
+                        this.packages = this.helpers.addPackageReviewData(resp);
                         this.packagesWithLocation =
-                            await addLocationStringToPackages(this.packages);
+                            await this.helpers.addLocationStringToPackages(
+                                this.packages
+                            );
                     });
             });
     }
@@ -57,8 +57,10 @@ export class PackageSearchComponent implements OnInit {
         this.filterState = !this.filterState;
     }
 
-    handleFilter(filteredPackages: PackageI[]) {
-        this.packages = addPackageReviewData(filteredPackages);
+    async handleFilter(filteredPackages: PackageI[]) {
+        this.packages = this.helpers.addPackageReviewData(filteredPackages);
+        this.packagesWithLocation =
+            await this.helpers.addLocationStringToPackages(this.packages);
     }
 
     goToDetails(packageItem: PackageithReviewScoreI) {

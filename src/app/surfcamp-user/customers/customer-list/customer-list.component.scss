@@ -4,6 +4,15 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    background-color: variables.$primary-color;
+
+    &__title {
+        color: variables.$light-gray-color;
+    }
+
+    &__info {
+        color: variables.$dark-gray-color;
+    }
 }
 
 .customer {
@@ -17,6 +26,7 @@
     align-items: flex-start;
     transition: 0.3s ease all;
     row-gap: 1rem;
+    background-color: #393e46;
 
     &:hover {
         transform: scale(1.01);
@@ -39,11 +49,13 @@
 
     &__field-name {
         width: 50%;
+        color: variables.$dark-gray-color;
     }
 
     &__field-value {
         width: 50%;
         word-wrap: break-word;
+        color: variables.$light-gray-color;
     }
 
     &__link {
@@ -81,8 +93,6 @@
     }
 
     .customer {
-        background-color: white;
-
         &__icon-container {
             width: 50px;
         }

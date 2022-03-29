@@ -6,6 +6,7 @@
     align-items: center;
     row-gap: 1rem;
     position: relative;
+    background-color: variables.$primary-color;
 
     &__link {
         position: absolute;
@@ -14,7 +15,7 @@
 
     &__add-icon {
         font-size: 1.5rem;
-        color: #979797;
+        color: variables.$secondary-color;
         cursor: pointer;
         transition: 0.3s ease all;
 
@@ -33,10 +34,12 @@
 
     &__title {
         align-self: flex-start;
+        color: variables.$light-gray-color;
     }
 
     &__info {
         align-self: flex-start;
+        color: variables.$dark-gray-color;
     }
 }
 
@@ -72,12 +75,12 @@
         top: 20px;
         right: 20px;
         font-size: 1.5rem;
-        color: variables.$light-gray-color;
+        color: variables.$secondary-color;
         cursor: pointer;
         transition: 0.3s ease all;
 
         &:hover {
-            color: variables.$secondary-color;
+            color: variables.$secondary-color-dark;
             transition: 0.3s ease all;
         }
     }
@@ -90,10 +93,11 @@
     }
 
     &__description-container {
-        padding: 0.5rem;
-        border: 1px solid rgb(117, 117, 117);
+        padding: 1rem;
         border-bottom-left-radius: 16px;
         border-bottom-right-radius: 16px;
+        background-color: variables.$tertiary-color;
+        color: variables.$light-gray-color;
     }
 }
 

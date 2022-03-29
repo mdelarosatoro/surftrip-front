@@ -1,36 +1,58 @@
-<div class="gallery">
-    <div *ngIf="overlayState" class="gallery__overlay">
+<div
+    [class]="
+        !overlayState
+            ? 'gallery-outer-container'
+            : 'gallery-outer-container gallery-outer-container--height'
+    "
+>
+    <h2 class="gallery-outer-container__title">{{ surfcamp.name }} Gallery</h2>
+    <div
+        *ngIf="overlayState"
+        [class]="!overlayState ? 'hide' : 'gallery-outer-container__overlay'"
+    >
         <fa-icon
-            class="gallery__overlay-exit-icon"
-            [icon]="faMinusCircle"
-            (click)="hideOverlay()"
+            class="gallery-outer-container__arrow gallery-outer-container__arrow--left"
+            [icon]="faArrowLeft"
+            (click)="previousPhoto()"
         ></fa-icon>
-        <div class="gallery__overlay-outer-container">
-            <div class="gallery__overlay-photo-container">
+
+        <fa-icon
+            class="gallery-outer-container__overlay-exit-icon"
+            [icon]="faMinusCircle"
+            (click)="hideOverlay($event)"
+        ></fa-icon>
+        <div class="gallery-outer-container__overlay-outer-container">
+            <div class="gallery-outer-container__overlay-photo-container">
                 <img
-                    class="gallery__overlay-img"
+                    class="gallery-outer-container__overlay-img"
                     [src]="overlayImg.photoUrl"
                     [alt]="overlayImg.description"
                 />
             </div>
-            <div class="gallery__overlay-text-container">
-                <p class="gallery__overlay-text">
+            <div class="gallery-outer-container__overlay-text-container">
+                <p class="gallery-outer-container__overlay-text">
                     {{ overlayImg.description }}
                 </p>
             </div>
         </div>
+        <fa-icon
+            class="gallery-outer-container__arrow gallery-outer-container__arrow--right"
+            [icon]="faArrowRight"
+            (click)="nextPhoto()"
+        ></fa-icon>
     </div>
-    <h2>{{ surfcamp.name }} Gallery</h2>
-    <div
-        (click)="showOverlay(photo)"
-        *ngFor="let photo of surfcamp.photos"
-        class="photo"
-    >
-        <img
-            class="photo__img"
-            [src]="photo.photoUrl"
-            [alt]="photo.description"
-        />
+    <div class="gallery">
+        <div
+            (click)="showOverlay(photo)"
+            *ngFor="let photo of surfcamp.photos"
+            class="photo"
+        >
+            <img
+                class="photo__img"
+                [src]="photo.photoUrl"
+                [alt]="photo.description"
+            />
+        </div>
     </div>
+    <app-button-back></app-button-back>
 </div>
-<app-button-back></app-button-back>

@@ -27,6 +27,19 @@
         display: block;
     }
 
+    &__links-container {
+        background-color: variables.$primary-color;
+        padding: 3rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+
+    &__title {
+        color: variables.$light-gray-color;
+    }
+
     &__button-container {
         display: flex;
         flex-direction: column;

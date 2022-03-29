@@ -1,7 +1,11 @@
+@use "../../scss/variables";
+
 .bookings {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    background-color: variables.$primary-color;
+    color: white;
 }
 
 .booking {
@@ -15,6 +19,7 @@
     align-items: center;
     cursor: pointer;
     transition: 0.3s ease all;
+    color: variables.$primary-color;
 
     &:hover {
         transform: scale(1.01);

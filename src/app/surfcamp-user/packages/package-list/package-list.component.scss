@@ -7,6 +7,11 @@
     width: 100vw;
     max-width: 800px;
     padding: 1rem;
+    background-color: variables.$primary-color;
+
+    &__title {
+        color: variables.$light-gray-color;
+    }
 
     &__aditional-info {
         color: grey;
@@ -23,13 +28,10 @@
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
     align-items: center;
     transition: 0.3s ease all;
+    background-color: variables.$tertiary-color;
 
     &:hover {
         transform: scale(1.01);
-        transition: 0.3s ease all;
-    }
-    &:hover .package__edit-btn {
-        color: variables.$secondary-color;
         transition: 0.3s ease all;
     }
 
@@ -37,16 +39,15 @@
         display: block;
         background-color: variables.$secondary-color;
         border: none;
-        padding: 0.9rem 0.9rem;
-        border-radius: 2rem;
+        padding: 0.5rem 0.5rem;
+        border-radius: 1rem;
         color: white;
         width: 100%;
-        letter-spacing: 1px;
         text-align: center;
         cursor: pointer;
         text-decoration: none;
         transition: 0.3s ease all;
-        max-width: 200px;
+        width: 180px;
 
         &:hover {
             background-color: variables.$secondary-color-dark;
@@ -61,14 +62,23 @@
         width: 100%;
         font-size: 0.5rem;
         border-radius: 50%;
+        color: variables.$secondary-color;
     }
     &__name {
         font-size: 0.9rem;
         word-wrap: break-word;
         width: 30%;
+        color: variables.$light-gray-color;
+    }
+
+    &__price {
+        font-weight: bold;
+        color: variables.$light-gray-color;
     }
 
     &__link {
+        color: variables.$secondary-color;
+
         &:hover {
             color: variables.$secondary-color-dark;
             transition: 0.3s ease all;
@@ -76,7 +86,7 @@
     }
 
     &__edit-btn {
-        color: #979797;
+        color: variables.$secondary-color;
         cursor: pointer;
         transition: 0.3s ease all;
 

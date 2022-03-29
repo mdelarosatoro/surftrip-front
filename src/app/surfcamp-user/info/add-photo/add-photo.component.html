@@ -1,5 +1,14 @@
 <form (ngSubmit)="handleSubmit()" [formGroup]="newPhotoForm" class="new-photo">
-    <h2>Add Photo</h2>
+    <h2 class="new-photo__title">Add Photo</h2>
+    <div class="new-photo__input-container">
+        <label class="new-photo__label--photo" for="photo">Upload Photo</label>
+        <input
+            class="new-photo__input"
+            id="photo"
+            type="file"
+            (change)="handleFileInput($event)"
+        />
+    </div>
     <div class="new-photo__input-container">
         <label class="new-photo__label" for="description">Description:</label>
         <input
@@ -7,15 +16,7 @@
             id="description"
             type="text"
             formControlName="description"
-        />
-    </div>
-    <div class="new-photo__input-container">
-        <label class="new-photo__label" for="photo">Photo:</label>
-        <input
-            class="new-photo__input"
-            id="photo"
-            type="file"
-            (change)="handleFileInput($event)"
+            placeholder="Enter a description for the photo"
         />
     </div>
     <app-button [type]="'submit'" [text]="'Add Photo'"></app-button>

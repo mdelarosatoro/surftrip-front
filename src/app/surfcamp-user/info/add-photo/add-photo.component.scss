@@ -1,7 +1,16 @@
+@use "../../../scss/variables";
+
 .new-photo {
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 3rem;
+    background-color: variables.$primary-color;
+    width: 90vw;
+    max-width: 500px;
+
+    &__title {
+        color: variables.$light-gray-color;
+    }
 
     &__input-container {
         display: flex;
@@ -11,12 +20,35 @@
 
     &__label {
         font-weight: bold;
+        color: variables.$dark-gray-color;
+
+        &--photo {
+            display: block;
+            padding: 0.5rem 0.7rem;
+            background-color: variables.$secondary-color;
+            border-radius: 1rem;
+            text-align: center;
+            color: variables.$light-gray-color;
+            transition: all 0.3s ease;
+            width: 200px;
+            align-self: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: variables.$secondary-color-dark;
+                transition: all 0.3s ease;
+            }
+        }
     }
 
     &__input {
         padding: 0.8rem 0.8rem;
         border-radius: 1.5rem;
         border: none;
+    }
+
+    input[type="file"] {
+        display: none;
     }
 }
 

@@ -6,7 +6,6 @@ import {
     faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { addLocationStringToSurfcamp } from 'src/app/helpers/surfcampData.helpers';
 import {
     SurfcampI,
     SurfcampLoginResponseI,

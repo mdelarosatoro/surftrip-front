@@ -114,4 +114,18 @@ export class SurfcampHelpersService {
             locationString: data.features[0].place_name,
         };
     };
+
+    addLocationStringToPackage = async (packageItem: PackageI) => {
+        const response = await fetch(
+            `https://api.mapbox.com/geocoding/v5/mapbox.places/${packageItem.surfcamp.location[0]},${packageItem.surfcamp.location[1]}.json?types=country&access_token=${environment.mapBoxToken}`
+        );
+        const data = await response.json();
+        return {
+            ...packageItem,
+            surfcamp: {
+                ...packageItem.surfcamp,
+                locationString: data.features[0].place_name,
+            },
+        };
+    };
 }

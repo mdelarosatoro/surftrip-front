@@ -7,19 +7,19 @@
 }
 
 .comment {
-    border: 1px solid rgb(192, 192, 192);
-    padding: 1rem;
+    padding: 2rem;
     position: relative;
     border-radius: 1rem;
     box-shadow: 6px 7px 13px -4px #000000;
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    background-color: variables.$tertiary-color;
 
     &__star-container {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 20px;
+        right: 20px;
     }
 
     &__star {
@@ -44,5 +44,13 @@
     &__img {
         width: 100%;
         border-radius: 50%;
+    }
+
+    &__name {
+        color: variables.$dark-gray-color;
+    }
+
+    &__text {
+        color: variables.$light-gray-color;
     }
 }

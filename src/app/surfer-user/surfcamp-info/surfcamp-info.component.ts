@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { addLocationStringToSurfcamp } from 'src/app/helpers/surfcampData.helpers';
 import {
     SurfcampI,
     SurfcampWithLocationI,
     SurfcampWithReviewScoreAndLocationI,
 } from 'src/app/interfaces/surfcamps.interfaces';
 import { UserLoginResponseI } from 'src/app/interfaces/users.interfaces';
+import { SurfcampHelpersService } from 'src/app/services/surfcamp-helpers.service';
 import { SurfcampsService } from 'src/app/services/surfcamps.service';
 
 @Component({
@@ -25,7 +25,8 @@ export class SurfcampInfoComponent implements OnInit {
         private store: Store<{
             auth: UserLoginResponseI;
         }>,
-        public surfcampsService: SurfcampsService
+        public surfcampsService: SurfcampsService,
+        public helpers: SurfcampHelpersService
     ) {
         this.surfcamp = {
             _id: '',
@@ -71,7 +72,9 @@ export class SurfcampInfoComponent implements OnInit {
                     .subscribe(async (resp) => {
                         this.surfcamp = resp;
                         this.surfcampWithLocation =
-                            await addLocationStringToSurfcamp(this.surfcamp);
+                            await this.helpers.addLocationStringToSurfcamp(
+                                this.surfcamp
+                            );
                     });
             });
     }
