@@ -58,7 +58,6 @@ export class WorldMapComponent implements OnInit {
                     .getAllSurfcamps(this.auth.token)
                     .subscribe((resp) => {
                         this.surfcamps = resp;
-                        console.log(resp);
                         this.surfcamps.forEach((item) => {
                             const popup = new mapboxgl.Popup().setHTML(
                                 `<a href="/surfcamp-details/${item._id}">${item.name}</a>`

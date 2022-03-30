@@ -132,7 +132,6 @@ describe('PackageSearchComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
-        console.log(component.packages);
         expect(component.packages).toEqual(packageReviewDataResponse);
 
         expect(component.filterState).toBe(false);
@@ -140,7 +139,6 @@ describe('PackageSearchComponent', () => {
         expect(component.filterState).toBe(true);
 
         component.handleFilter([packageMockWithLocation]);
-        console.log(component.packages);
         expect(component.packages).toEqual(packageReviewDataResponse);
 
         component.goToDetails(packageReviewDataResponse[0]);

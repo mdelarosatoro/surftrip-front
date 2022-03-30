@@ -61,7 +61,6 @@ export class SurfcampGalleryComponent implements OnInit {
                     .getSurfcampById(this.auth.token, this.surfcampId)
                     .subscribe((resp) => {
                         this.surfcamp = resp;
-                        console.log(resp);
                     });
             });
     }

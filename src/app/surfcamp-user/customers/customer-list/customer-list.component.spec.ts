@@ -89,7 +89,6 @@ describe('CustomerListComponent', () => {
         ];
 
         expect(component).toBeTruthy();
-        console.log(component.customers);
         expect(component.customers).toEqual(expectedCustomers);
     });
 });

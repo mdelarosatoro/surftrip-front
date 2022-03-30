@@ -70,7 +70,6 @@ export class CreatePackageComponent implements OnInit {
         this.packagesService
             .createPackage(this.auth.token, newPackagePayload)
             .subscribe((resp) => {
-                console.log(resp);
                 this.store.dispatch(addPackage({ newPackage: resp }));
             });
         if (url) this.location.back();

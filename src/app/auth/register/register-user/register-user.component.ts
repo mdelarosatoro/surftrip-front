@@ -59,7 +59,6 @@ export class RegisterUserComponent implements OnInit {
             .subscribe({
                 next: (resp) => {
                     if (resp._id) {
-                        console.log('Registration success');
                         this.router.navigateByUrl('/login');
                     }
                 },

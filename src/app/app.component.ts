@@ -70,7 +70,6 @@ export class AppComponent {
                                     this.socket
                                         .getBookingNotification()
                                         .subscribe((socketResp) => {
-                                            console.log(resp);
                                             if (
                                                 socketResp.surfcampId ===
                                                 resp._id

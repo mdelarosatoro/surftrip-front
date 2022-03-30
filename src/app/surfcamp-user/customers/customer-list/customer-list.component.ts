@@ -36,7 +36,6 @@ export class CustomerListComponent implements OnInit {
             .subscribe((data) => {
                 this.auth = data.auth;
                 this.customers = data.surfcamp.customers;
-                console.log(this.customers);
                 this.usersService
                     .getAll(data.auth.token)
                     .subscribe((allUsers) => {
@@ -61,7 +60,6 @@ export class CustomerListComponent implements OnInit {
                             this.totalRevenue =
                                 this.totalRevenue + customer.package.price;
                         });
-                        console.log(this.customers);
                     });
             });
     }

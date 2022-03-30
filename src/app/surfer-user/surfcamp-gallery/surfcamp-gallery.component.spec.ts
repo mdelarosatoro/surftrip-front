@@ -110,7 +110,6 @@ describe('SurfcampGalleryComponent', () => {
             description: 'solo para c lara',
         };
 
-        console.log(component.surfcamp);
         expect(component.surfcamp).toEqual(expectedResponse);
 
         const photo = {
