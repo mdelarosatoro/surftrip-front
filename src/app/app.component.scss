@@ -3,12 +3,15 @@
 .notification {
     position: absolute;
     z-index: 5;
-    background-color: variables.$secondary-color;
+    background-color: variables.$primary-color;
+    border: 1px solid variables.$secondary-color;
+    color: variables.$light-gray-color;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
     animation: move 9s ease;
+    border-radius: 1rem;
+    padding: 2rem;
 }
 
 @keyframes move {
