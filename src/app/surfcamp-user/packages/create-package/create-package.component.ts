@@ -71,8 +71,8 @@ export class CreatePackageComponent implements OnInit {
             .createPackage(this.auth.token, newPackagePayload)
             .subscribe((resp) => {
                 this.store.dispatch(addPackage({ newPackage: resp }));
+                if (url) this.location.back();
             });
-        if (url) this.location.back();
     }
 
     get name() {

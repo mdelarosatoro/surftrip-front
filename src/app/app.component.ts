@@ -74,7 +74,7 @@ export class AppComponent {
                                                 socketResp.surfcampId ===
                                                 resp._id
                                             ) {
-                                                this.notification = `Your package ${socketResp.packageId} was booked by User ${socketResp.userId}`;
+                                                this.notification = `One of your packages was booked right now`;
                                                 this.notificationState = true;
                                                 setTimeout(() => {
                                                     this.notificationState =
