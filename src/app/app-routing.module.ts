@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -135,6 +136,13 @@ const routes: Routes = [
             ),
         canActivate: [AuthGuard],
     },
+    {
+        path: '',
+        loadChildren: () =>
+            import('./auth/login/login.module').then((m) => m.LoginModule),
+    },
+    { path: '404', component: NotFoundComponent },
+    { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({

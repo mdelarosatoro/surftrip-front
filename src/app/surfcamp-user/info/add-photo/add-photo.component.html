@@ -1,6 +1,9 @@
 <form (ngSubmit)="handleSubmit()" [formGroup]="newPhotoForm" class="new-photo">
     <h2 class="new-photo__title">Add Photo</h2>
     <div class="new-photo__input-container">
+        <p *ngIf="fileToUpload" class="new-photo__filename">
+            {{ fileToUpload.name }}
+        </p>
         <label class="new-photo__label--photo" for="photo">Upload Photo</label>
         <input
             class="new-photo__input"

@@ -19,13 +19,16 @@ export class CustomerListComponent implements OnInit {
     faInfoCircle = faInfoCircle;
     auth!: SurfcampLoginResponseI;
     customers!: any;
+    totalRevenue: number;
     constructor(
         private store: Store<{
             auth: SurfcampLoginResponseI;
             surfcamp: SurfcampI;
         }>,
         private usersService: UsersService
-    ) {}
+    ) {
+        this.totalRevenue = 0.0;
+    }
 
     ngOnInit(): void {
         this.store
@@ -54,6 +57,10 @@ export class CustomerListComponent implements OnInit {
                             })
                         );
                         this.customers = this.customers.reverse();
+                        this.customers.forEach((customer: any) => {
+                            this.totalRevenue =
+                                this.totalRevenue + customer.package.price;
+                        });
                         console.log(this.customers);
                     });
             });

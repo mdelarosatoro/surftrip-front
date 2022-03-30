@@ -24,11 +24,11 @@
     justify-content: space-between;
     padding: 1rem;
     border-radius: 1rem;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+    box-shadow: 6px 7px 13px -4px #000000;
     align-items: flex-start;
     transition: 0.3s ease all;
     row-gap: 1rem;
-    background-color: #393e46;
+    background-color: variables.$tertiary-color;
 
     &:hover {
         transform: scale(1.01);
