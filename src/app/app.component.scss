@@ -3,8 +3,7 @@
 .notification {
     position: absolute;
     z-index: 5;
-    border: 1px solid black;
-    background-color: variables.$primary-color;
+    background-color: variables.$secondary-color;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,10 +15,10 @@
     0% {
         left: 100vw;
     }
-    20% {
+    10% {
         left: 0;
     }
-    80% {
+    90% {
         left: 0;
     }
     100% {

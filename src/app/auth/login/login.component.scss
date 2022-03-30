@@ -1,14 +1,23 @@
+@use "../../scss/variables";
+
 .login {
-    padding: 3rem 1rem 1rem 1rem;
+    padding: 3rem;
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
     width: 90vw;
     max-width: 400px;
+    background-color: variables.$primary-color;
+
+    label {
+        color: variables.$light-gray-color;
+    }
 
     &__title {
         margin-bottom: 1rem;
         align-self: center;
+        color: variables.$light-gray-color;
     }
 
     &__error-msg {
