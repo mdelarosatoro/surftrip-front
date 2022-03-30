@@ -7,6 +7,8 @@
     background-color: variables.$primary-color;
     padding: 3rem;
     border-radius: 1rem;
+    width: 90vw;
+    max-width: 500px;
 
     &__top-container {
         display: flex;
@@ -83,7 +85,7 @@
 @media (min-width: 768px) {
     .profile {
         width: 100vw;
-        max-width: 400px;
+        max-width: 500px;
         align-items: center;
         border: 1px solid black;
         border-radius: 1rem;

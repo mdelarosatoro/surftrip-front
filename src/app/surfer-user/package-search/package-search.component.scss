@@ -152,7 +152,7 @@
     }
 
     .package {
-        width: 30%;
+        width: 45%;
         max-width: 500px;
 
         &__img {
@@ -163,5 +163,11 @@
             height: 160px;
             row-gap: 0.1rem;
         }
+    }
+}
+
+@media (min-width: 1200px) {
+    .package {
+        width: 30%;
     }
 }
