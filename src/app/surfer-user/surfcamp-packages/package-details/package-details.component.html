@@ -10,7 +10,7 @@
         <h2 class="package__title">{{ package.name }}</h2>
     </div>
     <p class="package__book-message" *ngIf="successBookMessage.state">
-        Successfully booked package with id {{ successBookMessage.package }}
+        Successfully booked package
     </p>
     <div class="package__info-outer-container">
         <button (click)="bookPackage(package._id)" class="package__button">
@@ -50,5 +50,5 @@
             <p class="package__value">€{{ package.price }}</p>
         </div>
     </div>
+    <app-button-back></app-button-back>
 </div>
-<app-button-back></app-button-back>

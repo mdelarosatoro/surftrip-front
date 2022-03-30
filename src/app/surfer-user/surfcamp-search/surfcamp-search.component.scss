@@ -132,7 +132,7 @@
     }
 
     .surfcamp {
-        width: 30%;
+        width: 45%;
         max-width: 500px;
 
         &__img {
@@ -142,5 +142,11 @@
         &__info-container {
             height: 130px;
         }
+    }
+}
+
+@media (min-width: 903px) {
+    .surfcamp {
+        width: 30%;
     }
 }

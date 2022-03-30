@@ -5,9 +5,11 @@
     flex-direction: column;
     row-gap: 1rem;
     background-color: variables.$primary-color;
+    padding: 3rem;
+    border-radius: 1rem;
 
     &__book-message {
-        color: green;
+        color: variables.$light-gray-color;
     }
 
     &__title-container {

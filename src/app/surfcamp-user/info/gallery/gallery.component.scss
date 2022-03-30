@@ -9,6 +9,8 @@
     background-color: variables.$primary-color;
     padding: 3rem;
     border-radius: 1rem;
+    width: 90vw;
+    max-width: 500px;
 
     &__link {
         position: absolute;

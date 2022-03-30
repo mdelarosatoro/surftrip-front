@@ -44,6 +44,7 @@
         "@types/mapbox-gl": "^2.6.3",
         "@types/node": "^12.11.1",
         "cypress": "^9.5.3",
+        "cypress-file-upload": "^5.0.8",
         "husky": "^7.0.4",
         "jasmine-core": "~4.0.0",
         "karma": "~6.3.0",

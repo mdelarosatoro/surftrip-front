@@ -1,24 +1,39 @@
+@use "../../scss/variables";
+
 .info {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    background-color: variables.$primary-color;
+    padding: 3rem;
+    border-radius: 1rem;
+    width: 90vw;
+    max-width: 600px;
+
+    &__title {
+        color: variables.$light-gray-color;
+    }
 
     &__container {
         display: flex;
         flex-direction: column;
         margin-bottom: 1rem;
         border: 1px solid rgb(199, 199, 199);
-        padding: 1rem;
+        padding: 2rem;
         border-radius: 1rem;
         box-shadow: 7px 7px 7px 5px rgba(0, 0, 0, 0.2);
     }
 
     &__field {
-        color: grey;
+        color: variables.$dark-gray-color;
         margin-bottom: 1rem;
+        font-size: 1.3rem;
     }
 
     &__value {
         margin-bottom: 0.3rem;
+        color: variables.$light-gray-color;
+        text-align: justify;
+        line-height: 1.1rem;
     }
 }

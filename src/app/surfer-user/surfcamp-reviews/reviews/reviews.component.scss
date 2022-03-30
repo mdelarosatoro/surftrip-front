@@ -4,6 +4,17 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    background-color: variables.$primary-color;
+    padding: 3rem;
+    border-radius: 1rem;
+
+    &__title {
+        color: variables.$light-gray-color;
+    }
+
+    &__info {
+        color: variables.$dark-gray-color;
+    }
 }
 
 .comment {
