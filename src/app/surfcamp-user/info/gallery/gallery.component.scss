@@ -7,10 +7,12 @@
     row-gap: 1rem;
     position: relative;
     background-color: variables.$primary-color;
+    padding: 3rem;
+    border-radius: 1rem;
 
     &__link {
         position: absolute;
-        right: 0;
+        right: 2rem;
     }
 
     &__add-icon {

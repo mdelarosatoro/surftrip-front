@@ -69,7 +69,6 @@ describe('InfoListComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
-        console.log(component.surfcampWithLocation);
         component.toggleEditMode();
         expect(component.editMode).toBe(true);
 
@@ -167,6 +166,5 @@ describe('InfoListComponent', () => {
 
     it('it should set the form value of skill levels to false if not present on the surfcamp store', () => {
         expect(component.editSurfcampForm.value).toBeTruthy();
-        console.log(component.surfcampWithLocation);
     });
 });

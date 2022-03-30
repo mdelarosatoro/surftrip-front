@@ -1,0 +1,30 @@
+@use "../../scss/variables";
+
+.container {
+    background-color: variables.$primary-color;
+    padding: 3rem;
+    border-radius: 1rem;
+    color: variables.$light-gray-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    row-gap: 1rem;
+
+    &__title  {
+        font-size: 3rem;
+    }
+
+    &__text {
+        font-size: 1rem;
+    }
+
+    &__img-container {
+        width: 95%;
+    }
+
+    &__img {
+        width: 100%;
+        border-radius: 1rem;
+    }
+}

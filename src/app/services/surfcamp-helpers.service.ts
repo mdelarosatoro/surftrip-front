@@ -67,17 +67,25 @@ export class SurfcampHelpersService {
 
     addLocationString = async (
         surfcamps: SurfcampWithReviewScoreI[]
-    ): Promise<SurfcampWithReviewScoreAndLocationI[]> => {
+    ): Promise<SurfcampWithReviewScoreAndLocationI[] | any> => {
         return Promise.all(
             surfcamps.map(async (item: SurfcampWithReviewScoreI) => {
-                const response = await fetch(
-                    `https://api.mapbox.com/geocoding/v5/mapbox.places/${item.location[0]},${item.location[1]}.json?types=country&access_token=${environment.mapBoxToken}`
-                );
-                const data = await response.json();
-                return {
-                    ...item,
-                    locationString: data.features[0].place_name,
-                };
+                try {
+                    const response = await fetch(
+                        `https://api.mapbox.com/geocoding/v5/mapbox.places/${item.location[0]},${item.location[1]}.json?types=country&access_token=${environment.mapBoxToken}`
+                    );
+                    const data = await response.json();
+                    return {
+                        ...item,
+                        locationString: data.features[0].place_name,
+                    };
+                } catch (error) {
+                    console.log(error);
+                    return {
+                        ...item,
+                        locationString: 'not found',
+                    };
+                }
             })
         );
     };

@@ -60,4 +60,9 @@
     input[type="file"] {
         display: none;
     }
+
+    &__filename {
+        color: variables.$light-gray-color;
+        align-self: center;
+    }
 }

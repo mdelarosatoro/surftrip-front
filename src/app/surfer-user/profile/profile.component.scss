@@ -5,6 +5,8 @@
     flex-direction: column;
     row-gap: 3rem;
     background-color: variables.$primary-color;
+    padding: 3rem;
+    border-radius: 1rem;
 
     &__top-container {
         display: flex;

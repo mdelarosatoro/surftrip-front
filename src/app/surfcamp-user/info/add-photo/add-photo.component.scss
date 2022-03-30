@@ -7,6 +7,8 @@
     background-color: variables.$primary-color;
     width: 90vw;
     max-width: 500px;
+    padding: 3rem;
+    border-radius: 1rem;
 
     &__title {
         color: variables.$light-gray-color;
@@ -16,6 +18,11 @@
         display: flex;
         flex-direction: column;
         row-gap: 1rem;
+    }
+
+    &__filename {
+        color: variables.$light-gray-color;
+        align-self: center;
     }
 
     &__label {

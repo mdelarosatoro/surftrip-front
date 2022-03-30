@@ -1,6 +1,14 @@
 <div class="customers">
     <h2 class="customers__title">Customers</h2>
     <p class="customers__info">Showing {{ customers.length }} customers</p>
+    <p class="customers__info">
+        Your total revenue is €{{
+            totalRevenue.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })
+        }}
+    </p>
     <div *ngFor="let customer of customers" class="customer">
         <div class="customer__icon-container">
             <img

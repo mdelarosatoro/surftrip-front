@@ -22,7 +22,6 @@ export class RegisterSurfcampComponent implements OnInit {
     geocoder: any;
     map: mapboxgl.Map;
     style = `mapbox://styles/mapbox/streets-v11`;
-    // Coordenadas de la localización donde queremos centrar el mapa
     lat = 43.1746;
     lng = -2.4125;
     zoom = 0;
@@ -76,7 +75,6 @@ export class RegisterSurfcampComponent implements OnInit {
         this.map.on('style.load', () => {
             this.map.on('click', (e: any) => {
                 var coordinates = e.lngLat;
-                console.log(coordinates);
                 this.registerSurfcampForm.setValue({
                     ...this.registerSurfcampForm.value,
                     longitude: coordinates.lng,
@@ -110,7 +108,6 @@ export class RegisterSurfcampComponent implements OnInit {
         this.authService.registerSurfcamp(payload).subscribe({
             next: (resp) => {
                 if (resp._id) {
-                    console.log('Registration success');
                     this.router.navigateByUrl('/login');
                 }
             },

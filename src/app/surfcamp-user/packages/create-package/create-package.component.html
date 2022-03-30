@@ -83,6 +83,9 @@
         ></textarea>
     </div>
     <div class="create-package__input-container">
+        <p *ngIf="fileToUpload" class="create-package__filename">
+            {{ fileToUpload.name }}
+        </p>
         <label
             class="create-package__label create-package__label--icon"
             for="icon"
