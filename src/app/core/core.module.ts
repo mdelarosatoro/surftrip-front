@@ -13,6 +13,7 @@ import { SkillsFormComponent } from './skills-form/skills-form.component';
 import { CommentsComponent } from './comments/comments.component';
 import { MenuDesktopComponent } from './menu-desktop/menu-desktop.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
         CommentsComponent,
         MenuDesktopComponent,
         NotFoundComponent,
+        LoadingComponent,
     ],
     imports: [CommonModule, FontAwesomeModule, RouterModule],
     exports: [
@@ -39,6 +41,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
         StarContainerComponent,
         SkillsFormComponent,
         CommentsComponent,
+        LoadingComponent,
     ],
 })
 export class CoreModule {}

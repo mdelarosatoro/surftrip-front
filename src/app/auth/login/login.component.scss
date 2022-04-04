@@ -26,10 +26,6 @@
     }
 
     &__loading {
-        width: 50px;
-        height: 50px;
-        background-color: variables.$secondary-color;
-        animation: rotate ease 3s infinite;
         align-self: center;
     }
 
@@ -59,14 +55,5 @@
         padding: 0.8rem 0.8rem;
         border-radius: 1.5rem;
         border: none;
-    }
-}
-
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    0% {
-        transform: rotate(360deg);
     }
 }

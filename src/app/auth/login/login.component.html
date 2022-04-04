@@ -3,7 +3,10 @@
     <p *ngIf="invalidMessageStatus" class="login__error-msg">
         {{ invalidMessage }}
     </p>
-    <div *ngIf="loadingStatus" class="login__loading"></div>
+    <app-loading
+        class="login__loading"
+        [loadingStatus]="loadingStatus"
+    ></app-loading>
     <div class="login__radio-outer-container">
         <div class="login__radio-container">
             <input

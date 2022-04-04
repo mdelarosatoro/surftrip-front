@@ -78,13 +78,7 @@ export class AppComponent {
                                                 socketResp.surfcampId ===
                                                 resp._id
                                             ) {
-                                                this.notification = `One of your packages was booked right now`;
-                                                this.notificationState = true;
-                                                setTimeout(() => {
-                                                    this.notificationState =
-                                                        false;
-                                                    this.notification = '';
-                                                }, 9000);
+                                                this.showNotification();
                                             }
                                         });
                                 });
@@ -95,19 +89,28 @@ export class AppComponent {
     }
 
     onActivate(componentRef: LoginComponent) {
-        componentRef.loginSurfcampEvent.subscribe((value) => {
-            if (value) {
-                this.socket.getBookingNotification().subscribe((socketResp) => {
-                    if (socketResp.surfcampId === this.auth.id) {
-                        this.notification = `One of your packages was booked right now`;
-                        this.notificationState = true;
-                        setTimeout(() => {
-                            this.notificationState = false;
-                            this.notification = '';
-                        }, 9000);
-                    }
-                });
-            }
-        });
+        if (componentRef.loginSurfcampEvent) {
+            componentRef.loginSurfcampEvent.subscribe((value) => {
+                console.log(value);
+                if (value) {
+                    this.socket
+                        .getBookingNotification()
+                        .subscribe((socketResp) => {
+                            if (socketResp.surfcampId === this.auth.id) {
+                                this.showNotification();
+                            }
+                        });
+                }
+            });
+        }
+    }
+
+    showNotification() {
+        this.notification = `One of your packages was booked right now`;
+        this.notificationState = true;
+        setTimeout(() => {
+            this.notificationState = false;
+            this.notification = '';
+        }, 9000);
     }
 }
