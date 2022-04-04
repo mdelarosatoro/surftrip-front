@@ -74,7 +74,9 @@ export class PackageDetailsComponent implements OnInit {
     bookPackage(id: string) {
         this.packagesService
             .bookPackage(this.auth.token, id)
-            .subscribe((resp) => {
+            .subscribe((resp: any) => {
+                console.log(resp);
+                window.location.href = resp.url;
                 if (resp.message) {
                     this.successBookMessage = {
                         state: true,

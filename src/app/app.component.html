@@ -2,5 +2,5 @@
     <div *ngIf="notificationState" class="notification">
         <p class="notification__msg">{{ notification }}</p>
     </div>
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
 </app-layout>

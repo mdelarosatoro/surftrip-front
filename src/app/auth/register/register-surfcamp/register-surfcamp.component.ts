@@ -107,8 +107,9 @@ export class RegisterSurfcampComponent implements OnInit {
             payload.skillLevels.push('Expert');
         this.authService.registerSurfcamp(payload).subscribe({
             next: (resp) => {
-                if (resp._id) {
-                    this.router.navigateByUrl('/login');
+                if (resp) {
+                    console.log(resp);
+                    window.location.href = resp.url;
                 }
             },
             error: (error) => {

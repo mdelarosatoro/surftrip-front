@@ -1,8 +1,9 @@
 <form class="login" [formGroup]="loginSurfcampForm" (ngSubmit)="handleSubmit()">
     <h2 class="login__title">Welcome Back!</h2>
-    <p *ngIf="invalidMessage" class="login__error-msg">
-        Invalid Username or Password. Try Again.
+    <p *ngIf="invalidMessageStatus" class="login__error-msg">
+        {{ invalidMessage }}
     </p>
+    <div *ngIf="loadingStatus" class="login__loading"></div>
     <div class="login__radio-outer-container">
         <div class="login__radio-container">
             <input
