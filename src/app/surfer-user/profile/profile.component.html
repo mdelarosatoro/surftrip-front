@@ -2,6 +2,22 @@
     <div class="profile__top-container">
         <div class="profile__title-container">
             <div class="profile__img-container">
+                <div class="profile__img-overlay">
+                    <label for="edit-img">
+                        <fa-icon
+                            class="profile__img-edit"
+                            [icon]="faCameraRetro"
+                        >
+                        </fa-icon>
+                    </label>
+                    <input
+                        type="file"
+                        class="profile__img-input"
+                        name=""
+                        id="edit-img"
+                        (change)="updateProfileImg($event)"
+                    />
+                </div>
                 <img [src]="auth.profilePicUrl" alt="" class="profile__img" />
             </div>
             <h2 class="profile__title">Profile</h2>

@@ -25,6 +25,7 @@ export class RegisterSurfcampComponent implements OnInit {
     lat = 43.1746;
     lng = -2.4125;
     zoom = 0;
+    loadingStatus: boolean;
     constructor(
         public fb: FormBuilder,
         public authService: AuthService,
@@ -56,6 +57,7 @@ export class RegisterSurfcampComponent implements OnInit {
         this.registrationError = false;
         this.mapbox.accessToken = environment.mapBoxToken;
         this.map = {} as unknown as mapboxgl.Map;
+        this.loadingStatus = false;
     }
 
     ngOnInit(): void {
@@ -89,6 +91,7 @@ export class RegisterSurfcampComponent implements OnInit {
     }
 
     handleSubmit(): void {
+        this.loadingStatus = true;
         const payload = {
             ...this.registerSurfcampForm.value,
             skillLevels: [],
@@ -107,12 +110,15 @@ export class RegisterSurfcampComponent implements OnInit {
             payload.skillLevels.push('Expert');
         this.authService.registerSurfcamp(payload).subscribe({
             next: (resp) => {
-                if (resp._id) {
-                    this.router.navigateByUrl('/login');
+                if (resp) {
+                    console.log(resp);
+                    window.location.href = resp.url;
                 }
+                this.loadingStatus = false;
             },
             error: (error) => {
                 this.registrationError = true;
+                this.loadingStatus = false;
             },
         });
     }

@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -18,7 +18,10 @@ import { login } from '../../state/auth/auth.actions';
 })
 export class LoginComponent implements OnInit {
     loginSurfcampForm: FormGroup;
-    invalidMessage: boolean;
+    errorStatus: boolean;
+    errorMessage: string;
+    loadingStatus: boolean;
+    @Output() loginSurfcampEvent: EventEmitter<boolean>;
 
     constructor(
         public fb: FormBuilder,
@@ -33,7 +36,10 @@ export class LoginComponent implements OnInit {
             username: ['', []],
             password: ['', []],
         });
-        this.invalidMessage = false;
+        this.errorStatus = false;
+        this.errorMessage = '';
+        this.loadingStatus = false;
+        this.loginSurfcampEvent = new EventEmitter();
     }
 
     ngOnInit(): void {
@@ -45,6 +51,8 @@ export class LoginComponent implements OnInit {
     }
 
     handleSubmit(): void {
+        this.loadingStatus = true;
+        this.errorStatus = false;
         const credentials = {
             username: this.loginSurfcampForm.value.username,
             password: this.loginSurfcampForm.value.password,
@@ -52,6 +60,7 @@ export class LoginComponent implements OnInit {
         if (this.loginSurfcampForm.value.userType === 'surfcamp') {
             this.authService.loginSurfcamp(credentials).subscribe({
                 next: (resp) => {
+                    this.loadingStatus = false;
                     if (resp.token) {
                         localStorage.setItem('token', resp.token);
                         this.store.dispatch(login({ loginResponse: resp }));
@@ -64,16 +73,21 @@ export class LoginComponent implements OnInit {
                                     })
                                 );
                             });
+                        this.loginSurfcampEvent.emit(true);
                         this.router.navigateByUrl('/surfcamp-dashboard');
                     }
                 },
                 error: (error) => {
-                    this.invalidMessage = true;
+                    this.loadingStatus = false;
+                    this.errorMessage = error.error.message;
+                    this.errorStatus = true;
                 },
             });
         } else if (this.loginSurfcampForm.value.userType === 'surfer') {
+            this.loadingStatus = true;
             this.authService.loginUser(credentials).subscribe({
                 next: (resp) => {
+                    this.loadingStatus = false;
                     if (resp.token) {
                         localStorage.setItem('token', resp.token);
                         this.store.dispatch(login({ loginResponse: resp }));
@@ -90,7 +104,9 @@ export class LoginComponent implements OnInit {
                     }
                 },
                 error: (error) => {
-                    this.invalidMessage = true;
+                    this.loadingStatus = false;
+                    this.errorMessage = error.error.message;
+                    this.errorStatus = true;
                 },
             });
         }

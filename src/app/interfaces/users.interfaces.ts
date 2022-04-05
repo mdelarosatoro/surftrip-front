@@ -39,6 +39,7 @@ export interface UpdateUserI {
     name: string;
     lastName: string;
     email: string;
+    profilePicUrl?: string;
 }
 
 export interface UpdateUserResponseI {

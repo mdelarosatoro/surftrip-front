@@ -24,7 +24,7 @@ export class AuthService {
         this.authUrl = 'http://localhost:4500/auth/';
     }
 
-    registerSurfcamp(newSurfcamp: CreateSurfcampI): Observable<SurfcampI> {
+    registerSurfcamp(newSurfcamp: CreateSurfcampI): Observable<any> {
         return this.http.post<SurfcampI>(
             this.authUrl + 'surfcamps/register',
             newSurfcamp

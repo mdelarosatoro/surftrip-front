@@ -11,6 +11,7 @@ import { SurfcampsService } from './services/surfcamps.service';
 import { login } from './state/auth/auth.actions';
 import { loadSurfcamp } from './state/surfcamp/surfcamp.actions';
 import { SocketService } from './services/socket.service';
+import { LoginComponent } from './auth/login/login.component';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -21,6 +22,7 @@ export class AppComponent {
     token: string | null;
     notification: string;
     notificationState: boolean;
+    auth!: SurfcampLoginResponseI | UserLoginResponseI;
 
     constructor(
         private store: Store<{
@@ -42,7 +44,9 @@ export class AppComponent {
             .select((store) => {
                 return store.auth;
             })
-            .subscribe((auth) => {});
+            .subscribe((auth) => {
+                this.auth = auth;
+            });
         if (this.token) {
             this.authService
                 .loginToken(this.token)
@@ -74,13 +78,7 @@ export class AppComponent {
                                                 socketResp.surfcampId ===
                                                 resp._id
                                             ) {
-                                                this.notification = `One of your packages was booked right now`;
-                                                this.notificationState = true;
-                                                setTimeout(() => {
-                                                    this.notificationState =
-                                                        false;
-                                                    this.notification = '';
-                                                }, 9000);
+                                                this.showNotification();
                                             }
                                         });
                                 });
@@ -88,5 +86,31 @@ export class AppComponent {
                     }
                 );
         }
+    }
+
+    onActivate(componentRef: LoginComponent) {
+        if (componentRef.loginSurfcampEvent) {
+            componentRef.loginSurfcampEvent.subscribe((value) => {
+                console.log(value);
+                if (value) {
+                    this.socket
+                        .getBookingNotification()
+                        .subscribe((socketResp) => {
+                            if (socketResp.surfcampId === this.auth.id) {
+                                this.showNotification();
+                            }
+                        });
+                }
+            });
+        }
+    }
+
+    showNotification() {
+        this.notification = `One of your packages was booked right now`;
+        this.notificationState = true;
+        setTimeout(() => {
+            this.notificationState = false;
+            this.notification = '';
+        }, 9000);
     }
 }
