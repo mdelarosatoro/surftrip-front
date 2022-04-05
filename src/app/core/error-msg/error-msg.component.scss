@@ -1,0 +1,13 @@
+.error {
+    border: 1px solid red;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__message {
+        align-self: center;
+        color: red;
+    }
+}

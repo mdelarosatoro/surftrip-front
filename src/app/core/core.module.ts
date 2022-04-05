@@ -14,6 +14,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { MenuDesktopComponent } from './menu-desktop/menu-desktop.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoadingComponent } from './loading/loading.component';
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { LoadingComponent } from './loading/loading.component';
         MenuDesktopComponent,
         NotFoundComponent,
         LoadingComponent,
+        ErrorMsgComponent,
     ],
     imports: [CommonModule, FontAwesomeModule, RouterModule],
     exports: [
@@ -42,6 +44,7 @@ import { LoadingComponent } from './loading/loading.component';
         SkillsFormComponent,
         CommentsComponent,
         LoadingComponent,
+        ErrorMsgComponent,
     ],
 })
 export class CoreModule {}

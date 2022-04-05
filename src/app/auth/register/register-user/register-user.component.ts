@@ -18,6 +18,7 @@ export class RegisterUserComponent implements OnInit {
     registrationError: boolean;
     fileToUpload: any;
     registerUserForm: FormGroup;
+    loadingStatus: boolean;
     constructor(
         public fb: FormBuilder,
         public authService: AuthService,
@@ -45,12 +46,20 @@ export class RegisterUserComponent implements OnInit {
             confirmPassword: new FormControl('', [Validators.required]),
         });
         this.registrationError = false;
+        this.loadingStatus = false;
     }
 
     ngOnInit(): void {}
 
     async handleSubmit() {
-        const url = await this.firebase.getDownloadUrl(this.fileToUpload);
+        this.loadingStatus = true;
+        let url;
+        if (this.fileToUpload) {
+            url = await this.firebase.getDownloadUrl(this.fileToUpload);
+        } else {
+            url =
+                'https://firebasestorage.googleapis.com/v0/b/surftrip-18659.appspot.com/o/default%20profile.jpeg?alt=media&token=4db234c6-42c7-4e73-b834-c2d626f77361';
+        }
         this.authService
             .registerUser({
                 ...this.registerUserForm.value,
@@ -61,9 +70,11 @@ export class RegisterUserComponent implements OnInit {
                     if (resp._id) {
                         this.router.navigateByUrl('/login');
                     }
+                    this.loadingStatus = false;
                 },
                 error: (error) => {
                     this.registrationError = true;
+                    this.loadingStatus = false;
                 },
             });
     }

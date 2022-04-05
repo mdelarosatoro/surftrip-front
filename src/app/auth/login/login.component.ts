@@ -18,8 +18,8 @@ import { login } from '../../state/auth/auth.actions';
 })
 export class LoginComponent implements OnInit {
     loginSurfcampForm: FormGroup;
-    invalidMessageStatus: boolean;
-    invalidMessage: string;
+    errorStatus: boolean;
+    errorMessage: string;
     loadingStatus: boolean;
     @Output() loginSurfcampEvent: EventEmitter<boolean>;
 
@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
             username: ['', []],
             password: ['', []],
         });
-        this.invalidMessageStatus = false;
-        this.invalidMessage = '';
+        this.errorStatus = false;
+        this.errorMessage = '';
         this.loadingStatus = false;
         this.loginSurfcampEvent = new EventEmitter();
     }
@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
 
     handleSubmit(): void {
         this.loadingStatus = true;
+        this.errorStatus = false;
         const credentials = {
             username: this.loginSurfcampForm.value.username,
             password: this.loginSurfcampForm.value.password,
@@ -78,8 +79,8 @@ export class LoginComponent implements OnInit {
                 },
                 error: (error) => {
                     this.loadingStatus = false;
-                    this.invalidMessage = error.error.message;
-                    this.invalidMessageStatus = true;
+                    this.errorMessage = error.error.message;
+                    this.errorStatus = true;
                 },
             });
         } else if (this.loginSurfcampForm.value.userType === 'surfer') {
@@ -104,8 +105,8 @@ export class LoginComponent implements OnInit {
                 },
                 error: (error) => {
                     this.loadingStatus = false;
-                    this.invalidMessage = error.error.message;
-                    this.invalidMessageStatus = true;
+                    this.errorMessage = error.error.message;
+                    this.errorStatus = true;
                 },
             });
         }

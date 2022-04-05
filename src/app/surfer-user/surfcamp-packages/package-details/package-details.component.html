@@ -12,6 +12,7 @@
     <p class="package__book-message" *ngIf="successBookMessage.state">
         Successfully booked package
     </p>
+    <app-loading [loadingStatus]="loadingStatus"></app-loading>
     <div class="package__info-outer-container">
         <button (click)="bookPackage(package._id)" class="package__button">
             Book

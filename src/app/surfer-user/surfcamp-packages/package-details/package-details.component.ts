@@ -19,6 +19,7 @@ export class PackageDetailsComponent implements OnInit {
     package!: PackageI;
     packageWithLocation!: any;
     successBookMessage: { state: boolean; package: string };
+    loadingStatus: boolean;
     constructor(
         public route: ActivatedRoute,
         private store: Store<{
@@ -47,6 +48,7 @@ export class PackageDetailsComponent implements OnInit {
             name: '',
         };
         this.successBookMessage = { state: false, package: '' };
+        this.loadingStatus = false;
     }
 
     ngOnInit(): void {
@@ -72,12 +74,14 @@ export class PackageDetailsComponent implements OnInit {
     }
 
     bookPackage(id: string) {
+        this.loadingStatus = true;
         this.packagesService
             .bookPackage(this.auth.token, id)
             .subscribe((resp: any) => {
                 console.log(resp);
                 window.location.href = resp.url;
                 if (resp.message) {
+                    this.loadingStatus = false;
                     this.successBookMessage = {
                         state: true,
                         package: this.package._id,

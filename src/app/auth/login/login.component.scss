@@ -20,9 +20,8 @@
         color: variables.$light-gray-color;
     }
 
-    &__error-msg {
+    &__error {
         align-self: center;
-        color: red;
     }
 
     &__loading {
