@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { DeletePhotoI, UploadPhotoI } from '../interfaces/photos.interfaces';
 import {
     AddCommentI,
@@ -17,7 +18,7 @@ import {
 export class SurfcampsService {
     authUrl: string;
     constructor(private http: HttpClient) {
-        this.authUrl = 'http://localhost:4500/surfcamps/';
+        this.authUrl = `${environment.API_URL}surfcamps/`;
     }
 
     getAllSurfcamps(token: string): Observable<SurfcampI[]> {

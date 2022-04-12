@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import {
     CreateSurfcampI,
     SurfcampI,
@@ -21,7 +22,7 @@ import {
 export class AuthService {
     authUrl: string;
     constructor(private http: HttpClient) {
-        this.authUrl = 'http://localhost:4500/auth/';
+        this.authUrl = `${environment.API_URL}auth/`;
     }
 
     registerSurfcamp(newSurfcamp: CreateSurfcampI): Observable<any> {

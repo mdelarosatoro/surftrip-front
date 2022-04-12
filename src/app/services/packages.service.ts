@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import {
     CreatePackageI,
     PackageI,
@@ -14,7 +15,7 @@ import {
 export class PackagesService {
     packageUrl: string;
     constructor(private http: HttpClient) {
-        this.packageUrl = 'http://localhost:4500/packages/';
+        this.packageUrl = `${environment.API_URL}packages/`;
     }
 
     createPackage(
