@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import {
     UpdateUserI,
     UpdateUserResponseI,
@@ -13,7 +14,7 @@ import {
 export class UsersService {
     apiUrl: string;
     constructor(public http: HttpClient) {
-        this.apiUrl = 'http://localhost:4500/users/';
+        this.apiUrl = `${environment.API_URL}users/`;
     }
     getAll(token: string): Observable<UserI[]> {
         const headers = new HttpHeaders().set(

@@ -16,7 +16,7 @@ import { userReducer } from './state/user/user.reducer';
 import { AuthGuard } from './services/auth-guard.service';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:4500', options: {} };
+const config: SocketIoConfig = { url: environment.API_URL, options: {} };
 @NgModule({
     declarations: [AppComponent],
     imports: [
